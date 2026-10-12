@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#080e19" />
+<title>DRY OCEAN — Talent Atlas</title>
+<style>
+:root{--bg:#070d17;--side:#0e1725;--side2:#101b2b;--border:#26374a;--muted:#7e92a5;--text:#e9f0f2;--soft:#b2c2c9;--teal:#8fe3d9;--gold:#e7c08a;--red:#ea9a92;--sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+*{box-sizing:border-box}html,body{height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13px}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--teal);outline-offset:2px}button:disabled{opacity:.3;cursor:not-allowed}.app{height:100vh;height:100dvh;display:flex;flex-direction:column;min-height:450px}
+.topbar{height:71px;flex:none;display:flex;align-items:center;gap:16px;padding:0 21px;background:#0a1320;border-bottom:1px solid #223247;z-index:10}.brand{display:flex;gap:12px;align-items:center;min-width:210px}.mark{width:40px;height:40px;border:1px solid #46736f;border-radius:12px;display:grid;place-items:center;background:linear-gradient(160deg,#1c464d,#0d2431);box-shadow:0 0 30px #66c2b112}.brandline{font-weight:800;letter-spacing:.16em;font-size:13px}.brandcaption{font-size:9px;letter-spacing:.19em;color:#85a8ae;margin-top:4px}.head-divider{height:28px;width:1px;background:#283a4a}.project-title{width:min(330px,30vw);background:none;border:1px solid transparent;border-radius:7px;color:#d8e6e8;font-size:15px;font-weight:600;padding:8px 10px;letter-spacing:.005em}.project-title:hover,.project-title:focus{background:#111f30;border-color:#3a5061;outline:none}.grow{flex:1}.saved{display:flex;align-items:center;gap:7px;color:#86a39f;font-size:11px;white-space:nowrap}.saved .dot{width:6px;height:6px;background:#79d3be;border-radius:50%;box-shadow:0 0 10px #79d3be88}.btn{border:1px solid #34485a;background:#152336;color:#cddcde;border-radius:9px;min-height:34px;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;transition:.16s}.btn:hover{background:#1e3246;border-color:#648091;color:white}.btn.primary{background:#addecf;color:#102c32;border-color:#b4eee1;font-weight:750}.btn.primary:hover{background:#cef4e8}.btn.ghost{border-color:transparent;background:transparent;color:#96b0bd}.btn.ghost:hover{background:#1a2a39;color:white}.btn.danger{border-color:#7f484b;color:#f0aaa8;background:#2a1b25}.btn.danger:hover{background:#4c232a}.btn.mini{min-height:28px;padding:0 8px;font-size:11px}.btn.iconbtn{width:34px;padding:0;font-size:18px}.chevron{font-size:10px;color:#97b1b6}
+.layout{flex:1;min-height:0;display:grid;grid-template-columns:253px minmax(0,1fr) 311px}.sidebar,.inspector{min-height:0;background:var(--side);display:flex;flex-direction:column;z-index:4}.sidebar{border-right:1px solid var(--border)}.inspector{border-left:1px solid var(--border)}.side-head{padding:21px 17px 16px;border-bottom:1px solid #233344;flex:none}.eyebrow{font-size:10px;letter-spacing:.16em;color:#7490a0;font-weight:750}.sectiontitle{font-size:17px;font-weight:750;letter-spacing:-.02em;margin:5px 0}.sub{color:#778c9a;font-size:11px;line-height:1.5}.left-scroll,.right-scroll{overflow-y:auto;min-height:0;scrollbar-color:#344657 transparent;scrollbar-width:thin}.left-scroll{padding:13px 10px 22px}.smallheading{display:flex;align-items:center;justify-content:space-between;padding:12px 9px 8px;color:#88a3af;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.branch{width:100%;display:flex;align-items:center;gap:10px;border:1px solid transparent;border-radius:10px;background:none;color:#c8d6dc;text-align:left;padding:10px 9px;margin:2px 0}.branch:hover{background:#18293a}.branch.active{background:#1a2b3c;border-color:#335163;color:#fff}.branch-swatch{width:10px;height:10px;border-radius:50%;flex:none;box-shadow:0 0 15px currentColor}.branch .name{flex:1}.count{color:#7f99ab;font-size:11px}.searchwrap{margin:7px 7px 4px;position:relative}.searchwrap input{width:100%;height:35px;padding:0 10px 0 32px;background:#091321;border:1px solid #2a3b4c;border-radius:9px;color:white;outline:none}.searchwrap input:focus{border-color:#68afa7}.searchwrap::before{content:"⌕";position:absolute;left:11px;top:3px;color:#7892a5;font-size:22px}.node-row{width:100%;display:flex;align-items:center;gap:9px;padding:9px 10px;text-align:left;background:transparent;border:0;color:#b9c9d0;border-radius:8px}.node-row:hover,.node-row.active{background:#1c3040;color:white}.node-row .tiny-dot{border:2px solid currentColor;width:9px;height:9px;border-radius:50%;flex:none}.node-row .text-ellipsis{flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:11px}.node-row .number{font-size:10px;color:#607e8f}.emptymini{padding:14px;color:#78909a;font-size:11px;line-height:1.6}.side-bottom{margin-top:auto;border-top:1px solid #263748;padding:14px 17px;color:#758f9a;font-size:11px;line-height:1.6}.kbd{background:#203042;border:1px solid #3c5262;border-bottom-color:#52677a;padding:1px 5px;border-radius:4px;color:#b9cbd5;font-size:10px}
+.stage{min-width:0;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 45%,#152437 0%,#0b1624 50%,#070e1a 100%);touch-action:none}.stage:before{content:"";position:absolute;inset:0;background-image:radial-gradient(#4d688333 1px,transparent 1px);background-size:21px 21px;opacity:.62;pointer-events:none}.stage:after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 80px 12px #060d19;pointer-events:none}.stage svg{position:absolute;inset:0;width:100%;height:100%;touch-action:none;user-select:none;cursor:grab;z-index:1}.stage svg.grabbing{cursor:grabbing}.stage svg.linkmode{cursor:crosshair}.stage .floating-top{position:absolute;top:18px;left:20px;right:20px;display:flex;align-items:flex-start;justify-content:space-between;z-index:2;pointer-events:none;gap:15px}.floatbox{display:flex;align-items:center;gap:6px;flex-wrap:wrap;pointer-events:auto;background:#0c1725dd;border:1px solid #2a4055;border-radius:12px;padding:6px;box-shadow:0 7px 35px #0006;backdrop-filter:blur(9px)}.floatbox .btn{border:0;min-height:34px}.floatbox .btn.active{color:#08252c;background:#a4ddce}.separator{height:22px;width:1px;background:#365064;margin:0 3px}.caption-pill{border:1px solid #385165;color:#819da9;font-size:10px;font-weight:700;letter-spacing:.1em;padding:10px 12px;border-radius:9px;background:#0c1725c9}.stage-bottom{position:absolute;bottom:20px;left:20px;right:20px;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;pointer-events:none;gap:12px}.keytip{color:#8c9fae;line-height:1.8;font-size:11px;background:#0a1521b0;padding:8px 12px;border-radius:8px;border:1px solid #203346bb}.zoomtool{display:flex;align-items:center;gap:4px;pointer-events:auto;background:#0c1827e8;padding:5px;border-radius:10px;border:1px solid #30475c}.zoomtool button{min-width:32px;min-height:32px;background:none;color:#bfd0d6;border:0;border-radius:6px;font-size:19px}.zoomtool button:hover{background:#294051}.zoomtool .zoomvalue{width:48px;text-align:center;color:#8faeba;font-size:12px}.link-tip{position:absolute;z-index:3;top:81px;left:50%;transform:translateX(-50%);background:#173739;border:1px solid #5ca29f;border-radius:9px;color:#c6f5e8;padding:10px 15px;box-shadow:0 10px 40px #0007;display:none;white-space:nowrap;font-size:12px}.link-tip.show{display:block}
+svg .guide-circle{fill:none;stroke:#6c94a7;stroke-opacity:.13;stroke-width:1;stroke-dasharray:2 8}svg .guide-ray{stroke:#87aec3;stroke-opacity:.07;stroke-width:1}svg .guide-angle{fill:#60899e;opacity:.32;font:600 10px var(--sans);letter-spacing:2px}svg .edge{fill:none;stroke-linecap:round;stroke-width:2.2;pointer-events:none}svg .edge.cross{stroke-dasharray:5 6;opacity:.82}svg .edge.selected{stroke-width:4;filter:drop-shadow(0px 0px 7px currentColor)}svg .edge-hit{fill:none;stroke:transparent;stroke-width:19;cursor:pointer;pointer-events:stroke}svg .edge-flow{fill:none;stroke-width:1;opacity:.36;pointer-events:none}svg .node-hit{fill:transparent;stroke:none;pointer-events:all}svg .noderoot{cursor:grab}svg .noderoot:active{cursor:grabbing}svg .node-circle{stroke-width:2.1}svg .nodehalo{fill:none;stroke-width:1;stroke-opacity:.52}svg .node-text{fill:#c9dade;font-family:var(--sans);font-weight:650;font-size:12px;text-anchor:middle;pointer-events:none;paint-order:stroke;stroke:#091321;stroke-width:4px;stroke-linejoin:round}svg .node-sub{fill:#879ead;font-family:var(--sans);font-weight:500;font-size:9px;text-anchor:middle;pointer-events:none;paint-order:stroke;stroke:#091321;stroke-width:3px;stroke-linejoin:round}svg .branch-label{font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:1.3px;text-anchor:middle;paint-order:stroke;stroke:#07121e;stroke-width:4px;pointer-events:none}svg .node-inner{fill:#0e1e2b}svg .node-glyph{font-family:var(--sans);font-size:14px;font-weight:700;text-anchor:middle;dominant-baseline:middle;pointer-events:none}svg .selectedring{fill:none;stroke:#e9fffa;stroke-width:1.8;stroke-dasharray:4 3;animation:spin 18s linear infinite;transform-box:fill-box;transform-origin:center}@keyframes spin{to{transform:rotate(360deg)}}
+.inspector .right-scroll{padding:18px}.placeholder{padding:40px 20px;text-align:center;color:#8299a7;line-height:1.65}.orb{border:1px solid #335063;background:radial-gradient(circle at center,#365c65,#132c3a);height:64px;width:64px;border-radius:50%;margin:0 auto 20px;display:grid;place-items:center;color:#9cddd5;font-size:25px}.detail-head{display:flex;gap:10px;align-items:center;margin-bottom:21px}.detail-preview{width:45px;height:45px;border:1px solid;border-radius:13px;display:grid;place-items:center;font-size:21px;background:#112638}.detail-title{font-size:15px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:202px}.detail-small{font-size:10px;color:#7c97a4;margin-top:5px}.field{margin-bottom:17px}.field label{display:block;font-size:10px;font-weight:750;letter-spacing:.1em;text-transform:uppercase;color:#879da9;margin-bottom:7px}.field input,.field select,.field textarea{width:100%;color:#e2ebee;background:#091523;border:1px solid #304456;border-radius:9px;padding:11px 10px;outline:none;transition:.1s}.field input:focus,.field select:focus,.field textarea:focus{border-color:#88cebe;background:#0b1b2a}.field textarea{resize:vertical;min-height:68px;line-height:1.55}.field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#87a3b1 50%),linear-gradient(135deg,#87a3b1 50%,transparent 50%);background-position:calc(100% - 17px) calc(50% - 2px),calc(100% - 12px) calc(50% - 2px);background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:30px}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.hintline{color:#7591a0;font-size:10px;line-height:1.6;margin:-5px 0 18px}.rule{height:1px;background:#294054;margin:23px 0}.links-title{font-size:10px;color:#91abba;text-transform:uppercase;font-weight:800;letter-spacing:.1em;margin:0 0 9px}.linked{display:flex;gap:7px;align-items:center;border:1px solid #2a4051;background:#122234;padding:9px;border-radius:9px;margin-bottom:6px;color:#b4c9cd;font-size:11px}.linked span{flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.linked button{background:none;color:#9faebc;border:0;border-radius:5px}.linked button:hover{background:#42252c;color:#f5b2b2}.detail-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px}.bottom-caption{padding:14px 18px;font-size:10px;color:#72919e;line-height:1.6;border-top:1px solid #263747;flex:none}.status-tag{display:inline-flex;padding:4px 7px;border-radius:6px;background:#203347;color:#a9c6c8;font-size:10px}.note{padding:12px 13px;background:#172738;border:1px solid #345062;border-radius:9px;color:#9db6be;line-height:1.6;font-size:11px;margin-bottom:18px}
+.modalshade{position:fixed;inset:0;z-index:30;display:none;align-items:center;justify-content:center;padding:15px;background:#02080fc9;backdrop-filter:blur(8px)}.modalshade.show{display:flex}.modal{width:min(435px,95vw);background:#101d2c;border:1px solid #486473;border-radius:17px;padding:25px;box-shadow:0 25px 100px #000a}.modal h2{margin:0 0 10px;font-size:22px}.modal p{color:#92aab3;font-size:12px;line-height:1.6}.modal .actions{display:flex;justify-content:flex-end;gap:9px;margin-top:24px}.colorgrid{display:flex;gap:8px;margin:10px 0 15px}.colorspot{width:27px;height:27px;border-radius:9px;border:2px solid transparent}.colorspot.selected{outline:2px solid #c3e5e4;outline-offset:2px}.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);z-index:50;background:#244348;color:#d5f6eb;border:1px solid #6eb4a2;padding:12px 19px;border-radius:10px;box-shadow:0 15px 50px #0008;opacity:0;pointer-events:none;transition:.22s;max-width:90vw;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.mobile-nav{display:none}.mobile-close{display:none}
+@media(max-width:1250px){.layout{grid-template-columns:208px minmax(0,1fr) 285px}.brand{min-width:170px}.topbar{gap:9px;padding:0 12px}.project-title{width:min(235px,22vw)}}
+@media(max-width:950px){.saved{display:none}.brand{min-width:auto}.brandcaption{display:none}.head-divider{display:none}.topbar .hide-mid{display:none}.layout{grid-template-columns:190px minmax(0,1fr)}.inspector{position:absolute;top:71px;right:0;bottom:0;width:315px;transform:translateX(105%);transition:transform .22s;box-shadow:-15px 0 35px #0007}.inspector.show{transform:translateX(0)}.mobile-nav{display:inline-flex}.mobile-close{display:inline-flex;margin-left:auto}.sidebar{z-index:5}}
+@media(max-width:620px){.topbar{height:60px;padding:0 10px;gap:6px}.mark{width:32px;height:32px}.brandline{font-size:10px}.project-title{width:26vw;font-size:12px;padding:7px 4px}.topbar .btn{font-size:11px;padding:0 9px}.topbar .hide-mobile{display:none}.layout{display:block}.stage{height:100%}.sidebar{position:absolute;top:60px;left:0;bottom:0;width:min(285px,83vw);transform:translateX(-105%);transition:transform .22s;box-shadow:14px 0 35px #0008}.sidebar.show{transform:translateX(0)}.inspector{top:60px;width:min(325px,90vw)}.floating-top{top:10px!important;left:10px!important;right:10px!important}.floatbox{gap:2px;padding:3px}.floatbox .btn{font-size:11px;padding:0 8px}.floatbox .hide-mobile{display:none}.caption-pill{display:none}.stage-bottom{bottom:8px;left:8px;right:8px}.keytip{display:none}.mobile-nav{display:inline-flex}.side-head{padding:14px}.right-scroll{padding:12px!important}}
+/* Управление направлениями: отдельное действие редактирования, без путаницы с фильтром. */
+.branch-entry{display:flex;align-items:center;min-width:0;margin:2px 0;border-radius:10px;gap:0}
+.branch-entry .branch{flex:1;min-width:0;margin:0;padding-right:3px}
+.branch-entry .branch .name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.branch-edit{width:31px;height:35px;flex:none;display:grid;place-items:center;color:#839cac;background:transparent;border:1px solid transparent;border-radius:9px;font-size:16px;transition:.14s}
+.branch-edit:hover,.branch-edit:focus-visible{color:#d3fff4;background:#254157;border-color:#4b687a}
+.branch-entry:has(.branch.active) .branch-edit{color:#a6cdc7}
+button[hidden]{display:none!important}
+@media(max-width:620px){.branch-edit{width:38px;height:40px;color:#b3c9d1}}
+
+/* iPhone workspace: finger targets, native safe areas, collapsible panels. */
+.mobile-more,.mobile-actions-backdrop,.mobile-actions,.panel-scrim{display:none}
+.mobile-actions-backdrop{position:fixed;inset:0;background:#030914b9;backdrop-filter:blur(4px);z-index:20}
+.mobile-actions-backdrop.show{display:block}
+.mobile-actions{position:fixed;z-index:21;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));background:#111f30;border:1px solid #496274;border-radius:19px;box-shadow:0 22px 90px #000c;padding:19px;max-height:calc(100dvh - 32px - env(safe-area-inset-bottom));overflow-y:auto;-webkit-overflow-scrolling:touch}
+.mobile-actions.show{display:block}
+.mobile-actions-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}
+.mobile-actions-heading h2{margin:5px 0 0;font-size:20px}
+.mobile-actions .field{margin-bottom:13px}
+.mobile-actions .field input{font-size:16px}
+.mobile-actions-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.mobile-actions-grid .btn{min-height:45px;font-size:13px;justify-content:flex-start}
+.mobile-new{margin-top:15px;min-height:44px;width:100%}
+.mobile-storage-hint{color:#8fa9b4;font-size:11px;line-height:1.55;margin:13px 3px 0}
+@media(max-width:620px), (orientation:landscape) and (max-height:500px){
+ html,body{font-size:14px;-webkit-text-size-adjust:100%}
+ .app{min-height:0;height:100vh;height:100dvh}
+ .layout{position:relative;min-height:0;flex:1;display:block}
+ .topbar{height:calc(56px + env(safe-area-inset-top));padding:env(safe-area-inset-top) max(9px,env(safe-area-inset-right)) 0 max(9px,env(safe-area-inset-left));gap:5px}
+ .brand{flex:none;min-width:0}.brandline{font-size:11px;letter-spacing:.11em}.mark{width:31px;height:31px;border-radius:9px}.mark svg{width:22px;height:22px}
+ .project-title,.topbar .hide-mobile{display:none}.topbar .grow{flex:1}
+ .topbar .btn{min-width:40px;min-height:40px;font-size:17px;padding:0 8px;border-radius:10px}
+ .topbar #newNodeTop{font-size:13px;min-width:70px;padding:0 9px}
+ .mobile-more{display:inline-flex!important;font-size:24px!important}
+ .stage{height:100%;min-height:0;width:100%}
+ .stage .floating-top{top:8px!important;left:max(8px,env(safe-area-inset-left))!important;right:max(8px,env(safe-area-inset-right))!important;gap:6px}
+ .floatbox .btn{min-width:45px;min-height:42px;font-size:19px;padding:0 8px}
+ .separator{height:26px}.floatbox .hide-mobile,.caption-pill,.keytip{display:none}
+ .stage-bottom{bottom:calc(max(10px,env(safe-area-inset-bottom)) + 3px);left:max(10px,env(safe-area-inset-left));right:max(10px,env(safe-area-inset-right))}
+ .zoomtool{margin-left:auto;padding:4px;gap:3px;border-radius:13px}
+ .zoomtool button{min-width:43px;min-height:43px;font-size:21px;touch-action:manipulation}
+ .zoomtool .zoomvalue{width:52px;font-size:13px}
+ .panel-scrim.show{display:block;position:fixed;inset:0;z-index:11;background:#0008}
+ .sidebar{position:fixed;top:0;bottom:0;left:0;width:min(345px,89vw);padding-top:env(safe-area-inset-top);z-index:12;transform:translateX(-105%);transition:transform .22s;box-shadow:12px 0 50px #0008}.sidebar.show{transform:translateX(0)}
+ .inspector{position:fixed;left:0;right:0;top:auto;bottom:0;width:100%;height:min(78dvh,720px);max-height:calc(100dvh - 15px - env(safe-area-inset-top));border-top:1px solid #536979;border-left:0;border-radius:20px 20px 0 0;transform:translateY(105%);z-index:12;box-shadow:0 -25px 70px #000b;padding-bottom:env(safe-area-inset-bottom)}
+ .inspector.show{transform:translateY(0)}
+ .inspector .right-scroll,.left-scroll{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+ .inspector .side-head{padding:13px 18px 11px}.inspector .sectiontitle{font-size:16px}
+ .sidebar .side-head{padding:16px 16px 13px}
+ .sidebar .left-scroll{padding-bottom:calc(20px + env(safe-area-inset-bottom))}
+ .branch{min-height:46px;font-size:14px}.branch-edit{min-height:46px;min-width:46px}
+ .node-row{min-height:43px}.node-row .text-ellipsis{font-size:13px}
+ .field input,.field select,.field textarea,.searchwrap input,.project-title{font-size:16px!important}
+ .field input,.field select{min-height:44px}.field textarea{min-height:92px}
+ .btn.mini{min-height:40px;font-size:12px}
+ .modalshade{padding:12px max(12px,env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));align-items:center}
+ .modal{max-height:85dvh;overflow-y:auto;padding:20px 16px}
+ .modal .actions .btn{min-height:43px}
+ .colorspot{width:34px;height:34px}
+ .link-tip{top:61px;left:12px;right:12px;transform:none;max-width:calc(100vw - 24px);white-space:normal;line-height:1.35;text-align:center}
+ .toast{bottom:calc(76px + env(safe-area-inset-bottom));font-size:12px}
+}
+@media(max-width:950px) and (orientation:landscape) and (max-height:500px){
+ .app{min-height:0}
+ .topbar{height:calc(47px + env(safe-area-inset-top));padding-top:env(safe-area-inset-top)}
+ .topbar .btn{min-height:36px;min-width:38px}
+ .inspector{top:0;right:0;left:auto;bottom:0;height:100dvh;max-height:none;width:min(375px,78vw);padding-top:env(safe-area-inset-top);border-radius:15px 0 0 15px;border-top:0;border-left:1px solid #536979;transform:translateX(105%)}
+ .inspector.show{transform:translateX(0)}
+ .floatbox .btn{min-height:36px;min-width:39px}
+ .zoomtool button{min-height:36px;min-width:40px}
+ .mobile-actions{left:max(15px,env(safe-area-inset-left));right:max(15px,env(safe-area-inset-right));bottom:6px;max-width:600px;margin:auto;max-height:94dvh}
+ .mobile-actions-grid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+ <div class="brand"><div class="mark"><svg width="27" height="27" viewBox="0 0 28 28" fill="none"><path d="M3 17C7 10 11 21 15 14C19 8 22 11 25 7" stroke="#C4E9DC" stroke-width="1.8" stroke-linecap="round"/><path d="M4 22C9 16 14 25 24 17" stroke="#5DACA9" stroke-width="1.4" stroke-linecap="round"/><circle cx="22" cy="7" r="2" fill="#C5D6B2"/></svg></div><div><div class="brandline">DRY OCEAN</div><div class="brandcaption">DESIGN WORKSPACE</div></div></div>
+ <div class="head-divider"></div><input class="project-title" id="projectName" value="Атлас адаптации кита" aria-label="Название проекта" title="Можно переименовать"/>
+ <div class="grow"></div><div class="saved"><span class="dot"></span><span id="saveIndicator">Сохранено локально</span></div>
+ <button class="btn ghost hide-mid" id="undoBtn" title="Отменить (Ctrl/Cmd+Z)">↶</button><button class="btn ghost hide-mid" id="redoBtn" title="Повторить (Ctrl/Cmd+Shift+Z)">↷</button>
+ <button class="btn hide-mobile" id="newProjectBtn" title="Начать чистое дерево">✦ Новый</button><button class="btn hide-mobile" id="exportBtn" title="Скачать проект JSON">↓ JSON</button><button class="btn hide-mobile" id="importBtn" title="Открыть сохранённый проект">↑ JSON</button>
+ <button class="btn primary" id="newNodeTop">＋ Узел</button><button class="btn ghost mobile-nav" id="menuBtn" title="Открыть ветви">☰</button><button class="btn ghost mobile-nav" id="inspectBtn" title="Свойства узла" aria-label="Свойства узла">☷</button><button class="btn ghost mobile-more" id="moreBtn" title="Файлы и действия" aria-label="Файлы и действия">⋯</button>
+</header>
+<div class="layout"><div class="panel-scrim" id="panelScrim" aria-hidden="true"></div>
+<aside class="sidebar" id="sidebar">
+ <div class="side-head"><div style="display:flex;align-items:center"><div><div class="eyebrow">СТРУКТУРА</div><div class="sectiontitle">Ветви развития</div></div><button class="btn ghost mini mobile-close" id="closeSidebar">✕</button></div><div class="sub">Собери своё дерево — от центра к новым возможностям.</div></div>
+ <div class="left-scroll"><div class="smallheading"><span>Направления</span><button class="btn mini ghost" id="newBranch">＋ ветвь</button></div><div id="branchList"></div><div class="smallheading" style="margin-top:17px"><span>Узлы <span id="nodeCount"></span></span><span class="chevron" id="filterTitle">ВСЕ</span></div><div class="searchwrap"><input id="nodeSearch" type="search" placeholder="Найти способность..." aria-label="Поиск узлов"/></div><div id="nodeList"></div></div>
+ <div class="side-bottom"><div style="color:#bed4d8;margin-bottom:4px">✦ Важно для DRY OCEAN</div>Это редактор идей, а не обязательная RPG-система. По канону кит учится действиями, без очков навыков.<div style="margin-top:10px"><button class="btn mini" id="newProjectSide">✦ Чистое дерево</button></div></div>
+</aside>
+<main class="stage" id="stage">
+ <svg id="graph" xmlns="http://www.w3.org/2000/svg" aria-label="Интерактивное дерево талантов"><defs><filter id="glow" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g id="world"><g id="guides"></g><g id="edgeLayer"></g><g id="nodeLayer"></g></g></svg>
+ <div class="floating-top"><div class="floatbox"><button class="btn active" id="moveMode" title="Выбирать и передвигать узлы">✥ <span class="hide-mobile">Выбор</span></button><button class="btn" id="linkMode" title="Соединить два узла">⌁ <span class="hide-mobile">Связь</span></button><div class="separator"></div><button class="btn" id="fitBtn" title="Показать всё дерево">⊡ <span class="hide-mobile">Вписать</span></button><button class="btn hide-mobile" id="layoutBtn" title="Разложить ветви радиально">◌ Расставить</button><button class="btn hide-mobile" id="pngBtn" title="Скачать схему в виде картинки">⇩ PNG</button></div><div class="caption-pill">РАБОЧИЙ ЧЕРНОВИК · <span id="totalLabel">0</span> УЗЛОВ</div></div>
+ <div class="link-tip" id="linkTip">Выбери первый узел для связи · Esc — отмена</div>
+ <div class="stage-bottom"><div class="keytip"><span class="kbd">Перетаскивай</span> узлы и фон · <span class="kbd">Двойной клик</span> — новый узел · <span class="kbd">C</span> — связь · <span class="kbd">Del</span> — удалить</div><div class="zoomtool"><button id="zoomOut" title="Уменьшить">−</button><span class="zoomvalue" id="zoomValue">100%</span><button id="zoomIn" title="Увеличить">+</button><button id="zoomFit" title="Вписать в экран">⤢</button></div></div>
+</main>
+<aside class="inspector" id="inspector"><div class="side-head"><div style="display:flex;align-items:center"><div><div class="eyebrow">РЕДАКТОР</div><div class="sectiontitle">Свойства</div></div><button class="btn ghost mini mobile-close" id="closeInspector">✕</button></div><div class="sub">Меняй идею — схема обновится сразу.</div></div><div class="right-scroll" id="details"></div><div class="bottom-caption">Автосохранение в этом браузере · Экспорт JSON для резервной копии и продолжения работы.</div></aside>
+</div>
+</div>
+<div class="modalshade" id="branchModal" role="dialog" aria-modal="true" aria-labelledby="branchModalTitle"><div class="modal"><h2 id="branchModalTitle">Новая ветвь</h2><p id="branchModalDesc">Добавь ещё одно направление развития. Оно получит свой цвет и сектор на схеме.</p><div class="field"><label for="branchName">Название ветви</label><input id="branchName" maxlength="60" placeholder="Например: Исследование"/></div><div class="field"><label>Цвет ветви</label><div class="colorgrid" id="colorGrid"></div></div><div class="actions" style="justify-content:space-between;flex-wrap:wrap"><button class="btn danger" id="deleteBranch" hidden>✕ Удалить ветвь</button><div style="display:flex;gap:8px;margin-left:auto"><button class="btn" id="cancelBranch">Отмена</button><button class="btn primary" id="createBranch">Создать ветвь</button></div></div></div></div>
+<div class="modalshade" id="confirmModal" role="dialog" aria-modal="true" aria-label="Подтверждение"><div class="modal"><h2 id="confirmTitle">Подтвердить</h2><p id="confirmText"></p><div class="actions"><button class="btn" id="confirmCancel">Отмена</button><button class="btn danger" id="confirmYes">Удалить</button></div></div></div>
+<div class="mobile-actions-backdrop" id="mobileActionsBackdrop"></div>
+<section class="mobile-actions" id="mobileActions" role="dialog" aria-modal="true" aria-label="Действия с проектом" aria-hidden="true">
+ <div class="mobile-actions-heading"><div><div class="eyebrow">DRY OCEAN · АТЛАС</div><h2>Проект и файлы</h2></div><button class="btn ghost" id="closeMore" aria-label="Закрыть действия">✕</button></div>
+ <div class="field"><label for="mobileProjectName">Название проекта</label><input id="mobileProjectName" maxlength="100" autocomplete="off" /></div>
+ <div class="mobile-actions-grid">
+  <button class="btn" id="mobileExport">↓ Скачать JSON</button><button class="btn" id="mobileImport">↑ Открыть JSON</button>
+  <button class="btn" id="mobilePng">⇩ Схема PNG</button><button class="btn" id="mobileLayout">◌ Расставить узлы</button>
+  <button class="btn" id="mobileUndo">↶ Отменить</button><button class="btn" id="mobileRedo">↷ Повторить</button>
+ </div>
+ <button class="btn danger mobile-new" id="mobileNew">✦ Создать чистое дерево</button>
+ <p class="mobile-storage-hint">Проект сохраняется в этом браузере. Для переноса между iPhone и Mac используй JSON.</p>
+</section>
+<div class="toast" id="toast"></div><input id="filePicker" type="file" accept=".json,application/json" hidden/>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id), NS='http://www.w3.org/2000/svg', STORE='dry-ocean-talent-atlas-v1';
+const colors=['#86ded0','#e8bd85','#a5b6fa','#df9bb1','#a7d59b','#8ec6e3','#c4a5e7','#eeaa80','#eedb99','#9bdbc8'];
+const seedBranches=[
+{id:'height',name:'Высота',color:'#86ded0'}, {id:'flight',name:'Дальний полёт',color:'#e8bd85'},
+{id:'maneuver',name:'Манёвры',color:'#a5b6fa'}, {id:'wind',name:'Ветер и бури',color:'#df9bb1'},
+{id:'bond',name:'Связь с китом',color:'#a7d59b'}, {id:'cargo',name:'Груз',color:'#8ec6e3'}];
+const seedNodes=[
+{id:'core',title:'Путь кита',desc:'Живой друг и второй главный герой. Развитие происходит через совместный опыт, а не через обычные RPG-очки.',branch:'core',kind:'core',status:'canon',trigger:'Путешествовать вместе',effect:'Кит постепенно меняется через действия игрока',x:0,y:0},
+{id:'h1',title:'Чувство высоты',branch:'height',kind:'key',status:'canon',trigger:'Безопасные попытки набирать высоту',effect:'Рост комфортной высоты'},
+{id:'h2',title:'Выше облаков',branch:'height',kind:'milestone',status:'idea',trigger:'Несколько успешных высотных полётов',effect:'Путь над облаками и бурями'},
+{id:'h3',title:'Лёгкое дыхание',branch:'height',kind:'regular',status:'idea',trigger:'Тренироваться у текущего предела',effect:'Меньше утомления на высоте'},
+{id:'f1',title:'Дальний перелёт',branch:'flight',kind:'key',status:'canon',trigger:'Совершать длинные перелёты',effect:'Более эффективный расход воды'},
+{id:'f2',title:'Ровный ритм',branch:'flight',kind:'regular',status:'idea',trigger:'Держать стабильную скорость',effect:'Выносливость во время путешествия'},
+{id:'f3',title:'Бережный полёт',branch:'flight',kind:'regular',status:'idea',trigger:'Повторные спокойные маршруты',effect:'Меньше потерь энергии'},
+{id:'m1',title:'Контроль пикирования',branch:'maneuver',kind:'key',status:'canon',trigger:'Практиковать безопасные пикирования',effect:'Более сложные движения'},
+{id:'m2',title:'Плавный выход',branch:'maneuver',kind:'regular',status:'idea',trigger:'Повторные выходы из пикирования',effect:'Уверенное выравнивание'},
+{id:'m3',title:'Воздушная бочка',branch:'maneuver',kind:'regular',status:'idea',trigger:'Освоить вращения в полёте',effect:'Новые варианты манёвров'},
+{id:'w1',title:'Чувство ветра',branch:'wind',kind:'key',status:'canon',trigger:'Получать опыт в сильном ветре',effect:'Лучше удерживать курс'},
+{id:'w2',title:'Навстречу порывам',branch:'wind',kind:'regular',status:'idea',trigger:'Пройти через сильные порывы',effect:'Меньше сносит ветром'},
+{id:'w3',title:'Тишина над бурей',branch:'wind',kind:'milestone',status:'idea',trigger:'Высота + устойчивость к ветру',effect:'Безопаснее перелетать буревые фронты'},
+{id:'b1',title:'Общее доверие',branch:'bond',kind:'key',status:'idea',trigger:'Заботиться о ките и отдыхать вместе',effect:'Живые отклики и инициативное поведение'},
+{id:'b2',title:'Отклик на голос',branch:'bond',kind:'regular',status:'idea',trigger:'Общение у оазисов',effect:'Больше эмоциональных реакций'},
+{id:'b3',title:'Спокойствие рядом',branch:'bond',kind:'regular',status:'idea',trigger:'Проводить время рядом с водой',effect:'Уютное поведение кита'},
+{id:'c1',title:'Привычка к грузу',branch:'cargo',kind:'key',status:'canon',trigger:'Постепенно переносить больше снаряжения',effect:'Больше груза без резкого штрафа'},
+{id:'c2',title:'Баланс поклажи',branch:'cargo',kind:'regular',status:'idea',trigger:'Долгие путешествия с багажом',effect:'Уверенный полёт с грузом'},
+{id:'c3',title:'Дом на спине',branch:'cargo',kind:'regular',status:'idea',trigger:'Собирать памятные вещи',effect:'Персональный облик упряжки'}];
+const seedEdges=[['core','h1'],['h1','h2'],['h1','h3'],['core','f1'],['f1','f2'],['f1','f3'],['core','m1'],['m1','m2'],['m1','m3'],['core','w1'],['w1','w2'],['w1','w3'],['core','b1'],['b1','b2'],['b1','b3'],['core','c1'],['c1','c2'],['c1','c3'],['h2','w3']];
+const seed=()=>{let obj={version:1,name:'Атлас адаптации кита',branches:structuredClone(seedBranches),nodes:structuredClone(seedNodes),edges:seedEdges.map(([from,to])=>({id:'e_'+from+'_'+to,from,to}))};distribute(obj);return obj;};
+let data;try{let saved=localStorage.getItem(STORE);data=saved?parseProject(JSON.parse(saved)):seed();}catch(e){data=seed();}
+let touches=new Map(), pinch=null, suppressTouchDrag=false;
+let selected={type:'node',id:'core'},filter='all',search='',mode='move',linkStart=null,view={x:0,y:0,zoom:1},stageSize={w:800,h:600},pointer=null,history=[],historyIndex=0,historyTimer=0,toastTimer=0,confirmCallback=null,branchColor=colors[0],editingBranchId=null,requestRefresh=0;
+let serialize=()=>JSON.stringify(data),nodeById=id=>data.nodes.find(n=>n.id===id),branchById=id=>data.branches.find(b=>b.id===id),colorOf=n=>n.branch==='core'?'#e0e5dc':(branchById(n.branch)?.color||'#86ded0');
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function parseProject(raw){if(!raw||!Array.isArray(raw.nodes)||!Array.isArray(raw.edges)||!Array.isArray(raw.branches))throw Error('Неверный формат дерева');if(raw.nodes.length>1800||raw.edges.length>4500||raw.branches.length>70)throw Error('Слишком большой файл');let ids=new Set();const branches=raw.branches.map(b=>({id:String(b.id||'').slice(0,80),name:String(b.name||'Ветвь').slice(0,60),color:/^#[a-f\d]{6}$/i.test(b.color)?b.color:'#86ded0'})).filter(b=>b.id);const bset=new Set(branches.map(b=>b.id));const nodes=raw.nodes.map(n=>({id:String(n.id||'').slice(0,90),title:String(n.title||'Новый узел').slice(0,100),desc:String(n.desc||'').slice(0,4000),branch:n.branch==='core'?'core':bset.has(n.branch)?n.branch:(branches[0]?.id||'core'),kind:['core','key','regular','milestone'].includes(n.kind)?n.kind:'regular',status:['canon','idea','test'].includes(n.status)?n.status:'idea',trigger:String(n.trigger||'').slice(0,2000),effect:String(n.effect||'').slice(0,2000),x:Math.max(-20000,Math.min(20000,Number(n.x)||0)),y:Math.max(-20000,Math.min(20000,Number(n.y)||0))})).filter(n=>n.id&&!ids.has(n.id)&&(ids.add(n.id),true));if(!nodes.length)throw Error('В файле нет узлов');const nset=new Set(nodes.map(n=>n.id)),edges=raw.edges.filter(e=>nset.has(e.from)&&nset.has(e.to)&&e.from!==e.to).map((e,i)=>({id:String(e.id||'edge_'+i).slice(0,100),from:String(e.from),to:String(e.to)}));return{version:1,name:String(raw.name||'Моё дерево').slice(0,100),branches,nodes,edges};}
+function randId(){return (typeof crypto!=='undefined'&&crypto.randomUUID)?crypto.randomUUID():'id_'+Date.now()+'_'+Math.random().toString(36).slice(2,9);}
+function distribute(doc){const all=doc.nodes.filter(n=>n.id!=='core');const core=doc.nodes.find(n=>n.id==='core');if(core){core.x=0;core.y=0;}let count=doc.branches.length;doc.branches.forEach((br,bi)=>{let rad=-Math.PI/2+bi*2*Math.PI/Math.max(1,count);const subset=all.filter(n=>n.branch===br.id);const levels=new Map();for(let n of subset){let dep=1;let cur=n.id;let seen=new Set();while(dep<8){let e=doc.edges.find(e=>e.to===cur);if(!e||seen.has(cur)||e.from==='core')break;seen.add(cur);cur=e.from;dep++;}if(!levels.has(dep))levels.set(dep,[]);levels.get(dep).push(n);}for(let [lev,nodes] of levels){const span=Math.min(.62,2*Math.PI/Math.max(1,count)*.66);nodes.forEach((n,i)=>{let a=rad+(i-(nodes.length-1)/2)*(span/Math.max(nodes.length-1,1));let radius=130+(lev-1)*133;n.x=Math.cos(a)*radius;n.y=Math.sin(a)*radius;});}});}
+function store(){try{localStorage.setItem(STORE,serialize());$('saveIndicator').textContent='Сохранено локально';}catch(e){$('saveIndicator').textContent='Экспортируй JSON';}}
+function record(){clearTimeout(historyTimer);const s=serialize();if(history[historyIndex]===s){store();return;}history=history.slice(0,historyIndex+1);history.push(s);if(history.length>70)history.shift();historyIndex=history.length-1;store();updateHistoryButtons();}
+function laterRecord(){clearTimeout(historyTimer);historyTimer=setTimeout(record,480);store();}
+function flush(){if(historyTimer){clearTimeout(historyTimer);historyTimer=0;record();}}
+function undo(){flush();if(historyIndex>0){data=JSON.parse(history[--historyIndex]);selected={type:'node',id:data.nodes[0]?.id};syncAll();store();updateHistoryButtons();}}
+function redo(){flush();if(historyIndex<history.length-1){data=JSON.parse(history[++historyIndex]);selected={type:'node',id:data.nodes[0]?.id};syncAll();store();updateHistoryButtons();}}
+function updateHistoryButtons(){$('undoBtn').disabled=$('mobileUndo').disabled=historyIndex===0;$('redoBtn').disabled=$('mobileRedo').disabled=historyIndex>=history.length-1;}
+function cssW(){const b=$('stage').getBoundingClientRect();return{w:Math.max(100,b.width),h:Math.max(100,b.height)};}
+function worldAt(clientX,clientY){const r=$('graph').getBoundingClientRect();return{x:(clientX-r.left-stageSize.w/2-view.x)/view.zoom,y:(clientY-r.top-stageSize.h/2-view.y)/view.zoom};}
+function sizeStage(){stageSize=cssW();$('graph').setAttribute('viewBox',`0 0 ${stageSize.w} ${stageSize.h}`);updateTransform();}
+function updateTransform(){$('world').setAttribute('transform',`translate(${stageSize.w/2+view.x} ${stageSize.h/2+view.y}) scale(${view.zoom})`);$('zoomValue').textContent=Math.round(view.zoom*100)+'%';}
+function setZoom(zoom,screenX=stageSize.w/2,screenY=stageSize.h/2){const v=Math.max(.065,Math.min(3.5,zoom));const xx=screenX-stageSize.w/2,yy=screenY-stageSize.h/2;view.x=xx-(xx-view.x)*v/view.zoom;view.y=yy-(yy-view.y)*v/view.zoom;view.zoom=v;updateTransform();}
+function fitAll(){const pts=data.nodes;if(!pts.length)return;let labels=branchPositions();let minX=Math.min(...pts.map(n=>n.x-75),...labels.map(p=>p.x-92)),maxX=Math.max(...pts.map(n=>n.x+75),...labels.map(p=>p.x+92)),minY=Math.min(...pts.map(n=>n.y-70),...labels.map(p=>p.y-42)),maxY=Math.max(...pts.map(n=>n.y+95),...labels.map(p=>p.y+45));view.zoom=Math.max(.065,Math.min(1.18,Math.min((stageSize.w-(stageSize.w<620?32:85))/(maxX-minX),(stageSize.h-(stageSize.h<520?58:110))/(maxY-minY))));view.x=-(minX+maxX)/2*view.zoom;view.y=-(minY+maxY)/2*view.zoom;updateTransform();}
+function branchPositions(){return data.branches.map((b,i)=>{const a=-Math.PI/2+i*2*Math.PI/Math.max(1,data.branches.length);const own=data.nodes.filter(n=>n.branch===b.id);const r=Math.max(355,...own.map(n=>Math.hypot(n.x,n.y)+85));return{branch:b,x:Math.cos(a)*r,y:Math.sin(a)*r};});}
+function textLines(s){let words=String(s).trim().split(/\s+/);if(s.length<17)return [s];let lines=['',''];for(let word of words){if(!lines[0]|| (lines[0]+' '+word).length<=17)lines[0]+=(lines[0]?' ':'')+word;else lines[1]+=(lines[1]?' ':'')+word;}if(!lines[1])return [lines[0]];if(lines[1].length>26)lines[1]=lines[1].slice(0,25)+'…';return lines;}
+function rOf(n){return n.kind==='core'?38:n.kind==='key'?23:n.kind==='milestone'?25:19;}
+function linePoints(a,b){const dx=b.x-a.x,dy=b.y-a.y,len=Math.hypot(dx,dy)||1,nx=dx/len,ny=dy/len,ra=rOf(a)+3,rb=rOf(b)+3;const x1=a.x+nx*ra,y1=a.y+ny*ra,x2=b.x-nx*rb,y2=b.y-ny*rb;const cross=a.branch!==b.branch&&a.branch!=='core'&&b.branch!=='core';const bend=cross?Math.min(65,len*.16):0;let cx=(x1+x2)/2-ny*bend,cy=(y1+y2)/2+nx*bend;return{d:`M ${x1.toFixed(1)} ${y1.toFixed(1)} Q ${cx.toFixed(1)} ${cy.toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`,cross};}
+function renderGraph(){const g=$('guides'),e=$('edgeLayer'),layer=$('nodeLayer');const maxRadius=Math.max(550,...data.nodes.map(n=>Math.hypot(n.x,n.y)+110));let guide='';for(let r=130;r<maxRadius+75;r+=130)guide+=`<circle class="guide-circle" r="${r}"/>`;for(let a=0;a<360;a+=30){let rad=a*Math.PI/180;guide+=`<line class="guide-ray" x1="0" y1="0" x2="${Math.cos(rad)*maxRadius}" y2="${Math.sin(rad)*maxRadius}"/>`;}if(data.branches.length<19){branchPositions().forEach(({branch:b,x,y})=>{guide+=`<text class="branch-label" x="${x}" y="${y}" fill="${b.color}" opacity=".7">${esc(b.name.toUpperCase())}</text>`;});}g.innerHTML=guide;
+let edgeHTML='';for(const edge of data.edges){const a=nodeById(edge.from),b=nodeById(edge.to);if(!a||!b)continue;const p=linePoints(a,b),c=colorOf(b),sel=selected.type==='edge'&&selected.id===edge.id;edgeHTML+=`<g data-edge="${esc(edge.id)}"><path class="edge ${p.cross?'cross':''} ${sel?'selected':''}" d="${p.d}" stroke="${sel?'#e0faf1':c}" stroke-opacity="${sel?'1':'.43'}"/><path class="edge-hit" d="${p.d}"/></g>`;}e.innerHTML=edgeHTML;
+let html='';for(const n of data.nodes){const r=rOf(n),col=colorOf(n),active=selected.type==='node'&&selected.id===n.id,opacity=n.status==='test'?.68:1,lines=textLines(n.title),glyph=n.kind==='core'?'✧':n.kind==='milestone'?'✦':n.kind==='key'?'◇':'·';let labelY=r+19;html+=`<g class="noderoot" data-node="${esc(n.id)}" transform="translate(${n.x} ${n.y})" opacity="${opacity}"><circle class="node-hit" r="${Math.max(32,r+12)}"/>`;if(active)html+=`<circle class="selectedring" r="${r+9}"/>`;if(n.kind==='core')html+=`<circle cx="0" cy="0" r="${r+15}" fill="${col}" opacity=".035"/><circle cx="0" cy="0" r="${r+7}" stroke="${col}" fill="none" stroke-opacity=".23"/>`;if(n.kind==='key'||n.kind==='milestone')html+=`<circle class="nodehalo" r="${r+6}" stroke="${col}" ${n.status==='idea'?'stroke-dasharray="3 4"':''}/>`;html+=`<circle class="node-circle" r="${r}" fill="${active?'#24424b':'#102331'}" stroke="${col}"/>`;if(n.kind==='core')html+=`<circle r="${r-8}" fill="#142c35" stroke="#638e91" stroke-width="1" opacity=".8"/>`;html+=`<text class="node-glyph" y="1" fill="${col}" font-size="${n.kind==='core'?25:15}">${glyph}</text>`;lines.forEach((l,i)=>{html+=`<text class="node-text" x="0" y="${labelY+i*14}" fill="${active?'#ffffff':'#c9dade'}">${esc(l)}</text>`;});if(n.kind==='milestone')html+=`<circle r="3" cy="${-r}" fill="${col}"/>`;html+='</g>';}
+layer.innerHTML=html;updateTransform();}
+function renderBranches(){
+ let items=`<button class="branch ${filter==='all'?'active':''}" data-filter="all"><span class="branch-swatch" style="color:#8cabc3;background:#8cabc3"></span><span class="name">Все ветви</span><span class="count">${data.nodes.length}</span></button>`;
+ for(const b of data.branches){
+  items+=`<div class="branch-entry"><button class="branch ${filter===b.id?'active':''}" data-filter="${esc(b.id)}" title="Показать узлы: ${esc(b.name)}"><span class="branch-swatch" style="color:${b.color};background:${b.color}"></span><span class="name">${esc(b.name)}</span><span class="count">${data.nodes.filter(n=>n.branch===b.id).length}</span></button><button type="button" class="branch-edit" data-edit-branch="${esc(b.id)}" aria-label="Редактировать ветвь ${esc(b.name)}" title="Переименовать, сменить цвет или удалить ветвь">✎</button></div>`;
+ }
+ $('branchList').innerHTML=items;
+ $('nodeCount').textContent=`(${data.nodes.length})`;$('totalLabel').textContent=data.nodes.length;
+ $('filterTitle').textContent=filter==='all'?'ВСЕ':(branchById(filter)?.name||'ВСЕ').toUpperCase();
+}
+function renderNodeList(){let ns=data.nodes.filter(n=>(filter==='all'||n.branch===filter)&&(!search||(n.title+' '+n.trigger+' '+n.effect).toLowerCase().includes(search.toLowerCase())));$('nodeList').innerHTML=ns.length?ns.map(n=>`<button class="node-row ${selected.type==='node'&&selected.id===n.id?'active':''}" data-go="${esc(n.id)}"><span class="tiny-dot" style="color:${colorOf(n)}"></span><span class="text-ellipsis">${esc(n.title)}</span><span class="number">${n.kind==='core'?'◎':n.kind==='milestone'?'✦':'•'}</span></button>`).join(''):`<div class="emptymini">Ничего не найдено. Добавь узел или сбрось поиск.</div>`;}
+function statusLabel(v){return{canon:'Основа канона',idea:'Идея / черновик',test:'На проверке'}[v]||'Идея';}
+function renderInspector(){const area=$('details');if(selected.type==='edge'){const edge=data.edges.find(e=>e.id===selected.id);if(!edge){selected={type:'none'};return renderInspector();}const a=nodeById(edge.from),b=nodeById(edge.to);area.innerHTML=`<div class="eyebrow">СВЯЗЬ СПОСОБНОСТЕЙ</div><h2 style="font-size:17px;line-height:1.5;margin:15px 0">${esc(a?.title)} <span style="color:#7bcbbb">→</span> ${esc(b?.title)}</h2><div class="note">Пунктирная линия означает связь между разными направлениями. Её можно использовать для комбинирования способностей.</div><button class="btn danger" id="deleteSelectedEdge">✕ Удалить связь</button>`;return;}
+const n=nodeById(selected.id);if(!n){area.innerHTML=`<div class="placeholder"><div class="orb">✧</div><h3 style="color:#d6e7e8;font-size:16px">Выбери узел</h3>Нажми на точку на дереве, чтобы изменить название, способ получения и эффект. Или создай новый узел.</div>`;return;}
+const bOpts=[`<option value="core" ${n.branch==='core'?'selected':''}>Центр</option>`,...data.branches.map(b=>`<option value="${esc(b.id)}" ${n.branch===b.id?'selected':''}>${esc(b.name)}</option>`)].join('');const incoming=data.edges.filter(e=>e.to===n.id),outgoing=data.edges.filter(e=>e.from===n.id);const connected=[...incoming.map(e=>({...e,dir:'←',other:nodeById(e.from)})),...outgoing.map(e=>({...e,dir:'→',other:nodeById(e.to)}))];area.innerHTML=`<div class="detail-head"><div class="detail-preview" style="color:${colorOf(n)};border-color:${colorOf(n)}">${n.kind==='core'?'✧':n.kind==='milestone'?'✦':'◇'}</div><div><div class="detail-title" title="${esc(n.title)}">${esc(n.title)}</div><div class="detail-small">${esc(statusLabel(n.status))} · ${n.id==='core'?'Центр дерева':'Способность'}</div></div></div>
+<div class="field"><label for="editTitle">Название</label><input id="editTitle" data-field="title" value="${esc(n.title)}" maxlength="100" /></div>
+<div class="field"><label for="editDesc">Описание / заметки</label><textarea id="editDesc" data-field="desc" placeholder="В чём идея этой способности?">${esc(n.desc||'')}</textarea></div>
+<div class="field-grid"><div class="field"><label for="editBranch">Ветвь</label><select id="editBranch" data-field="branch">${bOpts}</select></div><div class="field"><label for="editKind">Тип</label><select id="editKind" data-field="kind"><option value="regular" ${n.kind==='regular'?'selected':''}>Обычный</option><option value="key" ${n.kind==='key'?'selected':''}>Ключевой</option><option value="milestone" ${n.kind==='milestone'?'selected':''}>Веха ✦</option><option value="core" ${n.kind==='core'?'selected':''}>Центральный</option></select></div></div>
+<div class="field"><label for="editStatus">Статус идеи</label><select id="editStatus" data-field="status"><option value="idea" ${n.status==='idea'?'selected':''}>Идея / черновик</option><option value="test" ${n.status==='test'?'selected':''}>На проверке</option><option value="canon" ${n.status==='canon'?'selected':''}>Основа канона</option></select></div>
+<div class="rule"></div><div class="field"><label for="editTrigger">Как развивается / условие</label><textarea id="editTrigger" data-field="trigger" placeholder="Например: три безопасных высотных полёта">${esc(n.trigger||'')}</textarea></div>
+<div class="field"><label for="editEffect">Что меняется в игре</label><textarea id="editEffect" data-field="effect" placeholder="Например: кит дольше держит высоту">${esc(n.effect||'')}</textarea></div><div class="hintline">Условие и эффект — дизайнерские заметки, не обязательные числовые бонусы.</div>
+<div class="rule"></div><div class="links-title">Связи · ${connected.length}</div>${connected.length?connected.map(e=>`<div class="linked"><span>${e.dir} ${esc(e.other?.title||'?')}</span><button data-remove-edge="${esc(e.id)}" title="Удалить связь">✕</button></div>`).join(''):`<div class="hintline">Связей пока нет. Нажми «Связь» на схеме и выбери два узла.</div>`}
+<div class="detail-actions"><button class="btn primary" id="addChild">＋ Продолжить ветвь</button><button class="btn" id="centerSelected">⊡ Найти на схеме</button>${n.id!=='core'?`<button class="btn danger" id="deleteSelected">Удалить</button>`:''}</div>`;}
+function syncAll(){if(!branchById(filter)&&filter!=='all')filter='all';$('projectName').value=data.name;$('mobileProjectName').value=data.name;renderBranches();renderNodeList();renderGraph();renderInspector();updateHistoryButtons();}
+function focusNode(id){const n=nodeById(id);if(!n)return;view.x=-n.x*view.zoom;view.y=-n.y*view.zoom;updateTransform();}
+function closePanels(){ $('sidebar').classList.remove('show'); $('inspector').classList.remove('show'); $('panelScrim').classList.remove('show'); }
+function openPanel(which){closeMobileActions();closePanels();$(which).classList.add('show');if(window.innerWidth<=950)$('panelScrim').classList.add('show');}
+function togglePanel(which){const open=$(which).classList.contains('show');closePanels();closeMobileActions();if(!open)openPanel(which);}
+function openMobileActions(){closePanels();$('mobileProjectName').value=data.name;$('mobileActions').classList.add('show');$('mobileActions').setAttribute('aria-hidden','false');$('mobileActionsBackdrop').classList.add('show');}
+function closeMobileActions(){$('mobileActions').classList.remove('show');$('mobileActions').setAttribute('aria-hidden','true');$('mobileActionsBackdrop').classList.remove('show');}
+function chooseNode(id,center=false,showDetails=true){selected={type:'node',id};renderGraph();renderNodeList();renderInspector();if(center)focusNode(id);if(showDetails&&window.innerWidth<=950)openPanel('inspector');}
+function removeNode(id){const n=nodeById(id);if(!n||n.id==='core')return;flush();data.nodes=data.nodes.filter(n=>n.id!==id);data.edges=data.edges.filter(e=>e.from!==id&&e.to!==id);selected={type:'none'};record();syncAll();notify('Узел удалён');}
+function removeEdge(id){flush();data.edges=data.edges.filter(e=>e.id!==id);if(selected.type==='edge'&&selected.id===id)selected={type:'none'};record();syncAll();}
+function availableNodeSpot(parent,branch){let a=parent?.id==='core'?(-Math.PI/2+Math.max(0,data.branches.findIndex(b=>b.id===branch))*2*Math.PI/Math.max(1,data.branches.length)):parent?Math.atan2(parent.y,parent.x):-Math.PI/2;let radius=Math.max(142,(parent?Math.hypot(parent.x,parent.y):0)+135);for(let extra of [0,55,110,170,240,310,400,520,670])for(let off of [0,.38,-.38,.68,-.68,1.02,-1.02]){let r=radius+extra,x=Math.cos(a+off)*r,y=Math.sin(a+off)*r;if(data.nodes.every(n=>Math.hypot(n.x-x,n.y-y)>102))return{x,y};}return{x:Math.cos(a)*radius,y:Math.sin(a)*radius};}
+function addNode(parentId=null,location=null){flush();const parent=parentId?nodeById(parentId):null;let branch=parent&&parent.branch!=='core'?parent.branch:(filter!=='all'?filter:data.branches[0]?.id||'core');let x=location?.x,y=location?.y;if(!location){const spot=availableNodeSpot(parent||nodeById('core'),branch);x=spot.x;y=spot.y;}
+const id=randId();const n={id,title:'Новая способность',desc:'',branch,kind:'regular',status:'idea',trigger:'',effect:'',x,y};data.nodes.push(n);if(parent)data.edges.push({id:randId(),from:parent.id,to:id});selected={type:'node',id};record();syncAll();focusNode(id);openPanel('inspector');const field=$('editTitle');if(field && window.innerWidth>620){field.focus();field.select();}notify('Узел добавлен');}
+function tryLink(id){if(!linkStart){linkStart=id;updateLinkTip();renderGraph();return;}if(linkStart===id){linkStart=null;updateLinkTip();notify('Выбери другой узел');return;}if(data.edges.some(e=>e.from===linkStart&&e.to===id)){linkStart=null;updateLinkTip();notify('Такая связь уже существует');return;}flush();data.edges.push({id:randId(),from:linkStart,to:id});linkStart=null;mode='move';updateMode();record();syncAll();notify('Связь добавлена');}
+function updateLinkTip(){let txt=!linkStart?'Выбери первый узел для связи · Esc — отмена':`От «${nodeById(linkStart)?.title}» → выбери второй узел · Esc — отмена`;$('linkTip').textContent=txt;$('linkTip').classList.toggle('show',mode==='link');}
+function updateMode(){$('linkMode').classList.toggle('active',mode==='link');$('moveMode').classList.toggle('active',mode==='move');$('graph').classList.toggle('linkmode',mode==='link');updateLinkTip();}
+function notify(txt){const el=$('toast');el.textContent=txt;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2600);}
+function ask(title,msg,onYes,yesText='Удалить'){$('confirmTitle').textContent=title;$('confirmText').textContent=msg;$('confirmYes').textContent=yesText;confirmCallback=onYes;$('confirmModal').classList.add('show');}
+function openBranchModal(id=null){
+ const branch=id?branchById(id):null;
+ editingBranchId=branch?.id||null;
+ $('branchName').value=branch?.name||'';
+ branchColor=branch?.color||colors[data.branches.length%colors.length];
+ $('branchModalTitle').textContent=branch?'Настройки ветви':'Новая ветвь';
+ $('branchModalDesc').textContent=branch?'Измени название или цвет. Все способности и связи сохранятся.':'Добавь ещё одно направление развития. Оно получит свой цвет и сектор на схеме.';
+ $('createBranch').textContent=branch?'Сохранить изменения':'Создать ветвь';
+ $('deleteBranch').hidden=!branch;
+ renderPalette();$('branchModal').classList.add('show');$('branchName').focus();$('branchName').select();
+}
+function saveBranch(){
+ const name=$('branchName').value.trim().slice(0,60);
+ if(!name){$('branchName').focus();notify('Введи название ветви');return;}
+ if(data.branches.some(b=>b.id!==editingBranchId&&b.name.toLocaleLowerCase('ru')===name.toLocaleLowerCase('ru'))){notify('Ветвь с таким названием уже есть');$('branchName').focus();return;}
+ flush();
+ if(editingBranchId){
+  const branch=branchById(editingBranchId);if(!branch)return;
+  branch.name=name;branch.color=branchColor;
+  notify('Ветвь обновлена');
+ }else{
+  const id=randId();data.branches.push({id,name,color:branchColor});filter=id;
+  notify('Ветвь добавлена');
+ }
+ record();syncAll();$('branchModal').classList.remove('show');editingBranchId=null;
+}
+function removeBranch(id){
+ const branch=branchById(id);if(!branch)return;
+ flush();
+ const affected=data.nodes.filter(n=>n.branch===id);
+ data.branches=data.branches.filter(b=>b.id!==id);
+ let replacement=null;
+ if(affected.length){
+  replacement=data.branches.find(b=>b.name==='Без направления');
+  if(!replacement){replacement={id:randId(),name:'Без направления',color:'#8cabc3'};data.branches.push(replacement);}
+  for(const n of affected)n.branch=replacement.id;
+ }
+ if(filter===id)filter=replacement?.id||'all';
+ record();syncAll();
+ notify(affected.length?`Ветвь удалена · узлы (${affected.length}) сохранены`:'Ветвь удалена');
+}
+function confirmBranchDeletion(){
+ const id=editingBranchId,branch=branchById(id);if(!branch)return;
+ const count=data.nodes.filter(n=>n.branch===id).length;
+ $('branchModal').classList.remove('show');
+ ask('Удалить направление?',count?`«${branch.name}» будет удалена. ${count} узл. останутся на схеме и перейдут в направление «Без направления». Все связи сохранятся.`:`Удалить пустую ветвь «${branch.name}»?`,()=>removeBranch(id),'Удалить ветвь');
+}
+function renderPalette(){$('colorGrid').innerHTML=colors.map(c=>`<button class="colorspot ${c===branchColor?'selected':''}" style="background:${c}" data-color="${c}" aria-label="Цвет ${c}"></button>`).join('');}
+function download(content,name,mime){const blob=new Blob([content],{type:mime}),url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),2000);}
+function filename(){return(data.name||'talent-tree').replace(/[^\wа-яёА-ЯЁ-]+/g,'_').slice(0,55)||'talent-tree';}
+function exportJSON(){flush();download(JSON.stringify({...data,exportedAt:new Date().toISOString()},null,2),filename()+'.json','application/json');notify('JSON-проект скачан');}
+function freshProject(){flush();data={version:1,name:'Моё дерево кита',branches:structuredClone(seedBranches),nodes:[structuredClone(seedNodes[0])],edges:[]};filter='all';search='';$('nodeSearch').value='';selected={type:'node',id:'core'};record();syncAll();fitAll();notify('Чистый проект готов');}
+function startFresh(){ask('Создать чистое дерево?','Демонстрационные узлы будут убраны. Останутся центр и шесть направлений. Текущий вариант можно предварительно скачать как JSON.',freshProject,'Создать');}
+function exportPNG(){try{const clone=$('graph').cloneNode(true);const bounds=[...data.nodes.map(n=>({x:n.x,y:n.y})),...branchPositions()];const ext={x0:Math.min(...bounds.map(n=>n.x))-145,x1:Math.max(...bounds.map(n=>n.x))+145,y0:Math.min(...bounds.map(n=>n.y))-135,y1:Math.max(...bounds.map(n=>n.y))+165};const width=Math.ceil(ext.x1-ext.x0),height=Math.ceil(ext.y1-ext.y0);clone.setAttribute('width',width);clone.setAttribute('height',height);clone.setAttribute('viewBox',`0 0 ${width} ${height}`);clone.setAttribute('xmlns',NS);const bg=document.createElementNS(NS,'rect');bg.setAttribute('width','100%');bg.setAttribute('height','100%');bg.setAttribute('fill','#0b1624');clone.insertBefore(bg,clone.firstChild);const style=document.createElementNS(NS,'style');style.textContent=`.guide-circle{fill:none;stroke:#6c94a7;stroke-opacity:.13;stroke-width:1;stroke-dasharray:2 8}.guide-ray{stroke:#87aec3;stroke-opacity:.08;stroke-width:1}.branch-label{font-family:Arial,sans-serif;font-size:11px;font-weight:800;letter-spacing:1.3px;text-anchor:middle;paint-order:stroke;stroke:#07121e;stroke-width:4px}.edge{fill:none;stroke-width:2.2;stroke-linecap:round}.edge.cross{stroke-dasharray:5 6}.edge-hit{display:none}.node-circle{stroke-width:2.1}.nodehalo{fill:none;stroke-width:1;stroke-opacity:.52}.node-text{fill:#c9dade;font:650 12px Arial,sans-serif;text-anchor:middle;paint-order:stroke;stroke:#091321;stroke-width:4px;stroke-linejoin:round}.node-glyph{font:bold 14px Arial,sans-serif;text-anchor:middle;dominant-baseline:middle}.selectedring{fill:none;stroke:#e9fffa;stroke-width:1.8;stroke-dasharray:4 3}`;clone.insertBefore(style,clone.firstChild);clone.querySelector('#world').setAttribute('transform',`translate(${-ext.x0} ${-ext.y0})`);const svg=new XMLSerializer().serializeToString(clone);const img=new Image();const blob=new Blob([svg],{type:'image/svg+xml;charset=utf-8'});const url=URL.createObjectURL(blob);img.onload=()=>{const c=document.createElement('canvas'),scale=Math.min(2,3200/Math.max(width,height));c.width=Math.ceil(width*scale);c.height=Math.ceil(height*scale);const ctx=c.getContext('2d');ctx.drawImage(img,0,0,c.width,c.height);c.toBlob(png=>{if(png){const u=URL.createObjectURL(png),a=document.createElement('a');a.href=u;a.download=filename()+'.png';a.click();setTimeout(()=>URL.revokeObjectURL(u),2000);notify('PNG-схема скачана');}else notify('Не удалось создать PNG');},'image/png');URL.revokeObjectURL(url);};img.onerror=()=>{URL.revokeObjectURL(url);notify('Не удалось экспортировать картинку');};img.src=url;}catch(e){notify('Ошибка PNG: '+e.message);}}
+function importJSON(file){const reader=new FileReader();reader.onload=()=>{try{const parsed=parseProject(JSON.parse(reader.result));ask('Открыть проект?','Текущее дерево будет заменено загруженным файлом. Сначала экспортируй JSON, если хочешь сохранить нынешний вариант.',()=>{flush();data=parsed;filter='all';search='';$('nodeSearch').value='';selected={type:'node',id:data.nodes[0]?.id};record();syncAll();fitAll();notify('Проект загружен');},'Заменить');}catch(e){notify('Ошибка файла: '+e.message);}};reader.onerror=()=>notify('Не удалось прочитать файл');reader.readAsText(file);}
+// Multi-pointer navigator: one finger moves the canvas/nodes, two fingers pan + pinch-zoom.
+function gesturePoint(evt){const r=$('graph').getBoundingClientRect();return{x:evt.clientX-r.left,y:evt.clientY-r.top};}
+function beginPinch(){const p=[...touches.values()];if(p.length<2)return;const a=p[0],b=p[1],cx=(a.x+b.x)/2,cy=(a.y+b.y)/2;
+ pinch={startDistance:Math.max(1,Math.hypot(a.x-b.x,a.y-b.y)),startZoom:view.zoom,anchorX:(cx-stageSize.w/2-view.x)/view.zoom,anchorY:(cy-stageSize.h/2-view.y)/view.zoom};
+ pointer=null;suppressTouchDrag=true;$('graph').classList.remove('grabbing');}
+function handleSvgDown(evt){if(evt.pointerType==='touch'){touches.set(evt.pointerId,gesturePoint(evt));}
+ try{evt.currentTarget.setPointerCapture(evt.pointerId);}catch(e){}
+ if(touches.size>=2){beginPinch();evt.preventDefault();return;}
+ if(evt.pointerType==='touch'&&suppressTouchDrag){evt.preventDefault();return;}
+ const nodeEl=evt.target.closest('[data-node]'),edgeEl=evt.target.closest('[data-edge]');
+ if(nodeEl){const id=nodeEl.dataset.node;if(mode==='link'){
+   if(evt.pointerType==='touch'){pointer={type:'link',id,startX:evt.clientX,startY:evt.clientY,moved:false};}
+   else tryLink(id);
+   evt.preventDefault();return;
+ }
+ chooseNode(id,false,false);const n=nodeById(id);pointer={type:'node',id,startX:evt.clientX,startY:evt.clientY,startPos:{x:n.x,y:n.y},moved:false,touch:evt.pointerType==='touch'};evt.preventDefault();return;}
+ if(edgeEl){selected={type:'edge',id:edgeEl.dataset.edge};syncAll();if(evt.pointerType==='touch')openPanel('inspector');evt.preventDefault();return;}
+ if(mode==='link')return;
+ pointer={type:'pan',startX:evt.clientX,startY:evt.clientY,panX:view.x,panY:view.y,moved:false};evt.currentTarget.classList.add('grabbing');selected={type:'none'};renderNodeList();renderInspector();renderGraph();evt.preventDefault();}
+function handleSvgMove(evt){if(evt.pointerType==='touch'&&touches.has(evt.pointerId))touches.set(evt.pointerId,gesturePoint(evt));
+ if(pinch&&touches.size>=2){const p=[...touches.values()],a=p[0],b=p[1],cx=(a.x+b.x)/2,cy=(a.y+b.y)/2,dist=Math.hypot(a.x-b.x,a.y-b.y);
+   const z=Math.max(.065,Math.min(3.5,pinch.startZoom*dist/pinch.startDistance));view.zoom=z;view.x=cx-stageSize.w/2-pinch.anchorX*z;view.y=cy-stageSize.h/2-pinch.anchorY*z;updateTransform();evt.preventDefault();return;}
+ if(suppressTouchDrag&&evt.pointerType==='touch')return;
+ if(!pointer)return;if(evt.pointerType==='touch'&&!touches.has(evt.pointerId))return;
+ const dx=evt.clientX-pointer.startX,dy=evt.clientY-pointer.startY;if(Math.abs(dx)+Math.abs(dy)>5)pointer.moved=true;
+ if(pointer.type==='pan'){view.x=pointer.panX+dx;view.y=pointer.panY+dy;updateTransform();}
+ else if(pointer.type==='node'){const n=nodeById(pointer.id);if(n){n.x=pointer.startPos.x+dx/view.zoom;n.y=pointer.startPos.y+dy/view.zoom;renderGraph();}}
+ evt.preventDefault();}
+function handleSvgUp(evt){if(evt.pointerType==='touch')touches.delete(evt.pointerId);
+ if(pinch){if(touches.size<2)pinch=null;if(touches.size===0)suppressTouchDrag=false;pointer=null;$('graph').classList.remove('grabbing');return;}
+ if(suppressTouchDrag){if(touches.size===0)suppressTouchDrag=false;pointer=null;return;}
+ if(!pointer)return;const p=pointer;pointer=null;$('graph').classList.remove('grabbing');
+ if(p.type==='node'){if(p.moved)record();else if(p.touch)openPanel('inspector');}
+ if(p.type==='link'&&!p.moved)tryLink(p.id);
+}
+function handleZoom(evt){evt.preventDefault();const rect=$('graph').getBoundingClientRect();let factor=Math.exp(-Math.sign(evt.deltaY)*Math.min(Math.abs(evt.deltaY),130)/600);setZoom(view.zoom*factor,evt.clientX-rect.left,evt.clientY-rect.top);}
+function autoLayout(){flush();distribute(data);record();syncAll();fitAll();notify('Радиальная расстановка готова');}
+$('graph').addEventListener('pointerdown',handleSvgDown);$('graph').addEventListener('pointermove',handleSvgMove);$('graph').addEventListener('pointerup',handleSvgUp);$('graph').addEventListener('pointercancel',handleSvgUp);$('graph').addEventListener('wheel',handleZoom,{passive:false});$('graph').addEventListener('dblclick',evt=>{if(mode==='link'||evt.sourceCapabilities?.firesTouchEvents)return;let el=evt.target.closest('[data-node]');if(el){addNode(el.dataset.node);}else addNode(null,worldAt(evt.clientX,evt.clientY));evt.preventDefault();});
+$('branchList').addEventListener('click',evt=>{const edit=evt.target.closest('[data-edit-branch]');if(edit){openBranchModal(edit.dataset.editBranch);return;}const b=evt.target.closest('[data-filter]');if(!b)return;filter=b.dataset.filter;renderBranches();renderNodeList();});
+$('branchList').addEventListener('dblclick',evt=>{const b=evt.target.closest('.branch-entry [data-filter]');if(b)openBranchModal(b.dataset.filter);});$('nodeSearch').addEventListener('input',evt=>{search=evt.target.value;renderNodeList();});$('nodeList').addEventListener('click',evt=>{const row=evt.target.closest('[data-go]');if(row)chooseNode(row.dataset.go,true);});
+$('details').addEventListener('input',evt=>{const field=evt.target.dataset.field;if(!field)return;const n=nodeById(selected.id);if(!n||!['title','desc','trigger','effect'].includes(field))return;n[field]=evt.target.value;laterRecord();renderGraph();if(field==='title'){renderNodeList();const title=$('details').querySelector('.detail-title');if(title){title.textContent=n.title;title.title=n.title;}}});
+$('details').addEventListener('change',evt=>{const field=evt.target.dataset.field;if(!field)return;flush();const n=nodeById(selected.id);if(!n)return;n[field]=evt.target.value;laterRecord();renderGraph();renderBranches();renderNodeList();const sub=$('details').querySelector('.detail-small');if(sub)sub.textContent=statusLabel(n.status)+' · '+(n.id==='core'?'Центр дерева':'Способность');});
+$('details').addEventListener('click',evt=>{if(evt.target.closest('#addChild'))addNode(selected.id);else if(evt.target.closest('#centerSelected'))focusNode(selected.id);else if(evt.target.closest('#deleteSelected'))ask('Удалить способность?','Узел и все его связи будут удалены из дерева.',()=>removeNode(selected.id));else if(evt.target.closest('#deleteSelectedEdge'))removeEdge(selected.id);else{const rm=evt.target.closest('[data-remove-edge]');if(rm)removeEdge(rm.dataset.removeEdge);}});
+$('projectName').addEventListener('input',evt=>{data.name=evt.target.value.slice(0,100);laterRecord();});
+$('newNodeTop').addEventListener('click',()=>addNode(selected.type==='node'?selected.id:null));$('newProjectBtn').addEventListener('click',startFresh);$('newProjectSide').addEventListener('click',startFresh);$('pngBtn').addEventListener('click',exportPNG);$('moveMode').addEventListener('click',()=>{mode='move';linkStart=null;updateMode();});$('linkMode').addEventListener('click',()=>{mode=mode==='link'?'move':'link';linkStart=null;updateMode();});$('fitBtn').addEventListener('click',fitAll);$('zoomFit').addEventListener('click',fitAll);$('layoutBtn').addEventListener('click',()=>ask('Переставить узлы?','Радиальная расстановка пересчитает позиции узлов. Связи и описания сохранятся; действие можно отменить.',autoLayout,'Расставить'));
+$('zoomIn').addEventListener('click',()=>setZoom(view.zoom*1.2));$('zoomOut').addEventListener('click',()=>setZoom(view.zoom/1.2));$('undoBtn').addEventListener('click',undo);$('redoBtn').addEventListener('click',redo);$('exportBtn').addEventListener('click',exportJSON);$('importBtn').addEventListener('click',()=>$('filePicker').click());$('filePicker').addEventListener('change',e=>{if(e.target.files[0])importJSON(e.target.files[0]);e.target.value='';});
+$('newBranch').addEventListener('click',()=>openBranchModal());
+$('cancelBranch').addEventListener('click',()=>$('branchModal').classList.remove('show'));
+$('branchModal').addEventListener('click',e=>{if(e.target===$('branchModal'))$('branchModal').classList.remove('show');const c=e.target.closest('[data-color]');if(c){branchColor=c.dataset.color;renderPalette();}});
+$('createBranch').addEventListener('click',saveBranch);
+$('deleteBranch').addEventListener('click',confirmBranchDeletion);
+$('branchName').addEventListener('keydown',e=>{if(e.key==='Enter')saveBranch();});
+$('confirmCancel').addEventListener('click',()=>$('confirmModal').classList.remove('show'));$('confirmYes').addEventListener('click',()=>{$('confirmModal').classList.remove('show');const cb=confirmCallback;confirmCallback=null;cb?.();});$('confirmModal').addEventListener('click',e=>{if(e.target===$('confirmModal'))$('confirmModal').classList.remove('show');});
+$('menuBtn').addEventListener('click',()=>togglePanel('sidebar'));$('inspectBtn').addEventListener('click',()=>togglePanel('inspector'));
+$('closeSidebar').addEventListener('click',closePanels);$('closeInspector').addEventListener('click',closePanels);$('panelScrim').addEventListener('click',closePanels);
+$('moreBtn').addEventListener('click',openMobileActions);$('closeMore').addEventListener('click',closeMobileActions);$('mobileActionsBackdrop').addEventListener('click',closeMobileActions);
+$('mobileProjectName').addEventListener('input',e=>{data.name=e.target.value.slice(0,100);$('projectName').value=data.name;laterRecord();});
+$('mobileExport').addEventListener('click',()=>{closeMobileActions();exportJSON();});
+$('mobileImport').addEventListener('click',()=>{closeMobileActions();$('filePicker').click();});
+$('mobilePng').addEventListener('click',()=>{closeMobileActions();exportPNG();});
+$('mobileLayout').addEventListener('click',()=>{closeMobileActions();$('layoutBtn').click();});
+$('mobileNew').addEventListener('click',()=>{closeMobileActions();startFresh();});
+$('mobileUndo').addEventListener('click',()=>{closeMobileActions();undo();});
+$('mobileRedo').addEventListener('click',()=>{closeMobileActions();redo();});
+document.addEventListener('keydown',evt=>{if(evt.key==='Escape'){$('branchModal').classList.remove('show');$('confirmModal').classList.remove('show');mode='move';linkStart=null;updateMode();closePanels();closeMobileActions();return;}const editing=evt.target.matches('input,textarea,select')||evt.target.isContentEditable;if((evt.ctrlKey||evt.metaKey)&&evt.key.toLowerCase()==='z'){evt.preventDefault();evt.shiftKey?redo():undo();return;}if(editing)return;if(evt.key.toLowerCase()==='n'){evt.preventDefault();addNode(selected.type==='node'?selected.id:null);}else if(evt.key.toLowerCase()==='c'){evt.preventDefault();mode=mode==='link'?'move':'link';linkStart=null;updateMode();}else if(evt.key==='Delete'||evt.key==='Backspace'){evt.preventDefault();if(selected.type==='node'&&selected.id!=='core')ask('Удалить узел?','Узел и его связи будут удалены.',()=>removeNode(selected.id));else if(selected.type==='edge')removeEdge(selected.id);}else if(evt.key==='+'||evt.key==='=')setZoom(view.zoom*1.2);else if(evt.key==='-')setZoom(view.zoom/1.2);});
+window.addEventListener('resize',()=>{sizeStage();if(window.innerWidth>950)closePanels();});if(window.ResizeObserver)new ResizeObserver(()=>sizeStage()).observe($('stage'));window.addEventListener('beforeunload',store);
+history=[serialize()];historyIndex=0;sizeStage();syncAll();fitAll();updateMode();store();
+})();
+</script>
+</body></html>
