@@ -213,6 +213,66 @@
       "kind": "regular",
       "branch": "cargo",
       "status": "idea"
+    },
+    {
+      "id": "echo-items-ore",
+      "title": "Поиск обычной руды",
+      "x": -864,
+      "y": -1008,
+      "desc": "Черновой талант школы поиска предметов: распознаёт залежи обычной руды и доступное сырьё низкого уровня. Конкретные типы руды, радиус и способ индикации ещё не согласованы.",
+      "trigger": "Требуется «Поиск серых предметов».",
+      "effect": "Эхолокация начинает отличать обычную руду от окружающей геометрии.",
+      "kind": "regular",
+      "status": "idea",
+      "branch": "cargo"
+    },
+    {
+      "id": "echo-items-chemicals-basic",
+      "title": "Поиск базовых химических ингредиентов",
+      "x": -597,
+      "y": -894,
+      "desc": "Черновое ответвление от серой ступени: базовые химические ингредиенты и доступные компоненты. Это предложение по размещению, не утверждённый список материалов.",
+      "trigger": "Требуется «Поиск серых предметов».",
+      "effect": "Помогает обнаруживать простые химические ингредиенты.",
+      "kind": "regular",
+      "status": "idea",
+      "branch": "cargo"
+    },
+    {
+      "id": "echo-items-crystals",
+      "title": "Поиск кристаллов",
+      "x": -1159,
+      "y": -1097,
+      "desc": "Черновая специализация обнаружения кристаллов. Привязка к синей ступени предварительная: позже уточним, бывают ли кристаллы разных категорий.",
+      "trigger": "Предварительно: требуется «Поиск синих предметов».",
+      "effect": "Позволяет отличать сигналы кристаллов среди других объектов.",
+      "kind": "regular",
+      "status": "idea",
+      "branch": "cargo"
+    },
+    {
+      "id": "echo-items-gold",
+      "title": "Поиск золота",
+      "x": -1446,
+      "y": -1145,
+      "desc": "Черновая специализация жёлтой ступени: поиск золота. Позже определим, какие именно золотоносные объекты и с какой точностью доступны.",
+      "trigger": "Требуется «Поиск жёлтых предметов».",
+      "effect": "Эхолокация помогает находить золото.",
+      "kind": "regular",
+      "status": "idea",
+      "branch": "cargo"
+    },
+    {
+      "id": "echo-items-after-gold-placeholder",
+      "title": "Редкая находка — заглушка",
+      "x": -1695,
+      "y": -1302,
+      "desc": "Пустая ступень ПОСЛЕ поиска золота. Название ресурса и его механика ещё не придуманы. Это не установленный канон, а резерв под будущее решение.",
+      "trigger": "Предварительно: требуется «Поиск золота».",
+      "effect": "Не определено: будущая редкая категория находок.",
+      "kind": "regular",
+      "status": "idea",
+      "branch": "cargo"
     }
   ],
   "edges": [
@@ -310,6 +370,36 @@
       "id": "req_blue_items_yellow",
       "from": "echo-items-blue",
       "to": "echo-items-yellow",
+      "type": "requirement"
+    },
+    {
+      "id": "req_echo-items-gray__echo-items-ore",
+      "from": "echo-items-gray",
+      "to": "echo-items-ore",
+      "type": "requirement"
+    },
+    {
+      "id": "req_echo-items-gray__echo-items-chemicals-basic",
+      "from": "echo-items-gray",
+      "to": "echo-items-chemicals-basic",
+      "type": "requirement"
+    },
+    {
+      "id": "req_echo-items-blue__echo-items-crystals",
+      "from": "echo-items-blue",
+      "to": "echo-items-crystals",
+      "type": "requirement"
+    },
+    {
+      "id": "req_echo-items-yellow__echo-items-gold",
+      "from": "echo-items-yellow",
+      "to": "echo-items-gold",
+      "type": "requirement"
+    },
+    {
+      "id": "req_echo-items-gold__echo-items-after-gold-placeholder",
+      "from": "echo-items-gold",
+      "to": "echo-items-after-gold-placeholder",
       "type": "requirement"
     }
   ],
