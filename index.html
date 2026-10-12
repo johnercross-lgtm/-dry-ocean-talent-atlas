@@ -90,6 +90,11 @@ button[hidden]{display:none!important}
  .mobile-actions{left:max(15px,env(safe-area-inset-left));right:max(15px,env(safe-area-inset-right));bottom:6px;max-width:600px;margin:auto;max-height:94dvh}
  .mobile-actions-grid{grid-template-columns:repeat(3,1fr)}
 }
+
+.cloud-status{font-size:12px;line-height:1.55;color:#a5c5c8;margin:10px 0 13px;min-height:37px}
+.cloud-help{font-size:11px;line-height:1.6;color:#89a6b1;margin:10px 0}
+.cloud-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.cloud-actions .btn{min-height:39px}
 </style>
 </head>
 <body>
@@ -100,7 +105,7 @@ button[hidden]{display:none!important}
  <div class="grow"></div><div class="saved"><span class="dot"></span><span id="saveIndicator">Сохранено локально</span></div>
  <button class="btn ghost hide-mid" id="undoBtn" title="Отменить (Ctrl/Cmd+Z)">↶</button><button class="btn ghost hide-mid" id="redoBtn" title="Повторить (Ctrl/Cmd+Shift+Z)">↷</button>
  <button class="btn hide-mobile" id="newProjectBtn" title="Начать чистое дерево">✦ Новый</button><button class="btn hide-mobile" id="exportBtn" title="Скачать проект JSON">↓ JSON</button><button class="btn hide-mobile" id="importBtn" title="Открыть сохранённый проект">↑ JSON</button>
- <button class="btn primary" id="newNodeTop">＋ Узел</button><button class="btn ghost mobile-nav" id="menuBtn" title="Открыть ветви">☰</button><button class="btn ghost mobile-nav" id="inspectBtn" title="Свойства узла" aria-label="Свойства узла">☷</button><button class="btn ghost mobile-more" id="moreBtn" title="Файлы и действия" aria-label="Файлы и действия">⋯</button>
+ <button class="btn hide-mobile" id="cloudBtn" title="Синхронизация с GitHub">☁ GitHub</button><button class="btn primary" id="newNodeTop">＋ Узел</button><button class="btn ghost mobile-nav" id="menuBtn" title="Открыть ветви">☰</button><button class="btn ghost mobile-nav" id="inspectBtn" title="Свойства узла" aria-label="Свойства узла">☷</button><button class="btn ghost mobile-more" id="moreBtn" title="Файлы и действия" aria-label="Файлы и действия">⋯</button>
 </header>
 <div class="layout"><div class="panel-scrim" id="panelScrim" aria-hidden="true"></div>
 <aside class="sidebar" id="sidebar">
@@ -125,16 +130,27 @@ button[hidden]{display:none!important}
  <div class="field"><label for="mobileProjectName">Название проекта</label><input id="mobileProjectName" maxlength="100" autocomplete="off" /></div>
  <div class="mobile-actions-grid">
   <button class="btn" id="mobileExport">↓ Скачать JSON</button><button class="btn" id="mobileImport">↑ Открыть JSON</button>
-  <button class="btn" id="mobilePng">⇩ Схема PNG</button><button class="btn" id="mobileLayout">◌ Расставить узлы</button>
+  <button class="btn" id="mobilePng">⇩ Схема PNG</button><button class="btn" id="mobileCloud">☁ GitHub</button><button class="btn" id="mobileLayout">◌ Расставить узлы</button>
   <button class="btn" id="mobileUndo">↶ Отменить</button><button class="btn" id="mobileRedo">↷ Повторить</button>
  </div>
  <button class="btn danger mobile-new" id="mobileNew">✦ Создать чистое дерево</button>
- <p class="mobile-storage-hint">Проект сохраняется в этом браузере. Для переноса между iPhone и Mac используй JSON.</p>
+ <p class="mobile-storage-hint">Локальная копия остаётся в браузере. Синхронизация — через ☁ GitHub.</p>
 </section>
+<div class="modalshade" id="cloudModal" role="dialog" aria-modal="true" aria-labelledby="cloudModalTitle">
+ <div class="modal"><h2 id="cloudModalTitle">☁ Сохранение на GitHub</h2>
+ <p class="cloud-help">Файл: <strong>data/atlas.json</strong> в репозитории johnercross-lgtm/-dry-ocean-talent-atlas. Репозиторий публичный — дерево смогут читать другие.</p>
+ <div class="field"><label for="cloudToken">Fine-grained GitHub token</label><input id="cloudToken" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="github_pat_…" /></div>
+ <p class="cloud-help">Разреши токену доступ только к этому репозиторию, <strong>Contents: Read and write</strong>. Токен не сохраняется в GitHub и не включается в JSON; он остаётся в сессии браузера. <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer" style="color:#a6eadb">Создать токен ↗</a></p>
+ <div class="cloud-status" id="cloudState" role="status">GitHub не подключён. Локальное сохранение работает.</div>
+ <div class="cloud-actions"><button class="btn primary" id="cloudConnect">Подключить</button><button class="btn" id="cloudSaveNow">Сохранить в GitHub</button><button class="btn" id="cloudLoad">Загрузить из GitHub</button><button class="btn danger" id="cloudDisconnect">Отключить</button></div>
+ <div class="actions" style="margin-top:15px"><button class="btn" id="cloudClose">Закрыть</button></div>
+ </div>
+</div>
 <div class="toast" id="toast"></div><input id="filePicker" type="file" accept=".json,application/json" hidden/>
 <script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id), NS='http://www.w3.org/2000/svg', STORE='dry-ocean-talent-atlas-v1';
+ const hadLocalOnOpen=!!localStorage.getItem(STORE);
 const colors=['#86ded0','#e8bd85','#a5b6fa','#df9bb1','#a7d59b','#8ec6e3','#c4a5e7','#eeaa80','#eedb99','#9bdbc8'];
 const seedBranches=[
 {id:'height',name:'Высота',color:'#86ded0'}, {id:'flight',name:'Дальний полёт',color:'#e8bd85'},
@@ -170,7 +186,7 @@ function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&l
 function parseProject(raw){if(!raw||!Array.isArray(raw.nodes)||!Array.isArray(raw.edges)||!Array.isArray(raw.branches))throw Error('Неверный формат дерева');if(raw.nodes.length>1800||raw.edges.length>4500||raw.branches.length>70)throw Error('Слишком большой файл');let ids=new Set();const branches=raw.branches.map(b=>({id:String(b.id||'').slice(0,80),name:String(b.name||'Ветвь').slice(0,60),color:/^#[a-f\d]{6}$/i.test(b.color)?b.color:'#86ded0'})).filter(b=>b.id);const bset=new Set(branches.map(b=>b.id));const nodes=raw.nodes.map(n=>({id:String(n.id||'').slice(0,90),title:String(n.title||'Новый узел').slice(0,100),desc:String(n.desc||'').slice(0,4000),branch:n.branch==='core'?'core':bset.has(n.branch)?n.branch:(branches[0]?.id||'core'),kind:['core','key','regular','milestone'].includes(n.kind)?n.kind:'regular',status:['canon','idea','test'].includes(n.status)?n.status:'idea',trigger:String(n.trigger||'').slice(0,2000),effect:String(n.effect||'').slice(0,2000),x:Math.max(-20000,Math.min(20000,Number(n.x)||0)),y:Math.max(-20000,Math.min(20000,Number(n.y)||0))})).filter(n=>n.id&&!ids.has(n.id)&&(ids.add(n.id),true));if(!nodes.length)throw Error('В файле нет узлов');const nset=new Set(nodes.map(n=>n.id)),edges=raw.edges.filter(e=>nset.has(e.from)&&nset.has(e.to)&&e.from!==e.to).map((e,i)=>({id:String(e.id||'edge_'+i).slice(0,100),from:String(e.from),to:String(e.to)}));return{version:1,name:String(raw.name||'Моё дерево').slice(0,100),branches,nodes,edges};}
 function randId(){return (typeof crypto!=='undefined'&&crypto.randomUUID)?crypto.randomUUID():'id_'+Date.now()+'_'+Math.random().toString(36).slice(2,9);}
 function distribute(doc){const all=doc.nodes.filter(n=>n.id!=='core');const core=doc.nodes.find(n=>n.id==='core');if(core){core.x=0;core.y=0;}let count=doc.branches.length;doc.branches.forEach((br,bi)=>{let rad=-Math.PI/2+bi*2*Math.PI/Math.max(1,count);const subset=all.filter(n=>n.branch===br.id);const levels=new Map();for(let n of subset){let dep=1;let cur=n.id;let seen=new Set();while(dep<8){let e=doc.edges.find(e=>e.to===cur);if(!e||seen.has(cur)||e.from==='core')break;seen.add(cur);cur=e.from;dep++;}if(!levels.has(dep))levels.set(dep,[]);levels.get(dep).push(n);}for(let [lev,nodes] of levels){const span=Math.min(.62,2*Math.PI/Math.max(1,count)*.66);nodes.forEach((n,i)=>{let a=rad+(i-(nodes.length-1)/2)*(span/Math.max(nodes.length-1,1));let radius=130+(lev-1)*133;n.x=Math.cos(a)*radius;n.y=Math.sin(a)*radius;});}});}
-function store(){try{localStorage.setItem(STORE,serialize());$('saveIndicator').textContent='Сохранено локально';}catch(e){$('saveIndicator').textContent='Экспортируй JSON';}}
+function store(){try{localStorage.setItem(STORE,serialize());$('saveIndicator').textContent='Сохранено локально';scheduleCloudSave();}catch(e){$('saveIndicator').textContent='Экспортируй JSON';}}
 function record(){clearTimeout(historyTimer);const s=serialize();if(history[historyIndex]===s){store();return;}history=history.slice(0,historyIndex+1);history.push(s);if(history.length>70)history.shift();historyIndex=history.length-1;store();updateHistoryButtons();}
 function laterRecord(){clearTimeout(historyTimer);historyTimer=setTimeout(record,480);store();}
 function flush(){if(historyTimer){clearTimeout(historyTimer);historyTimer=0;record();}}
@@ -279,7 +295,144 @@ function confirmBranchDeletion(){
  ask('Удалить направление?',count?`«${branch.name}» будет удалена. ${count} узл. останутся на схеме и перейдут в направление «Без направления». Все связи сохранятся.`:`Удалить пустую ветвь «${branch.name}»?`,()=>removeBranch(id),'Удалить ветвь');
 }
 function renderPalette(){$('colorGrid').innerHTML=colors.map(c=>`<button class="colorspot ${c===branchColor?'selected':''}" style="background:${c}" data-color="${c}" aria-label="Цвет ${c}"></button>`).join('');}
-function download(content,name,mime){const blob=new Blob([content],{type:mime}),url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),2000);}
+
+ // GitHub Contents API sync; browser keeps the only copy of the credential.
+ const GH_URL='https://api.github.com/repos/johnercross-lgtm/-dry-ocean-talent-atlas/contents/data/atlas.json';
+ const GH_TOKEN_KEY='dry-ocean-github-session-token';
+ const GH_SYNC_KEY='dry-ocean-github-last-synced-v1';
+ let ghToken='',ghSynced='',ghReady=false,ghBusy=false,ghTimer=null,ghLastWrite=0;
+ try{ghToken=sessionStorage.getItem(GH_TOKEN_KEY)||'';}catch(e){}
+ try{ghSynced=localStorage.getItem(GH_SYNC_KEY)||'';}catch(e){}
+ function ghStatus(message){
+   $('cloudState').textContent=message;
+   $('cloudSaveNow').disabled=!ghToken;
+   $('cloudDisconnect').disabled=!ghToken;
+ }
+ function ghHeaders(){
+   const h={'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
+   if(ghToken)h.Authorization='Bearer '+ghToken;
+   return h;
+ }
+ function ghDecode(base64){
+   const bin=atob(base64.replace(/\s/g,''));
+   return new TextDecoder().decode(Uint8Array.from(bin,c=>c.charCodeAt(0)));
+ }
+ function ghEncode(str){
+   const bytes=new TextEncoder().encode(str);let binary='';
+   for(let i=0;i<bytes.length;i+=16384)binary+=String.fromCharCode(...bytes.subarray(i,i+16384));
+   return btoa(binary);
+ }
+ async function ghFetch(){
+   const response=await fetch(GH_URL,{headers:ghHeaders(),cache:'no-store'});
+   if(response.status===404)return{sha:null,snapshot:null};
+   if(!response.ok)throw Error('GitHub HTTP '+response.status);
+   const file=await response.json();
+   if(!file.sha||!file.content)throw Error('GitHub не вернул содержимое файла');
+   return{sha:file.sha,snapshot:JSON.stringify(parseProject(JSON.parse(ghDecode(file.content))))};
+ }
+ function ghRemember(snapshot){
+   ghSynced=snapshot;try{localStorage.setItem(GH_SYNC_KEY,snapshot);}catch(e){}
+ }
+ function scheduleCloudSave(){
+   if(!ghReady||!ghToken||serialize()===ghSynced)return;
+   clearTimeout(ghTimer);
+   ghTimer=setTimeout(()=>ghSave(false),Math.max(10000,60000-(Date.now()-ghLastWrite)));
+ }
+ async function ghSave(force){
+   if(!ghToken||ghBusy)return;
+   ghBusy=true;clearTimeout(ghTimer);
+   const snapshot=serialize();
+   ghStatus('Сохраняю дерево в GitHub…');
+   try{
+     const remote=await ghFetch();
+     if(remote.snapshot===snapshot){
+       ghRemember(snapshot);ghReady=true;
+       ghStatus('GitHub синхронизирован. Автосохранение включено.');
+       $('saveIndicator').textContent='☁ GitHub';return;
+     }
+     if(!force&&remote.sha&&remote.snapshot!==ghSynced){
+       ghReady=false;
+       ghStatus('Конфликт версий! GitHub не перезаписан. Выбери «Загрузить» или «Сохранить».');
+       return;
+     }
+     const payload={message:'Save DRY OCEAN talent atlas',content:ghEncode(snapshot),branch:'main'};
+     if(remote.sha)payload.sha=remote.sha;
+     const response=await fetch(GH_URL,{method:'PUT',headers:{...ghHeaders(),'Content-Type':'application/json'},body:JSON.stringify(payload)});
+     if(!response.ok)throw Error('GitHub запись HTTP '+response.status);
+     ghRemember(snapshot);ghReady=true;ghLastWrite=Date.now();
+     ghStatus('Сохранено в GitHub. Автосохранение включено.');
+     $('saveIndicator').textContent='☁ GitHub';
+   }catch(e){
+     ghReady=false;
+     ghStatus('Ошибка: '+e.message+'. Дерево осталось в Safari.');
+   }finally{
+     ghBusy=false;
+     if(ghReady&&serialize()!==ghSynced)scheduleCloudSave();
+   }
+ }
+ function ghAdopt(remote){
+   ghReady=false;clearTimeout(ghTimer);flush();
+   data=JSON.parse(remote.snapshot);history=[serialize()];historyIndex=0;
+   selected={type:'node',id:data.nodes[0]?.id||'core'};
+   filter='all';search='';$('nodeSearch').value='';
+   syncAll();fitAll();store();ghRemember(serialize());ghReady=!!ghToken;
+   ghStatus(ghReady?'Загружено из GitHub. Автосохранение включено.':'Загружено из GitHub. Для записи нужен токен.');
+ }
+ async function ghConnect(){
+   const entered=$('cloudToken').value.trim();
+   if(!entered){ghStatus('Вставь токен в поле выше.');return;}
+   ghToken=entered;ghReady=false;
+   try{sessionStorage.setItem(GH_TOKEN_KEY,entered);}catch(e){}
+   ghStatus('Проверяю GitHub…');
+   try{
+     const remote=await ghFetch();
+     if(!remote.sha){ghReady=true;await ghSave(false);return;}
+     if(remote.snapshot===serialize()||(ghSynced&&remote.snapshot===ghSynced)){
+       ghReady=true;ghStatus('GitHub подключён. Автосохранение включено.');
+       if(remote.snapshot!==serialize())scheduleCloudSave();
+     }else{
+       ghStatus('Деревья Safari и GitHub отличаются. Выбери «Загрузить» или «Сохранить». Автосохранение пока выключено.');
+     }
+   }catch(e){ghReady=false;ghStatus('Не получилось подключиться: '+e.message);}
+ }
+ async function ghManualSave(){
+   if(!ghToken){ghStatus('Сначала подключи GitHub-токен.');return;}
+   if(ghBusy)return;
+   ghStatus('Сверяю версии перед сохранением…');
+   try{
+     const remote=await ghFetch();
+     if(remote.sha&&remote.snapshot!==serialize()&&remote.snapshot!==ghSynced){
+       ask('Перезаписать дерево в GitHub?','На GitHub другая версия. Если продолжить, она будет заменена текущей версией Safari. Перед этим можно скачать JSON.',()=>{ghReady=true;ghSave(true);},'Перезаписать');
+     }else{ghReady=true;await ghSave(false);}
+   }catch(e){ghStatus('Не удалось проверить GitHub: '+e.message);}
+ }
+ async function ghManualLoad(silent=false){
+   if(!silent)ghStatus('Загружаю дерево из GitHub…');
+   try{
+     const remote=await ghFetch();
+     if(!remote.sha){if(!silent)ghStatus('В GitHub пока нет сохранённого дерева.');return;}
+     if(remote.snapshot===serialize()){
+       ghRemember(remote.snapshot);ghReady=!!ghToken;
+       ghStatus('Деревья в Safari и GitHub совпадают.');return;
+     }
+     if(silent&&!hadLocalOnOpen&&serialize()===initialSeedSnapshot){ghAdopt(remote);return;}
+     if(silent)return;
+     ask('Загрузить дерево из GitHub?','Текущее дерево Safari заменится версией из GitHub. Если есть важные локальные изменения, сначала скачай JSON.',()=>ghAdopt(remote),'Загрузить');
+   }catch(e){if(!silent)ghStatus('Ошибка загрузки: '+e.message);}
+ }
+ function ghOpen(){
+   closeMobileActions();$('cloudToken').value=ghToken;$('cloudModal').classList.add('show');
+   ghStatus(ghReady?'GitHub подключён. Автосохранение включено.':ghToken?'Токен есть. Подключи его для проверки версий.':'Вставь токен, чтобы сохранять на GitHub. Локальная копия уже работает.');
+ }
+ function ghClose(){$('cloudModal').classList.remove('show');}
+ function ghDisconnect(){
+   ghReady=false;ghToken='';clearTimeout(ghTimer);
+   try{sessionStorage.removeItem(GH_TOKEN_KEY);}catch(e){}
+   $('cloudToken').value='';ghStatus('GitHub отключён. Дерево продолжает сохраняться локально.');
+ }
+ const initialSeedSnapshot=serialize();
+
+ function download(content,name,mime){const blob=new Blob([content],{type:mime}),url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),2000);}
 function filename(){return(data.name||'talent-tree').replace(/[^\wа-яёА-ЯЁ-]+/g,'_').slice(0,55)||'talent-tree';}
 function exportJSON(){flush();download(JSON.stringify({...data,exportedAt:new Date().toISOString()},null,2),filename()+'.json','application/json');notify('JSON-проект скачан');}
 function freshProject(){flush();data={version:1,name:'Моё дерево кита',branches:structuredClone(seedBranches),nodes:[structuredClone(seedNodes[0])],edges:[]};filter='all';search='';$('nodeSearch').value='';selected={type:'node',id:'core'};record();syncAll();fitAll();notify('Чистый проект готов');}
@@ -350,9 +503,17 @@ $('mobileLayout').addEventListener('click',()=>{closeMobileActions();$('layoutBt
 $('mobileNew').addEventListener('click',()=>{closeMobileActions();startFresh();});
 $('mobileUndo').addEventListener('click',()=>{closeMobileActions();undo();});
 $('mobileRedo').addEventListener('click',()=>{closeMobileActions();redo();});
+ $('cloudBtn').addEventListener('click',ghOpen);
+ $('mobileCloud').addEventListener('click',ghOpen);
+ $('cloudClose').addEventListener('click',ghClose);
+ $('cloudConnect').addEventListener('click',ghConnect);
+ $('cloudSaveNow').addEventListener('click',ghManualSave);
+ $('cloudLoad').addEventListener('click',()=>ghManualLoad(false));
+ $('cloudDisconnect').addEventListener('click',ghDisconnect);
+ $('cloudModal').addEventListener('click',evt=>{if(evt.target===$('cloudModal'))ghClose();});
 document.addEventListener('keydown',evt=>{if(evt.key==='Escape'){$('branchModal').classList.remove('show');$('confirmModal').classList.remove('show');mode='move';linkStart=null;updateMode();closePanels();closeMobileActions();return;}const editing=evt.target.matches('input,textarea,select')||evt.target.isContentEditable;if((evt.ctrlKey||evt.metaKey)&&evt.key.toLowerCase()==='z'){evt.preventDefault();evt.shiftKey?redo():undo();return;}if(editing)return;if(evt.key.toLowerCase()==='n'){evt.preventDefault();addNode(selected.type==='node'?selected.id:null);}else if(evt.key.toLowerCase()==='c'){evt.preventDefault();mode=mode==='link'?'move':'link';linkStart=null;updateMode();}else if(evt.key==='Delete'||evt.key==='Backspace'){evt.preventDefault();if(selected.type==='node'&&selected.id!=='core')ask('Удалить узел?','Узел и его связи будут удалены.',()=>removeNode(selected.id));else if(selected.type==='edge')removeEdge(selected.id);}else if(evt.key==='+'||evt.key==='=')setZoom(view.zoom*1.2);else if(evt.key==='-')setZoom(view.zoom/1.2);});
 window.addEventListener('resize',()=>{sizeStage();if(window.innerWidth>950)closePanels();});if(window.ResizeObserver)new ResizeObserver(()=>sizeStage()).observe($('stage'));window.addEventListener('beforeunload',store);
-history=[serialize()];historyIndex=0;sizeStage();syncAll();fitAll();updateMode();store();
+history=[serialize()];historyIndex=0;sizeStage();syncAll();fitAll();updateMode();store();ghStatus('GitHub не подключён. Локальная копия сохранена.');if(ghToken){$('cloudToken').value=ghToken;ghConnect();}else if(!hadLocalOnOpen)ghManualLoad(true);
 })();
 </script>
 </body></html>
