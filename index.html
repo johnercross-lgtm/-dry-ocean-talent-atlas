@@ -120,6 +120,14 @@ svg .edge.group{stroke-dasharray:2 7;stroke-width:1.65;opacity:.7}
 svg .school-plaque{stroke-width:1.7;fill:#112a33;filter:drop-shadow(0 5px 12px #0005)}
 svg .school-plaque-label{font-family:var(--sans);font-weight:850;text-anchor:middle;letter-spacing:2px;font-size:10px;pointer-events:none}
 svg .school-plaque-name{font-family:var(--sans);font-weight:750;text-anchor:middle;font-size:13px;pointer-events:none;paint-order:stroke;stroke:#0a1b26;stroke-width:3px}
+
+/* ATLAS v1.3: readable celestial LOD, without changing authored talent data. */
+[hidden]{display:none!important}
+.atlas-focus-exit{position:absolute;left:50%;top:69px;transform:translateX(-50%);z-index:3;background:#142e3c!important;color:#caefea;border-color:#5f9c9c!important;box-shadow:0 8px 32px #0008;white-space:nowrap;min-height:39px}
+svg .atlas-node-star{filter:drop-shadow(0 0 7px currentColor);pointer-events:none}
+svg .atlas-caption{font-family:var(--sans);font-weight:750;text-anchor:middle;paint-order:stroke;stroke:#091421;stroke-width:3.6px;stroke-linejoin:round;pointer-events:none}
+svg .atlas-star-outline{fill:none;stroke-width:1.6}
+@media(max-width:620px){.atlas-focus-exit{top:55px;font-size:12px;padding:9px 13px}.caption-pill{max-width:45vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
 </style>
 </head>
 <body>
@@ -140,7 +148,7 @@ svg .school-plaque-name{font-family:var(--sans);font-weight:750;text-anchor:midd
 </aside>
 <main class="stage" id="stage">
  <svg id="graph" xmlns="http://www.w3.org/2000/svg" aria-label="Интерактивное дерево талантов"><defs><filter id="glow" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g id="world"><g id="guides"></g><g id="edgeLayer"></g><g id="nodeLayer"></g></g></svg>
- <div class="floating-top"><div class="floatbox"><button class="btn active" id="moveMode" title="Выбирать и передвигать узлы">✥ <span class="hide-mobile">Выбор</span></button><button class="btn" id="linkMode" title="Соединить два узла">⌁ <span class="hide-mobile">Связь</span></button><div class="separator"></div><button class="btn" id="fitBtn" title="Показать всё дерево">⊡ <span class="hide-mobile">Вписать</span></button><button class="btn hide-mobile" id="layoutBtn" title="Разложить ветви радиально">◌ Расставить</button><button class="btn hide-mobile" id="pngBtn" title="Скачать схему в виде картинки">⇩ PNG</button></div><div class="caption-pill">РАБОЧИЙ ЧЕРНОВИК · <span id="totalLabel">0</span> УЗЛОВ</div></div>
+ <div class="floating-top"><div class="floatbox"><button class="btn active" id="moveMode" title="Выбирать и передвигать узлы">✥ <span class="hide-mobile">Выбор</span></button><button class="btn" id="linkMode" title="Соединить два узла">⌁ <span class="hide-mobile">Связь</span></button><div class="separator"></div><button class="btn" id="fitBtn" title="Показать всё дерево">⊡ <span class="hide-mobile">Вписать</span></button><button class="btn hide-mobile" id="layoutBtn" title="Разложить ветви радиально">◌ Расставить</button><button class="btn hide-mobile" id="pngBtn" title="Скачать схему в виде картинки">⇩ PNG</button></div><div class="caption-pill"><span id="atlasLevel">КАРТА НЕБА</span> · <span id="totalLabel">0</span> УЗЛОВ</div><button id="atlasFocusExit" class="btn atlas-focus-exit" type="button" hidden>← Все созвездия</button></div>
  <div class="link-tip" id="linkTip">Выбери первый узел для связи · Esc — отмена</div>
  <div class="stage-bottom"><div class="keytip"><span class="kbd">Перетаскивай</span> узлы и фон · <span class="kbd">Двойной клик</span> — новый узел · <span class="kbd">C</span> — связь · <span class="kbd">Del</span> — удалить</div><div class="type-jumps" aria-label="Быстрый переход к школам и храмам"><button id="jumpTemple" type="button" data-kind="temple" title="Показать следующий храм">🏛 Храмы <span id="templeCount" class="type-count">0</span></button><button id="jumpSchool" type="button" data-kind="school" title="Показать следующую школу">✺ Школы <span id="schoolCount" class="type-count">0</span></button></div><div class="zoomtool"><button id="zoomOut" title="Уменьшить">−</button><span class="zoomvalue" id="zoomValue">100%</span><button id="zoomIn" title="Увеличить">+</button><button id="zoomFit" title="Вписать в экран">⤢</button></div></div>
 </main>
@@ -206,6 +214,7 @@ const seed=()=>{let obj={version:1,name:'Атлас адаптации кита'
 let data;try{let saved=localStorage.getItem(STORE);data=saved?parseProject(JSON.parse(saved)):seed();}catch(e){data=seed();}
 let touches=new Map(), pinch=null, suppressTouchDrag=false;
 let selected={type:'node',id:'core'},filter='all',search='',mode='move',linkStart=null,view={x:0,y:0,zoom:1},stageSize={w:800,h:600},pointer=null,history=[],historyIndex=0,historyTimer=0,toastTimer=0,confirmCallback=null,branchColor=colors[0],editingBranchId=null,requestRefresh=0;
+let atlasFocusId=null,atlasFocusNodes=null,atlasPriorView=null,atlasVisualTier='',atlasPaintedZoom=0;
 let serialize=()=>JSON.stringify(data),nodeById=id=>data.nodes.find(n=>n.id===id),branchById=id=>data.branches.find(b=>b.id===id),colorOf=n=>n.kind==='temple'?'#e7c08a':n.kind==='school'?'#8fe3d9':n.branch==='core'?'#e0e5dc':(branchById(n.branch)?.color||'#86ded0');
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function parseProject(raw){if(!raw||!Array.isArray(raw.nodes)||!Array.isArray(raw.edges)||!Array.isArray(raw.branches))throw Error('Неверный формат дерева');if(raw.nodes.length>1800||raw.edges.length>4500||raw.branches.length>70)throw Error('Слишком большой файл');let ids=new Set();const branches=raw.branches.map(b=>({id:String(b.id||'').slice(0,80),name:String(b.name||'Ветвь').slice(0,60),color:/^#[a-f\d]{6}$/i.test(b.color)?b.color:'#86ded0'})).filter(b=>b.id);const bset=new Set(branches.map(b=>b.id));const nodes=raw.nodes.map(n=>({id:String(n.id||'').slice(0,90),title:String(n.title||'Новый узел').slice(0,100),desc:String(n.desc||'').slice(0,4000),branch:n.branch==='core'?'core':bset.has(n.branch)?n.branch:(branches[0]?.id||'core'),kind:['core','key','regular','milestone','school','temple'].includes(n.kind)?n.kind:'regular',status:['canon','idea','test'].includes(n.status)?n.status:'idea',trigger:String(n.trigger||'').slice(0,2000),effect:String(n.effect||'').slice(0,2000),x:Math.max(-20000,Math.min(20000,Number(n.x)||0)),y:Math.max(-20000,Math.min(20000,Number(n.y)||0))})).filter(n=>n.id&&!ids.has(n.id)&&(ids.add(n.id),true));if(!nodes.length)throw Error('В файле нет узлов');const nset=new Set(nodes.map(n=>n.id)),edges=raw.edges.filter(e=>nset.has(e.from)&&nset.has(e.to)&&e.from!==e.to).map((e,i)=>({id:String(e.id||'edge_'+i).slice(0,100),from:String(e.from),to:String(e.to),type:e.type==='group'?'group':'requirement'}));return{version:2,name:String(raw.name||'Моё дерево').slice(0,100),dependencyMode:'all',branches,nodes,edges};}
@@ -225,12 +234,115 @@ function cssW(){const b=$('stage').getBoundingClientRect();return{w:Math.max(100
 function worldAt(clientX,clientY){const r=$('graph').getBoundingClientRect();return{x:(clientX-r.left-stageSize.w/2-view.x)/view.zoom,y:(clientY-r.top-stageSize.h/2-view.y)/view.zoom};}
 function sizeStage(){stageSize=cssW();$('graph').setAttribute('viewBox',`0 0 ${stageSize.w} ${stageSize.h}`);updateTransform();}
 function updateTransform(){$('world').setAttribute('transform',`translate(${stageSize.w/2+view.x} ${stageSize.h/2+view.y}) scale(${view.zoom})`);$('zoomValue').textContent=Math.round(view.zoom*100)+'%';}
-function setZoom(zoom,screenX=stageSize.w/2,screenY=stageSize.h/2){const v=Math.max(.065,Math.min(3.5,zoom));const xx=screenX-stageSize.w/2,yy=screenY-stageSize.h/2;view.x=xx-(xx-view.x)*v/view.zoom;view.y=yy-(yy-view.y)*v/view.zoom;view.zoom=v;updateTransform();}
-function fitAll(){const pts=data.nodes;if(!pts.length)return;let labels=branchPositions();let minX=Math.min(...pts.map(n=>n.x-(n.kind==='school'?132:75)),...labels.map(p=>p.x-92)),maxX=Math.max(...pts.map(n=>n.x+(n.kind==='school'?132:75)),...labels.map(p=>p.x+92)),minY=Math.min(...pts.map(n=>n.y-70),...labels.map(p=>p.y-42)),maxY=Math.max(...pts.map(n=>n.y+95),...labels.map(p=>p.y+45));view.zoom=Math.max(.065,Math.min(1.18,Math.min((stageSize.w-(stageSize.w<620?32:85))/(maxX-minX),(stageSize.h-(stageSize.h<520?58:110))/(maxY-minY))));view.x=-(minX+maxX)/2*view.zoom;view.y=-(minY+maxY)/2*view.zoom;updateTransform();}
+function setZoom(zoom,screenX=stageSize.w/2,screenY=stageSize.h/2){const v=Math.max(.065,Math.min(3.5,zoom));const xx=screenX-stageSize.w/2,yy=screenY-stageSize.h/2;view.x=xx-(xx-view.x)*v/view.zoom;view.y=yy-(yy-view.y)*v/view.zoom;view.zoom=v;updateTransform();atlasRefresh();}
+function fitAll(){const pts=data.nodes;if(!pts.length)return;let labels=branchPositions();let minX=Math.min(...pts.map(n=>n.x-(n.kind==='school'?132:75)),...labels.map(p=>p.x-92)),maxX=Math.max(...pts.map(n=>n.x+(n.kind==='school'?132:75)),...labels.map(p=>p.x+92)),minY=Math.min(...pts.map(n=>n.y-70),...labels.map(p=>p.y-42)),maxY=Math.max(...pts.map(n=>n.y+95),...labels.map(p=>p.y+45));view.zoom=Math.max(.065,Math.min(1.18,Math.min((stageSize.w-(stageSize.w<620?32:85))/(maxX-minX),(stageSize.h-(stageSize.h<520?58:110))/(maxY-minY))));view.x=-(minX+maxX)/2*view.zoom;view.y=-(minY+maxY)/2*view.zoom;updateTransform();atlasRefresh();}
 function branchPositions(){return data.branches.map((b,i)=>{const a=-Math.PI/2+i*2*Math.PI/Math.max(1,data.branches.length);const own=data.nodes.filter(n=>n.branch===b.id);const r=Math.max(355,...own.map(n=>Math.hypot(n.x,n.y)+85));return{branch:b,x:Math.cos(a)*r,y:Math.sin(a)*r};});}
 function textLines(s){let words=String(s).trim().split(/\s+/);if(s.length<17)return [s];let lines=['',''];for(let word of words){if(!lines[0]|| (lines[0]+' '+word).length<=17)lines[0]+=(lines[0]?' ':'')+word;else lines[1]+=(lines[1]?' ':'')+word;}if(!lines[1])return [lines[0]];if(lines[1].length>26)lines[1]=lines[1].slice(0,25)+'…';return lines;}
 function rOf(n){return n.kind==='core'?38:n.kind==='temple'?29:n.kind==='school'?27:n.kind==='key'?23:n.kind==='milestone'?25:19;}
 function linePoints(a,b){const dx=b.x-a.x,dy=b.y-a.y,len=Math.hypot(dx,dy)||1,nx=dx/len,ny=dy/len,ra=a.kind==='school'?Math.min(117/Math.max(Math.abs(nx),.001),37/Math.max(Math.abs(ny),.001)):rOf(a)+3,rb=b.kind==='school'?Math.min(117/Math.max(Math.abs(nx),.001),37/Math.max(Math.abs(ny),.001)):rOf(b)+3;const x1=a.x+nx*ra,y1=a.y+ny*ra,x2=b.x-nx*rb,y2=b.y-ny*rb;const cross=a.branch!==b.branch&&a.branch!=='core'&&b.branch!=='core';const bend=cross?Math.min(65,len*.16):0;let cx=(x1+x2)/2-ny*bend,cy=(y1+y2)/2+nx*bend;return{d:`M ${x1.toFixed(1)} ${y1.toFixed(1)} Q ${cx.toFixed(1)} ${cy.toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`,cross};}
+
+/* ATLAS v1.3 — presentation-only semantic zoom. All authored nodes and links stay in JSON. */
+function atlasTier(){
+ if(atlasFocusId&&view.zoom>=.38)return view.zoom<.72?'schools':'detail';
+ return view.zoom<.27?'sky':view.zoom<.82?'schools':'detail';
+}
+function atlasRelated(id){
+ const school=nodeById(id);if(!school||school.kind!=='school')return new Set();
+ const scope=new Set([id]);
+ // All assigned school talents become the initial constellation.
+ for(const e of data.edges)if(e.type==='group'&&e.from===id)scope.add(e.to);
+ // Walk required descendants of school talents, not from shared central powers.
+ let queue=[...scope],steps=0;
+ while(queue.length&&steps++<4500){
+  const from=queue.shift(),source=nodeById(from);
+  if(!source||source.kind==='temple'||(source.kind==='core'&&from!==id))continue;
+  for(const e of data.edges)if(e.from===from&&e.type!=='group'){
+   const target=nodeById(e.to);
+   if(target&&target.kind!=='school'&&target.kind!=='temple'&&!scope.has(target.id)){scope.add(target.id);queue.push(target.id);}
+  }
+ }
+ // Include access points and prerequisites, but don't descend their unrelated branches.
+ for(const e of data.edges){
+  if(scope.has(e.to)&&((e.type==='group'&&e.to===id)||e.type!=='group')){
+   const n=nodeById(e.from);if(n&&(n.kind==='temple'||n.kind==='core'||n.kind==='key'))scope.add(n.id);
+  }
+ }
+ return scope;
+}
+function atlasFocusSchool(id){
+ const n=nodeById(id);if(!n||n.kind!=='school')return;
+ if(!atlasFocusId)atlasPriorView={x:view.x,y:view.y,zoom:view.zoom};
+ atlasFocusId=id;atlasFocusNodes=atlasRelated(id);
+ selected={type:'node',id};filter='all';
+ view.zoom=Math.max(.9,Math.min(1.3,view.zoom*1.25));
+ view.x=-n.x*view.zoom;view.y=-n.y*view.zoom;
+ closePanels();syncAll();
+ notify('Созвездие: '+n.title.replace(/^Школа\s+/i,'')+' · щипок двумя пальцами — масштаб');
+}
+function atlasLeaveFocus(){
+ if(!atlasFocusId)return;
+ atlasFocusId=null;atlasFocusNodes=null;
+ if(atlasPriorView){view={...atlasPriorView};atlasPriorView=null;}
+ syncAll();notify('Открыта вся звёздная карта');
+}
+function atlasSVG(tag,attrs,parent){
+ const e=document.createElementNS(NS,tag);
+ for(const [key,value] of Object.entries(attrs||{}))e.setAttribute(key,value);
+ if(parent)parent.appendChild(e);return e;
+}
+function atlasPaint(){
+ const tier=atlasTier();atlasVisualTier=tier;atlasPaintedZoom=view.zoom;
+ const zoom=Math.max(.065,view.zoom),sky=tier==='sky',detail=tier==='detail';
+ $('atlasLevel').textContent=atlasFocusId?'СОЗВЕЗДИЕ ШКОЛЫ':sky?'КАРТА СОЗВЕЗДИЙ':tier==='schools'?'ШКОЛЫ И ХРАМЫ':'ТАЛАНТЫ И УСЛОВИЯ';
+ $('atlasFocusExit').hidden=!atlasFocusId;
+ // At far zoom, the sector names remain readable in SCREEN pixels.
+ for(const lbl of $('guides').querySelectorAll('.branch-label')){
+  if(atlasFocusId){lbl.style.display='none';continue;}
+  lbl.style.display='';lbl.style.fontSize=(sky?13:11)/zoom+'px';
+  lbl.style.letterSpacing=(sky?1.6:.8)/zoom+'px';
+  lbl.style.opacity=sky?'.94':tier==='schools'?'.55':'.6';
+ }
+ for(const g of $('edgeLayer').querySelectorAll('[data-edge]')){
+  const edge=data.edges.find(e=>e.id===g.dataset.edge);
+  const inScope=!atlasFocusNodes||(edge&&atlasFocusNodes.has(edge.from)&&atlasFocusNodes.has(edge.to));
+  g.style.display=inScope?'':'none';g.style.opacity=sky?'.29':tier==='schools'?'.42':'';
+ }
+ for(const g of $('nodeLayer').querySelectorAll('[data-node]')){
+  const n=nodeById(g.dataset.node);
+  if(!n)continue;
+  g.style.display=!atlasFocusNodes||atlasFocusNodes.has(n.id)?'':'none';
+  if(detail)continue; // full editable content is preserved in the close-up view.
+  // Replace only transient SVG graphics (not the model) with a readable star symbol.
+  g.replaceChildren();
+  const col=colorOf(n),core=n.kind==='core',temple=n.kind==='temple',school=n.kind==='school';
+  const important=core||temple||school||n.kind==='key'||n.kind==='milestone';
+  const r=(sky?(core?7:temple?5:school?4.8:important?3.7:2.1):(core?10:temple?8.2:school?8.5:important?5.5:2.7))/zoom;
+  atlasSVG('circle',{class:'node-hit',r:Math.max(11/zoom,r*1.6),fill:'transparent',stroke:'none'},g);
+  if(important)atlasSVG('circle',{r:r*1.42,stroke:col,'stroke-opacity':sky?.25:.42,fill:'none','stroke-width':1.15/zoom},g);
+  atlasSVG('circle',{class:'atlas-node-star',r,fill:important?'#132d3a':col,stroke:col,'stroke-width':(important?1.9:0)/zoom,'fill-opacity':important?'1':'.74'},g);
+  if(selected.type==='node'&&selected.id===n.id)atlasSVG('circle',{r:r+5/zoom,fill:'none',stroke:'#effff4','stroke-width':1.7/zoom,'stroke-dasharray':(3/zoom)+' '+(3/zoom)},g);
+  if(temple&&!sky){
+   const icon=atlasSVG('g',{transform:'scale('+(1/zoom)+')',stroke:col,fill:'none','stroke-width':'1.5','stroke-linejoin':'round'},g);
+   atlasSVG('path',{d:'M-9 -3 L0 -9 L9 -3 M-9 0 H9 M-7 2 V7 M0 2 V7 M7 2 V7 M-11 9 H11'},icon);
+   atlasSVG('path',{d:'M-13 12 Q0 15 13 12 L7 19 L0 22 L-9 17 Z',fill:'#544b43',stroke:'#b6a48c','stroke-width':'.8'},icon);
+  }else if(core&&!sky){
+   const t=atlasSVG('text',{x:0,y:3/zoom,fill:col,'font-size':10/zoom,'text-anchor':'middle','font-weight':'700','pointer-events':'none'},g);t.textContent='✧';
+  }
+  let showLabel=!sky&&(school||temple||core||n.kind==='key'||n.kind==='milestone');
+  if(showLabel){
+   const title=(school?n.title.replace(/^Школа\s+/i,''):n.title);
+   const max=school?23:temple?19:core?21:18;
+   const label=title.length>max?title.slice(0,max-1)+'…':title;
+   const labelEl=atlasSVG('text',{class:'atlas-caption',x:0,y:r+14/zoom,fill:col,'font-size':(school?11.5:10)/zoom},g);
+   labelEl.textContent=label;
+  }
+ }
+}
+function atlasRefresh(){
+ const tier=atlasTier();
+ if(tier!==atlasVisualTier||Math.abs(view.zoom-atlasPaintedZoom)>Math.max(.022,view.zoom*.11))renderGraph();
+}
+
 function renderGraph(){const g=$('guides'),e=$('edgeLayer'),layer=$('nodeLayer');const maxRadius=Math.max(550,...data.nodes.map(n=>Math.hypot(n.x,n.y)+110));let guide='';for(let r=130;r<maxRadius+75;r+=130)guide+=`<circle class="guide-circle" r="${r}"/>`;for(let a=0;a<360;a+=30){let rad=a*Math.PI/180;guide+=`<line class="guide-ray" x1="0" y1="0" x2="${Math.cos(rad)*maxRadius}" y2="${Math.sin(rad)*maxRadius}"/>`;}if(data.branches.length<19){branchPositions().forEach(({branch:b,x,y})=>{guide+=`<text class="branch-label" x="${x}" y="${y}" fill="${b.color}" opacity=".7">${esc(b.name.toUpperCase())}</text>`;});}g.innerHTML=guide;
 let edgeHTML='';for(const edge of data.edges){const a=nodeById(edge.from),b=nodeById(edge.to);if(!a||!b)continue;const p=linePoints(a,b),c=colorOf(b),sel=selected.type==='edge'&&selected.id===edge.id,group=edge.type==='group';edgeHTML+=`<g data-edge="${esc(edge.id)}"><path class="edge ${group?'group':p.cross?'cross':''} ${sel?'selected':''}" d="${p.d}" stroke="${sel?'#e0faf1':c}" stroke-opacity="${sel?'1':group?'.5':'.7'}"/><path class="edge-hit" d="${p.d}"/></g>`;}e.innerHTML=edgeHTML;
 let html='';for(const n of data.nodes){
@@ -244,7 +356,7 @@ let html='';for(const n of data.nodes){
   html+='</g>';continue;
  }
  const r=rOf(n),col=colorOf(n),active=selected.type==='node'&&selected.id===n.id,opacity=n.status==='test'?.68:1,lines=textLines(n.title),glyph=n.kind==='core'?'✧':n.kind==='milestone'?'✦':n.kind==='key'?'◇':n.kind==='school'?'✺':n.kind==='temple'?'':'·';let labelY=r+19;html+=`<g class="noderoot" data-node="${esc(n.id)}" transform="translate(${n.x} ${n.y})" opacity="${opacity}"><circle class="node-hit" r="${Math.max(32,r+12)}"/>`;if(active)html+=`<circle class="selectedring" r="${r+9}"/>`;if(n.kind==='core')html+=`<circle cx="0" cy="0" r="${r+15}" fill="${col}" opacity=".035"/><circle cx="0" cy="0" r="${r+7}" stroke="${col}" fill="none" stroke-opacity=".23"/>`;if(['key','milestone','school','temple'].includes(n.kind))html+=`<circle class="nodehalo" r="${r+6}" stroke="${col}" ${n.status==='idea'?'stroke-dasharray="3 4"':''}/>`;html+=`<circle class="node-circle" r="${r}" fill="${active?'#24424b':'#102331'}" stroke="${col}"/>`;if(n.kind==='core')html+=`<circle r="${r-8}" fill="#142c35" stroke="#638e91" stroke-width="1" opacity=".8"/>`;if(n.kind==='temple'){html+=`<path class="node-temple-icon" d="M-15 -7 L0 -15 L15 -7 M-14 -3 H14 M-11 -1 V11 M-3 -1 V11 M5 -1 V11 M12 -1 V11 M-16 14 H16" stroke="${col}"/>`;}else{html+=`<text class="node-glyph" y="1" fill="${col}" font-size="${n.kind==='core'?25:20}">${glyph}</text>`;}if(n.kind==='temple'||n.kind==='school'){html+=`<text class="node-type-tag" x="0" y="${-r-16}" fill="${col}">${n.kind==='temple'?'ХРАМ':'ШКОЛА'}</text>`;if(n.kind==='school')html+=`<circle class="node-school-outer" r="${r+10}" stroke="${col}"/>`;}lines.forEach((l,i)=>{html+=`<text class="node-text" x="0" y="${labelY+i*14}" fill="${active?'#ffffff':'#c9dade'}">${esc(l)}</text>`;});if(n.kind==='milestone')html+=`<circle r="3" cy="${-r}" fill="${col}"/>`;html+='</g>';}
-layer.innerHTML=html;updateTransform();}
+layer.innerHTML=html;updateTransform();atlasPaint();}
 function renderBranches(){
  $('templeCount').textContent=data.nodes.filter(n=>n.kind==='temple').length;
  $('schoolCount').textContent=data.nodes.filter(n=>n.kind==='school').length;
@@ -265,7 +377,7 @@ function progressPanel(n){
  const groups=data.edges.filter(e=>e.to===n.id&&e.type==='group').map(e=>nodeById(e.from)).filter(Boolean);
  if(n.kind==='school'){
   const members=data.edges.filter(e=>e.from===n.id&&e.type==='group').map(e=>nodeById(e.to)).filter(Boolean);
-  return '<div class="progress-rule"><div class="progress-title">✺ Название школы — не талант</div><div class="progress-note">Это заголовок направления в атласе. Пунктирные связи собирают таланты школы; их изучение задаётся отдельными обязательными связями.</div>'+
+  return '<div class="progress-rule"><button type="button" id="atlasFocusEnter" class="btn primary" style="width:100%;margin-bottom:12px">✦ Открыть созвездие школы</button><div class="progress-title">✺ Название школы — не талант</div><div class="progress-note">Это заголовок направления в атласе. Пунктирные связи собирают таланты школы; их изучение задаётся отдельными обязательными связями.</div>'+
    (members.map(p=>'<div class="progress-dep">◇ '+esc(p.title)+'</div>').join('')||'<div class="progress-dep">Способности школы ещё не описаны</div>')+'</div>';
  }
  const title=n.kind==='temple'?'🏛 Храм / место открытия':'Обязательные условия (И)';
@@ -518,7 +630,7 @@ function handleSvgDown(evt){if(evt.pointerType==='touch'){touches.set(evt.pointe
  pointer={type:'pan',startX:evt.clientX,startY:evt.clientY,panX:view.x,panY:view.y,moved:false};evt.currentTarget.classList.add('grabbing');selected={type:'none'};renderNodeList();renderInspector();renderGraph();evt.preventDefault();}
 function handleSvgMove(evt){if(evt.pointerType==='touch'&&touches.has(evt.pointerId))touches.set(evt.pointerId,gesturePoint(evt));
  if(pinch&&touches.size>=2){const p=[...touches.values()],a=p[0],b=p[1],cx=(a.x+b.x)/2,cy=(a.y+b.y)/2,dist=Math.hypot(a.x-b.x,a.y-b.y);
-   const z=Math.max(.065,Math.min(3.5,pinch.startZoom*dist/pinch.startDistance));view.zoom=z;view.x=cx-stageSize.w/2-pinch.anchorX*z;view.y=cy-stageSize.h/2-pinch.anchorY*z;updateTransform();evt.preventDefault();return;}
+   const z=Math.max(.065,Math.min(3.5,pinch.startZoom*dist/pinch.startDistance));view.zoom=z;view.x=cx-stageSize.w/2-pinch.anchorX*z;view.y=cy-stageSize.h/2-pinch.anchorY*z;updateTransform();atlasRefresh();evt.preventDefault();return;}
  if(suppressTouchDrag&&evt.pointerType==='touch')return;
  if(!pointer)return;if(evt.pointerType==='touch'&&!touches.has(evt.pointerId))return;
  const dx=evt.clientX-pointer.startX,dy=evt.clientY-pointer.startY;if(Math.abs(dx)+Math.abs(dy)>5)pointer.moved=true;
@@ -534,12 +646,12 @@ function handleSvgUp(evt){if(evt.pointerType==='touch')touches.delete(evt.pointe
 }
 function handleZoom(evt){evt.preventDefault();const rect=$('graph').getBoundingClientRect();let factor=Math.exp(-Math.sign(evt.deltaY)*Math.min(Math.abs(evt.deltaY),130)/600);setZoom(view.zoom*factor,evt.clientX-rect.left,evt.clientY-rect.top);}
 function autoLayout(){flush();distribute(data);record();syncAll();fitAll();notify('Радиальная расстановка готова');}
-$('graph').addEventListener('pointerdown',handleSvgDown);$('graph').addEventListener('pointermove',handleSvgMove);$('graph').addEventListener('pointerup',handleSvgUp);$('graph').addEventListener('pointercancel',handleSvgUp);$('graph').addEventListener('wheel',handleZoom,{passive:false});$('graph').addEventListener('dblclick',evt=>{if(mode==='link'||evt.sourceCapabilities?.firesTouchEvents)return;let el=evt.target.closest('[data-node]');if(el){addNode(el.dataset.node);}else addNode(null,worldAt(evt.clientX,evt.clientY));evt.preventDefault();});
+$('graph').addEventListener('pointerdown',handleSvgDown);$('graph').addEventListener('pointermove',handleSvgMove);$('graph').addEventListener('pointerup',handleSvgUp);$('graph').addEventListener('pointercancel',handleSvgUp);$('graph').addEventListener('wheel',handleZoom,{passive:false});$('graph').addEventListener('dblclick',evt=>{if(mode==='link'||evt.sourceCapabilities?.firesTouchEvents)return;let el=evt.target.closest('[data-node]');if(el){const n=nodeById(el.dataset.node);if(n?.kind==='school'){atlasFocusSchool(n.id);evt.preventDefault();return;}addNode(el.dataset.node);}else addNode(null,worldAt(evt.clientX,evt.clientY));evt.preventDefault();});
 $('branchList').addEventListener('click',evt=>{const edit=evt.target.closest('[data-edit-branch]');if(edit){openBranchModal(edit.dataset.editBranch);return;}const b=evt.target.closest('[data-filter]');if(!b)return;filter=b.dataset.filter;renderBranches();renderNodeList();});
 $('branchList').addEventListener('dblclick',evt=>{const b=evt.target.closest('.branch-entry [data-filter]');if(b)openBranchModal(b.dataset.filter);});$('nodeSearch').addEventListener('input',evt=>{search=evt.target.value;renderNodeList();});$('nodeList').addEventListener('click',evt=>{const row=evt.target.closest('[data-go]');if(row)chooseNode(row.dataset.go,true);});
 $('details').addEventListener('input',evt=>{const field=evt.target.dataset.field;if(!field)return;const n=nodeById(selected.id);if(!n||!['title','desc','trigger','effect'].includes(field))return;n[field]=evt.target.value;laterRecord();renderGraph();if(field==='title'){renderNodeList();const title=$('details').querySelector('.detail-title');if(title){title.textContent=n.title;title.title=n.title;}}});
 $('details').addEventListener('change',evt=>{const field=evt.target.dataset.field;if(evt.target.dataset.edgeField==='type'){const edge=data.edges.find(e=>e.id===selected.id);if(edge){flush();edge.type=evt.target.value==='group'?'group':'requirement';record();syncAll();}return;}if(!field)return;flush();const n=nodeById(selected.id);if(!n)return;n[field]=evt.target.value;laterRecord();renderGraph();renderBranches();renderNodeList();const sub=$('details').querySelector('.detail-small');if(sub)sub.textContent=statusLabel(n.status)+' · '+(n.id==='core'?'Центр дерева':'Способность');renderInspector();});
-$('details').addEventListener('click',evt=>{if(evt.target.closest('#addChild'))addNode(selected.id);else if(evt.target.closest('#centerSelected'))focusNode(selected.id);else if(evt.target.closest('#deleteSelected'))ask('Удалить способность?','Узел и все его связи будут удалены из дерева.',()=>removeNode(selected.id));else if(evt.target.closest('#deleteSelectedEdge'))removeEdge(selected.id);else{const rm=evt.target.closest('[data-remove-edge]');if(rm)removeEdge(rm.dataset.removeEdge);}});
+$('details').addEventListener('click',evt=>{if(evt.target.closest('#atlasFocusEnter')){atlasFocusSchool(selected.id);return;}if(evt.target.closest('#addChild'))addNode(selected.id);else if(evt.target.closest('#centerSelected'))focusNode(selected.id);else if(evt.target.closest('#deleteSelected'))ask('Удалить способность?','Узел и все его связи будут удалены из дерева.',()=>removeNode(selected.id));else if(evt.target.closest('#deleteSelectedEdge'))removeEdge(selected.id);else{const rm=evt.target.closest('[data-remove-edge]');if(rm)removeEdge(rm.dataset.removeEdge);}});
 $('projectName').addEventListener('input',evt=>{data.name=evt.target.value.slice(0,100);laterRecord();});
 $('newNodeTop').addEventListener('click',()=>addNode(selected.type==='node'?selected.id:null));$('newProjectBtn').addEventListener('click',startFresh);$('newProjectSide').addEventListener('click',startFresh);$('pngBtn').addEventListener('click',exportPNG);$('moveMode').addEventListener('click',()=>{mode='move';linkStart=null;updateMode();});$('linkMode').addEventListener('click',()=>{mode=mode==='link'?'move':'link';linkStart=null;updateMode();});$('fitBtn').addEventListener('click',fitAll);$('zoomFit').addEventListener('click',fitAll);$('layoutBtn').addEventListener('click',()=>ask('Переставить узлы?','Радиальная расстановка пересчитает позиции узлов. Связи и описания сохранятся; действие можно отменить.',autoLayout,'Расставить'));
 $('zoomIn').addEventListener('click',()=>setZoom(view.zoom*1.2));$('zoomOut').addEventListener('click',()=>setZoom(view.zoom/1.2));$('undoBtn').addEventListener('click',undo);$('redoBtn').addEventListener('click',redo);$('exportBtn').addEventListener('click',exportJSON);$('importBtn').addEventListener('click',()=>$('filePicker').click());$('filePicker').addEventListener('change',e=>{if(e.target.files[0])importJSON(e.target.files[0]);e.target.value='';});
@@ -550,6 +662,7 @@ $('createBranch').addEventListener('click',saveBranch);
 $('deleteBranch').addEventListener('click',confirmBranchDeletion);
 $('branchName').addEventListener('keydown',e=>{if(e.key==='Enter')saveBranch();});
 $('confirmCancel').addEventListener('click',()=>$('confirmModal').classList.remove('show'));$('confirmYes').addEventListener('click',()=>{$('confirmModal').classList.remove('show');const cb=confirmCallback;confirmCallback=null;cb?.();});$('confirmModal').addEventListener('click',e=>{if(e.target===$('confirmModal'))$('confirmModal').classList.remove('show');});
+$('atlasFocusExit').addEventListener('click',atlasLeaveFocus);
 $('jumpTemple').addEventListener('click',()=>jumpKind('temple'));$('jumpSchool').addEventListener('click',()=>jumpKind('school'));$('menuBtn').addEventListener('click',()=>togglePanel('sidebar'));$('inspectBtn').addEventListener('click',()=>togglePanel('inspector'));
 $('closeSidebar').addEventListener('click',closePanels);$('closeInspector').addEventListener('click',closePanels);$('panelScrim').addEventListener('click',closePanels);
 $('moreBtn').addEventListener('click',openMobileActions);$('closeMore').addEventListener('click',closeMobileActions);$('mobileActionsBackdrop').addEventListener('click',closeMobileActions);
