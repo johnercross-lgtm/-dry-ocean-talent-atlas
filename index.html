@@ -10,8 +10,7 @@
 *{box-sizing:border-box}html,body{height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13px}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--teal);outline-offset:2px}button:disabled{opacity:.3;cursor:not-allowed}.app{height:100vh;height:100dvh;display:flex;flex-direction:column;min-height:450px}
 .topbar{height:71px;flex:none;display:flex;align-items:center;gap:16px;padding:0 21px;background:#0a1320;border-bottom:1px solid #223247;z-index:10}.brand{display:flex;gap:12px;align-items:center;min-width:210px}.mark{width:40px;height:40px;border:1px solid #46736f;border-radius:12px;display:grid;place-items:center;background:linear-gradient(160deg,#1c464d,#0d2431);box-shadow:0 0 30px #66c2b112}.brandline{font-weight:800;letter-spacing:.16em;font-size:13px}.brandcaption{font-size:9px;letter-spacing:.19em;color:#85a8ae;margin-top:4px}.head-divider{height:28px;width:1px;background:#283a4a}.project-title{width:min(330px,30vw);background:none;border:1px solid transparent;border-radius:7px;color:#d8e6e8;font-size:15px;font-weight:600;padding:8px 10px;letter-spacing:.005em}.project-title:hover,.project-title:focus{background:#111f30;border-color:#3a5061;outline:none}.grow{flex:1}.saved{display:flex;align-items:center;gap:7px;color:#86a39f;font-size:11px;white-space:nowrap}.saved .dot{width:6px;height:6px;background:#79d3be;border-radius:50%;box-shadow:0 0 10px #79d3be88}.btn{border:1px solid #34485a;background:#152336;color:#cddcde;border-radius:9px;min-height:34px;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;transition:.16s}.btn:hover{background:#1e3246;border-color:#648091;color:white}.btn.primary{background:#addecf;color:#102c32;border-color:#b4eee1;font-weight:750}.btn.primary:hover{background:#cef4e8}.btn.ghost{border-color:transparent;background:transparent;color:#96b0bd}.btn.ghost:hover{background:#1a2a39;color:white}.btn.danger{border-color:#7f484b;color:#f0aaa8;background:#2a1b25}.btn.danger:hover{background:#4c232a}.btn.mini{min-height:28px;padding:0 8px;font-size:11px}.btn.iconbtn{width:34px;padding:0;font-size:18px}.chevron{font-size:10px;color:#97b1b6}
 .layout{flex:1;min-height:0;display:grid;grid-template-columns:253px minmax(0,1fr) 311px}.sidebar,.inspector{min-height:0;background:var(--side);display:flex;flex-direction:column;z-index:4}.sidebar{border-right:1px solid var(--border)}.inspector{border-left:1px solid var(--border)}.side-head{padding:21px 17px 16px;border-bottom:1px solid #233344;flex:none}.eyebrow{font-size:10px;letter-spacing:.16em;color:#7490a0;font-weight:750}.sectiontitle{font-size:17px;font-weight:750;letter-spacing:-.02em;margin:5px 0}.sub{color:#778c9a;font-size:11px;line-height:1.5}.left-scroll,.right-scroll{overflow-y:auto;min-height:0;scrollbar-color:#344657 transparent;scrollbar-width:thin}.left-scroll{padding:13px 10px 22px}.smallheading{display:flex;align-items:center;justify-content:space-between;padding:12px 9px 8px;color:#88a3af;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.branch{width:100%;display:flex;align-items:center;gap:10px;border:1px solid transparent;border-radius:10px;background:none;color:#c8d6dc;text-align:left;padding:10px 9px;margin:2px 0}.branch:hover{background:#18293a}.branch.active{background:#1a2b3c;border-color:#335163;color:#fff}.branch-swatch{width:10px;height:10px;border-radius:50%;flex:none;box-shadow:0 0 15px currentColor}.branch .name{flex:1}.count{color:#7f99ab;font-size:11px}.searchwrap{margin:7px 7px 4px;position:relative}.searchwrap input{width:100%;height:35px;padding:0 10px 0 32px;background:#091321;border:1px solid #2a3b4c;border-radius:9px;color:white;outline:none}.searchwrap input:focus{border-color:#68afa7}.searchwrap::before{content:"⌕";position:absolute;left:11px;top:3px;color:#7892a5;font-size:22px}.node-row{width:100%;display:flex;align-items:center;gap:9px;padding:9px 10px;text-align:left;background:transparent;border:0;color:#b9c9d0;border-radius:8px}.node-row:hover,.node-row.active{background:#1c3040;color:white}.node-row .tiny-dot{border:2px solid currentColor;width:9px;height:9px;border-radius:50%;flex:none}.node-row .text-ellipsis{flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:11px}.node-row .number{font-size:10px;color:#607e8f}.emptymini{padding:14px;color:#78909a;font-size:11px;line-height:1.6}.side-bottom{margin-top:auto;border-top:1px solid #263748;padding:14px 17px;color:#758f9a;font-size:11px;line-height:1.6}.kbd{background:#203042;border:1px solid #3c5262;border-bottom-color:#52677a;padding:1px 5px;border-radius:4px;color:#b9cbd5;font-size:10px}
-.stage{min-width:0;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 45%,#152437 0%,#0b1624 50%,#070e1a 100%);touch-action:none}.stage:before{content:"";position:absolute;inset:0;background-image:radial-gradient(#4d688333 1px,transparent 1px);background-size:21px 21px;opacity:.62;pointer-events:none}.stage:after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 80px 12px #060d19;pointer-events:none}.stage svg{position:absolute;inset:0;width:100%;height:100%;touch-action:none;user-select:none;cursor:grab;z-index:1}.stage svg.grabbing{cursor:grabbing}.stage svg.linkmode{cursor:crosshair}.stage .floating-top{position:absolute;top:18px;left:20px;right:20px;display:flex;align-items:flex-start;justify-content:space-between;z-index:2;pointer-events:none;gap:15px}.floatbox{display:flex;align-items:center;gap:6px;flex-wrap:wrap;pointer-events:auto;background:#0c1725dd;border:1px solid #2a4055;border-radius:12px;padding:6px;box-shadow:0 7px 35px #0006;backdrop-filter:blur(9px)}.floatbox .btn{border:0;min-height:34px}.floatbox .btn.active{color:#08252c;background:#a4ddce}.separator{height:22px;width:1px;background:#365064;margin:0 3px}.caption-pill{border:1px solid #385165;color:#819da9;font-size:10px;font-weight:700;letter-spacing:.1em;padding:10px 12px;border-radius:9px;background:#0c1725c9}.stage-bottom{position:absolute;bottom:20px;left:20px;right:20px;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;pointer-events:none;gap:12px}.keytip{color:#8c9fae;line-height:1.8;font-size:11px;background:#0a1521b0;padding:8px 12px;border-radius:8px;border:1px solid #203346bb}.zoomtool{display:flex;align-items:center;gap:4px;pointer-events:auto;background:#0c1827e8;padding:5px;border-radius:10px;border:1px solid #30475c}.zoomtool button{min-width:32px;min-height:32px;background:none;color:#bfd0d6;border:0;border-radius:6px;font-size:19px}.zoomtool button:hover{background:#294051}.zoomtool .zoomvalue{width:48px;text-align:center;color:#8faeba;font-size:12px}.link-tip{position:absolute;z-index:3;top:81px;left:50%;transform:translateX(-50%);background:#173739;border:1px solid #5ca29f;border-radius:9px;color:#c6f5e8;padding:10px 15px;box-shadow:0 10px 40px #0007;display:none;white-space:nowrap;font-size:12px}.link-tip.show{display:block}
-svg .guide-circle{fill:none;stroke:#6c94a7;stroke-opacity:.13;stroke-width:1;stroke-dasharray:2 8}svg .guide-ray{stroke:#87aec3;stroke-opacity:.07;stroke-width:1}svg .guide-angle{fill:#60899e;opacity:.32;font:600 10px var(--sans);letter-spacing:2px}svg .edge{fill:none;stroke-linecap:round;stroke-width:2.2;pointer-events:none}svg .edge.cross{stroke-dasharray:5 6;opacity:.82}svg .edge.selected{stroke-width:4;filter:drop-shadow(0px 0px 7px currentColor)}svg .edge-hit{fill:none;stroke:transparent;stroke-width:19;cursor:pointer;pointer-events:stroke}svg .edge-flow{fill:none;stroke-width:1;opacity:.36;pointer-events:none}svg .node-hit{fill:transparent;stroke:none;pointer-events:all}svg .noderoot{cursor:grab}svg .noderoot:active{cursor:grabbing}svg .node-circle{stroke-width:2.1}svg .nodehalo{fill:none;stroke-width:1;stroke-opacity:.52}svg .node-text{fill:#c9dade;font-family:var(--sans);font-weight:650;font-size:12px;text-anchor:middle;pointer-events:none;paint-order:stroke;stroke:#091321;stroke-width:4px;stroke-linejoin:round}svg .node-sub{fill:#879ead;font-family:var(--sans);font-weight:500;font-size:9px;text-anchor:middle;pointer-events:none;paint-order:stroke;stroke:#091321;stroke-width:3px;stroke-linejoin:round}svg .branch-label{font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:1.3px;text-anchor:middle;paint-order:stroke;stroke:#07121e;stroke-width:4px;pointer-events:none}svg .node-inner{fill:#0e1e2b}svg .node-glyph{font-family:var(--sans);font-size:14px;font-weight:700;text-anchor:middle;dominant-baseline:middle;pointer-events:none}svg .selectedring{fill:none;stroke:#e9fffa;stroke-width:1.8;stroke-dasharray:4 3;animation:spin 18s linear infinite;transform-box:fill-box;transform-origin:center}@keyframes spin{to{transform:rotate(360deg)}}
+.stage{min-width:0;position:relative;overflow:hidden;background-color:#050a14;background-image:var(--stars1),var(--stars2),radial-gradient(ellipse at 50% 45%,#13213a 0%,#0a1324 55%,#050a14 100%);background-repeat:repeat,repeat,no-repeat;background-size:512px 512px,384px 384px,100% 100%;touch-action:none}.stage:after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 90px 14px #03070f;pointer-events:none}.stage svg{position:absolute;inset:0;width:100%;height:100%;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;z-index:1}.stage svg.grabbing{cursor:grabbing}.stage svg.linkmode{cursor:crosshair}.stage .floating-top{position:absolute;top:16px;left:18px;right:18px;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;z-index:2;pointer-events:none;gap:10px}.floatbox{display:flex;align-items:center;gap:6px;flex-wrap:wrap;pointer-events:auto;background:#0c1725dd;border:1px solid #2a4055;border-radius:12px;padding:6px;box-shadow:0 7px 35px #0006;backdrop-filter:blur(9px)}.floatbox .btn{border:0;min-height:34px}.floatbox .btn.active{color:#08252c;background:#a4ddce}.separator{height:22px;width:1px;background:#365064;margin:0 3px}.stage-bottom{position:absolute;bottom:18px;left:18px;right:18px;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;pointer-events:none;gap:10px}.zoomtool{display:flex;align-items:center;gap:4px;pointer-events:auto;background:#0c1827e8;padding:5px;border-radius:10px;border:1px solid #30475c}.zoomtool button{min-width:32px;min-height:32px;background:none;color:#bfd0d6;border:0;border-radius:6px;font-size:19px}.zoomtool button:hover{background:#294051}.zoomtool .zoomvalue{width:48px;text-align:center;color:#8faeba;font-size:12px}.link-tip{position:absolute;z-index:3;top:118px;left:50%;transform:translateX(-50%);background:#173739;border:1px solid #5ca29f;border-radius:9px;color:#c6f5e8;padding:10px 15px;box-shadow:0 10px 40px #0007;display:none;white-space:nowrap;font-size:12px}.link-tip.show{display:block}
 .inspector .right-scroll{padding:18px}.placeholder{padding:40px 20px;text-align:center;color:#8299a7;line-height:1.65}.orb{border:1px solid #335063;background:radial-gradient(circle at center,#365c65,#132c3a);height:64px;width:64px;border-radius:50%;margin:0 auto 20px;display:grid;place-items:center;color:#9cddd5;font-size:25px}.detail-head{display:flex;gap:10px;align-items:center;margin-bottom:21px}.detail-preview{width:45px;height:45px;border:1px solid;border-radius:13px;display:grid;place-items:center;font-size:21px;background:#112638}.detail-title{font-size:15px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:202px}.detail-small{font-size:10px;color:#7c97a4;margin-top:5px}.field{margin-bottom:17px}.field label{display:block;font-size:10px;font-weight:750;letter-spacing:.1em;text-transform:uppercase;color:#879da9;margin-bottom:7px}.field input,.field select,.field textarea{width:100%;color:#e2ebee;background:#091523;border:1px solid #304456;border-radius:9px;padding:11px 10px;outline:none;transition:.1s}.field input:focus,.field select:focus,.field textarea:focus{border-color:#88cebe;background:#0b1b2a}.field textarea{resize:vertical;min-height:68px;line-height:1.55}.field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#87a3b1 50%),linear-gradient(135deg,#87a3b1 50%,transparent 50%);background-position:calc(100% - 17px) calc(50% - 2px),calc(100% - 12px) calc(50% - 2px);background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:30px}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.hintline{color:#7591a0;font-size:10px;line-height:1.6;margin:-5px 0 18px}.rule{height:1px;background:#294054;margin:23px 0}.links-title{font-size:10px;color:#91abba;text-transform:uppercase;font-weight:800;letter-spacing:.1em;margin:0 0 9px}.linked{display:flex;gap:7px;align-items:center;border:1px solid #2a4051;background:#122234;padding:9px;border-radius:9px;margin-bottom:6px;color:#b4c9cd;font-size:11px}.linked span{flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.linked button{background:none;color:#9faebc;border:0;border-radius:5px}.linked button:hover{background:#42252c;color:#f5b2b2}.detail-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px}.bottom-caption{padding:14px 18px;font-size:10px;color:#72919e;line-height:1.6;border-top:1px solid #263747;flex:none}.status-tag{display:inline-flex;padding:4px 7px;border-radius:6px;background:#203347;color:#a9c6c8;font-size:10px}.note{padding:12px 13px;background:#172738;border:1px solid #345062;border-radius:9px;color:#9db6be;line-height:1.6;font-size:11px;margin-bottom:18px}
 .modalshade{position:fixed;inset:0;z-index:30;display:none;align-items:center;justify-content:center;padding:15px;background:#02080fc9;backdrop-filter:blur(8px)}.modalshade.show{display:flex}.modal{width:min(435px,95vw);background:#101d2c;border:1px solid #486473;border-radius:17px;padding:25px;box-shadow:0 25px 100px #000a}.modal h2{margin:0 0 10px;font-size:22px}.modal p{color:#92aab3;font-size:12px;line-height:1.6}.modal .actions{display:flex;justify-content:flex-end;gap:9px;margin-top:24px}.colorgrid{display:flex;gap:8px;margin:10px 0 15px}.colorspot{width:27px;height:27px;border-radius:9px;border:2px solid transparent}.colorspot.selected{outline:2px solid #c3e5e4;outline-offset:2px}.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);z-index:50;background:#244348;color:#d5f6eb;border:1px solid #6eb4a2;padding:12px 19px;border-radius:10px;box-shadow:0 15px 50px #0008;opacity:0;pointer-events:none;transition:.22s;max-width:90vw;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.mobile-nav{display:none}.mobile-close{display:none}
 @media(max-width:1250px){.layout{grid-template-columns:208px minmax(0,1fr) 285px}.brand{min-width:170px}.topbar{gap:9px;padding:0 12px}.project-title{width:min(235px,22vw)}}
@@ -96,38 +95,61 @@ button[hidden]{display:none!important}
 .cloud-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
 .cloud-actions .btn{min-height:39px}
 
-/* Schools and temples: DESIGN-ONLY prerequisites */
+/* ATLAS v2.0: star map — zoom levels, breadcrumbs, legend, structure tree. */
+[hidden]{display:none!important}
+.tiers{display:flex;gap:2px;pointer-events:auto;background:#0c1725dd;border:1px solid #2a4055;border-radius:12px;padding:4px;box-shadow:0 7px 35px #0006;backdrop-filter:blur(9px)}
+.tiers button{border:0;background:none;color:#8fa9b7;border-radius:8px;min-height:34px;padding:0 11px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.tiers button:hover{background:#1a2c3d;color:#fff}
+.tiers button.on{background:#1f3a4a;color:#e9fff8;box-shadow:inset 0 0 0 1px #4f8a8a}
+.tiers .tdot{font-size:13px;opacity:.8;line-height:1}
+.crumb-row{flex-basis:100%;display:flex;justify-content:center;pointer-events:none;min-width:0}
+.crumbs{pointer-events:auto;display:flex;align-items:center;gap:2px;max-width:calc(100% - 36px);overflow:hidden;background:#0b1624e6;border:1px solid #2d4659;border-radius:11px;padding:4px;box-shadow:0 8px 30px #0007;backdrop-filter:blur(9px)}
+.crumbs button{border:0;background:none;color:#a9c2cb;font-size:12px;font-weight:650;padding:6px 9px;border-radius:7px;white-space:nowrap;max-width:210px;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:6px}
+.crumbs button:hover{background:#1b3041;color:#fff}.crumbs button.last{color:#f0fbf8}
+.crumbs .sep{color:#4f6b7c;font-size:11px}.crumbs .cdot{width:8px;height:8px;border-radius:50%;flex:none}
+.crumbs .exit{color:#f0c99a;border-left:1px solid #2d4659;border-radius:0 7px 7px 0;margin-left:4px}
+.legend-btn{pointer-events:auto;border:1px solid #30475c;background:#0c1827e8;color:#bcd2d8;border-radius:10px;min-height:42px;padding:0 12px;font-size:12px;font-weight:700}
+.legend{position:absolute;left:18px;bottom:70px;z-index:3;width:290px;background:#0c1726f2;border:1px solid #34506a;border-radius:14px;padding:14px 15px;box-shadow:0 15px 50px #000a;backdrop-filter:blur(10px);color:#b7cad1;font-size:11.5px;line-height:1.5}
+.legend h4{margin:0 0 9px;font-size:10px;letter-spacing:.14em;color:#86a6b4}
+.legend .row{display:flex;align-items:center;gap:10px;margin:5px 0}.legend svg{flex:none}
+.legend .tip{margin-top:10px;padding-top:9px;border-top:1px solid #263b4d;color:#8aa3ae;font-size:11px}
+.type-jumps{display:flex;gap:7px;align-items:center;pointer-events:auto;margin-right:auto}
+.type-jumps button{display:flex;align-items:center;gap:7px;white-space:nowrap;border:1px solid #456377;color:#d1e5e3;border-radius:10px;background:#102232ed;min-height:42px;padding:0 11px;font-size:12px;font-weight:750;box-shadow:0 4px 17px #0005}
+.type-jumps button[data-kind="temple"]{color:#f2cf99;border-color:#8e6a46;background:#352519ed}
+.type-jumps button[data-kind="school"]{color:#a6f4e7;border-color:#357f78;background:#103330ed}
+.type-jumps button:disabled{opacity:.37}
+.type-jumps .type-count{font-size:10px;opacity:.75;padding:2px 6px;border-radius:6px;background:#06101955}
+/* structure tree */
+.tree-row{width:100%;display:flex;align-items:center;gap:8px;padding:7px 8px;text-align:left;background:transparent;border:0;color:#b9c9d0;border-radius:8px;min-height:32px}
+.tree-row:hover,.tree-row.active{background:#1c3040;color:#fff}
+.tree-row .ic{width:16px;text-align:center;flex:none;font-size:12px}
+.tree-row .tt{flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:11.5px}
+.tree-row .meta{font-size:10px;color:#6f8b9b;flex:none}
+.tree-row.lv-branch{margin-top:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:10.5px}
+.tree-row.lv-branch .tt{font-size:10.5px}
+.tree-row.lv-school{font-weight:750;color:#dceff0}
+.tree-row.k-regular .tt{color:#94aab5}
+.tree-stage{font-size:9.5px;letter-spacing:.12em;color:#5f7d8e;padding:6px 8px 2px;font-weight:800}
+/* inspector additions */
 .progress-rule{border:1px solid #345366;border-radius:10px;background:#112334;padding:12px;margin:13px 0}
 .progress-title{font-weight:750;font-size:12px;color:#c8e4e0;margin-bottom:6px}
 .progress-note{font-size:11px;color:#92acb6;line-height:1.6;margin:6px 0 11px}
-.progress-dep{font-size:11px;line-height:1.5;margin:5px 0;color:#bcccd1}
-svg .node-temple-icon{stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
-
-/* Always-visible category navigation for the design atlas */
-.type-jumps{display:flex;gap:7px;align-items:center;pointer-events:auto;margin-right:auto}
-.type-jumps button{display:flex;align-items:center;gap:7px;white-space:nowrap;border:1px solid #456377;color:#d1e5e3;border-radius:10px;background:#102232ed;min-height:40px;padding:0 11px;font-size:12px;font-weight:750;box-shadow:0 4px 17px #0005}
-.type-jumps button[data-kind="temple"]{color:#f2cf99;border-color:#8e6a46;background:#352519ed}
-.type-jumps button[data-kind="school"]{color:#a6f4e7;border-color:#357f78;background:#103330ed}
-.type-jumps button:active{transform:translateY(1px)}
-.type-jumps button:disabled{opacity:.37}
-.type-jumps .type-count{font-size:10px;opacity:.75;padding:2px 6px;border-radius:6px;background:#06101955}
-svg .node-type-tag{font-family:var(--sans);font-size:10px;font-weight:850;letter-spacing:1.7px;text-anchor:middle;pointer-events:none;paint-order:stroke;stroke:#0b1624;stroke-width:3.5px}
-svg .node-school-outer{fill:none;stroke-width:1.8;stroke-opacity:.72}
-@media(max-width:620px){.type-jumps{gap:5px}.type-jumps button{font-size:11px;padding:0 8px;min-height:37px;gap:4px;border-radius:8px}}
-
-/* Schools are section headings; dotted edges describe grouping only. */
-svg .edge.group{stroke-dasharray:2 7;stroke-width:1.65;opacity:.7}
-svg .school-plaque{stroke-width:1.7;fill:#112a33;filter:drop-shadow(0 5px 12px #0005)}
-svg .school-plaque-label{font-family:var(--sans);font-weight:850;text-anchor:middle;letter-spacing:2px;font-size:10px;pointer-events:none}
-svg .school-plaque-name{font-family:var(--sans);font-weight:750;text-anchor:middle;font-size:13px;pointer-events:none;paint-order:stroke;stroke:#0a1b26;stroke-width:3px}
-
-/* ATLAS v1.3: readable celestial LOD, without changing authored talent data. */
-[hidden]{display:none!important}
-.atlas-focus-exit{position:absolute;left:50%;top:69px;transform:translateX(-50%);z-index:3;background:#142e3c!important;color:#caefea;border-color:#5f9c9c!important;box-shadow:0 8px 32px #0008;white-space:nowrap;min-height:39px}
-svg .atlas-node-star{filter:drop-shadow(0 0 7px currentColor);pointer-events:none}
-svg .atlas-caption{font-family:var(--sans);font-weight:750;text-anchor:middle;paint-order:stroke;stroke:#091421;stroke-width:3.6px;stroke-linejoin:round;pointer-events:none}
-svg .atlas-star-outline{fill:none;stroke-width:1.6}
-@media(max-width:620px){.atlas-focus-exit{top:55px;font-size:12px;padding:9px 13px}.caption-pill{max-width:45vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
+.progress-dep{font-size:11.5px;line-height:1.45;margin:4px 0;color:#bcccd1;display:flex;gap:7px;align-items:baseline}
+.progress-dep button{background:none;border:0;color:inherit;padding:0;text-align:left;text-decoration:underline dotted #5e7f8d;text-underline-offset:3px}
+.progress-dep .kd{font-size:9.5px;color:#7c98a6;letter-spacing:.06em;white-space:nowrap}
+.stage-block{border-left:2px solid #35576a;padding:2px 0 2px 10px;margin:9px 0}
+.stage-block .st{font-size:9.5px;letter-spacing:.13em;color:#7fa0ae;font-weight:800;margin-bottom:3px}
+@media(max-width:620px), (orientation:landscape) and (max-height:500px){
+ .tiers button{padding:0 8px;min-height:40px;font-size:11px}.tiers .tlabel{display:none}.tiers button{min-width:40px;justify-content:center}
+ .crumb-row{position:fixed;left:10px;right:10px;bottom:calc(74px + env(safe-area-inset-bottom))}
+ .crumbs{max-width:100%}
+ .crumbs button{font-size:11px;padding:6px 7px;max-width:140px}
+ .legend{left:10px;right:10px;width:auto;bottom:calc(120px + env(safe-area-inset-bottom))}
+ .type-jumps{gap:5px}.type-jumps button{font-size:11px;padding:0 8px;min-height:42px;gap:4px;border-radius:9px}
+ .type-jumps .tj-label{display:none}
+ .legend-btn{min-height:42px;padding:0 10px}
+ .link-tip{top:61px}
+}
 </style>
 </head>
 <body>
@@ -142,20 +164,79 @@ svg .atlas-star-outline{fill:none;stroke-width:1.6}
 </header>
 <div class="layout"><div class="panel-scrim" id="panelScrim" aria-hidden="true"></div>
 <aside class="sidebar" id="sidebar">
- <div class="side-head"><div style="display:flex;align-items:center"><div><div class="eyebrow">СТРУКТУРА</div><div class="sectiontitle">Ветви развития</div></div><button class="btn ghost mini mobile-close" id="closeSidebar">✕</button></div><div class="sub">Собери своё дерево — от центра к новым возможностям.</div></div>
- <div class="left-scroll"><div class="smallheading"><span>Направления</span><button class="btn mini ghost" id="newBranch">＋ ветвь</button></div><div id="branchList"></div><div class="smallheading" style="margin-top:17px"><span>Узлы <span id="nodeCount"></span></span><span class="chevron" id="filterTitle">ВСЕ</span></div><div class="searchwrap"><input id="nodeSearch" type="search" placeholder="Найти способность..." aria-label="Поиск узлов"/></div><div id="nodeList"></div></div>
+ <div class="side-head"><div style="display:flex;align-items:center"><div><div class="eyebrow">СТРУКТУРА</div><div class="sectiontitle">Звёздная карта</div></div><button class="btn ghost mini mobile-close" id="closeSidebar">✕</button></div><div class="sub">Кратер → направление (сторона света) → школа-созвездие → основные таланты → подталанты.</div></div>
+ <div class="left-scroll"><div class="smallheading"><span>Направления</span><button class="btn mini ghost" id="newBranch">＋ направление</button></div><div id="branchList"></div><div class="smallheading" style="margin-top:17px"><span>Структура <span id="nodeCount"></span></span><span class="chevron" id="filterTitle">ВСЕ</span></div><div class="searchwrap"><input id="nodeSearch" type="search" placeholder="Найти талант, школу, храм…" aria-label="Поиск узлов"/></div><div id="nodeList"></div></div>
  <div class="side-bottom"><div style="color:#bed4d8;margin-bottom:4px">✦ Важно для DRY OCEAN</div>Это редактор идей, а не обязательная RPG-система. По канону кит учится действиями, без очков навыков.<div style="margin-top:10px"><button class="btn mini" id="newProjectSide">✦ Чистое дерево</button></div></div>
 </aside>
 <main class="stage" id="stage">
- <svg id="graph" xmlns="http://www.w3.org/2000/svg" aria-label="Интерактивное дерево талантов"><defs><filter id="glow" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g id="world"><g id="guides"></g><g id="edgeLayer"></g><g id="nodeLayer"></g></g></svg>
- <div class="floating-top"><div class="floatbox"><button class="btn active" id="moveMode" title="Выбирать и передвигать узлы">✥ <span class="hide-mobile">Выбор</span></button><button class="btn" id="linkMode" title="Соединить два узла">⌁ <span class="hide-mobile">Связь</span></button><div class="separator"></div><button class="btn" id="fitBtn" title="Показать всё дерево">⊡ <span class="hide-mobile">Вписать</span></button><button class="btn hide-mobile" id="layoutBtn" title="Разложить ветви радиально">◌ Расставить</button><button class="btn hide-mobile" id="pngBtn" title="Скачать схему в виде картинки">⇩ PNG</button></div><div class="caption-pill"><span id="atlasLevel">КАРТА НЕБА</span> · <span id="totalLabel">0</span> УЗЛОВ</div><button id="atlasFocusExit" class="btn atlas-focus-exit" type="button" hidden>← Все созвездия</button></div>
+ <svg id="graph" class="t-sky" xmlns="http://www.w3.org/2000/svg" aria-label="Звёздная карта талантов"><defs>
+ <style id="svgStyle">
+ #graph,svg{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+ .sc{transform-origin:0 0}
+ .s-star{transform:scale(var(--ks,1))}
+ .tr-sub{transform:translate(0,calc(7px * var(--ksub,1))) scale(var(--kl,1))}.lbl-subname{transition:opacity .22s}#graph:not(.z-mid) .lbl-subname,.t-card .lbl-subname{opacity:0}
+ .tr-main{transform:translate(0,calc(13px * var(--ks,1))) scale(var(--kl,1))}.tr-root{transform:translate(0,calc(19px * var(--ks,1))) scale(var(--kl,1))}.tr-school{transform:translate(0,calc(27px * var(--ks,1))) scale(var(--ksc,1))}.tr-temple{transform:translate(0,calc(46px * var(--kt,1))) scale(var(--kl,1))}.tr-crater{transform:translate(0,calc(82px * var(--kc,1))) scale(var(--kl,1))}.s-sub{transform:scale(var(--ksub,1))}.s-crater{transform:scale(var(--kc,1))}.s-temple{transform:scale(var(--kt,1))}.s-lbl{transform:scale(var(--kl,1))}.s-school{transform:scale(var(--ksc,1))}.s-fixed{transform:scale(var(--kb,1))}
+ .lbl{font-weight:700;text-anchor:middle;paint-order:stroke;stroke:#050b16;stroke-width:4px;stroke-linejoin:round;pointer-events:none;font-size:13px}
+ .lbl-sub{font-size:11px;font-weight:600;fill:#a9bcc6}
+ .lbl-school{font-size:13.5px;font-weight:850;letter-spacing:1.2px}
+ .lbl-kicker{font-size:9px;font-weight:850;letter-spacing:2.2px;opacity:.85}
+ .lbl-temple{font-size:12px;fill:#f1d3a4}
+ .lbl-branch{font-size:15px;font-weight:850;letter-spacing:3px;text-anchor:middle;paint-order:stroke;stroke:#050b16;stroke-width:5px;cursor:pointer}
+ @media (max-width:620px){.lbl-branch{font-size:12px;letter-spacing:1.6px}.lbl-school{font-size:12px;letter-spacing:.6px}}
+ .lbl-compass{font-size:11px;font-weight:800;letter-spacing:2px;fill:#7f9cad;text-anchor:middle;paint-order:stroke;stroke:#050b16;stroke-width:4px;pointer-events:none}
+ .guide-ring{fill:none;stroke:#7fa3b8;stroke-opacity:.09;stroke-width:1;stroke-dasharray:2 7}
+ .guide-wedge{stroke:#89adc2;stroke-opacity:.1;stroke-width:1;stroke-dasharray:6 8}
+ .guide-axis{stroke-opacity:.07;stroke-width:1}
+ .ed .ln{fill:none;stroke-linecap:round;stroke-width:1.7px;stroke-opacity:.62;transition:stroke-opacity .2s}
+ .ed .eh{fill:none;stroke:transparent;stroke-width:16px;pointer-events:stroke;cursor:pointer}
+ .e-group .ln{stroke-dasharray:1 6;stroke-width:1.4px;stroke-opacity:.45}
+ .e-temple .ln{stroke:#e7c08a;stroke-dasharray:6 5;stroke-width:1.3px;stroke-opacity:.55}
+ .e-cross .ln{stroke-dasharray:7 6}
+ .ed.sel .ln{stroke:#f4fffb;stroke-opacity:1;stroke-width:3px}
+ .nd{cursor:pointer}
+ .hit{fill:transparent;stroke:none;pointer-events:all}
+ .card,.lbl-main,.lbl-tal,.lbl-temple-name,.lbl-sub,.lbl-school-g{transition:opacity .22s}
+ .t-sky .lbl-main,.t-sky .lbl-temple-name,.t-sky .s-temple .lbl-kicker,.t-sky .tr-school .lbl-kicker,.t-sky .card,.t-sky .e-group,.t-sky .lbl-tal{opacity:0;pointer-events:none}
+ .t-sky .e-req .ln{stroke-opacity:.42;stroke-width:1.2px}
+ .t-tal .card{opacity:0;pointer-events:none}
+ .island,.temple-dot{transition:opacity .22s}.t-sky .island{opacity:0;pointer-events:none}.t-tal .temple-dot,.t-card .temple-dot{opacity:0;pointer-events:none}
+ .t-card .lbl-main,.t-card .lbl-school-g{opacity:0;pointer-events:none}
+ .t-card .lbl-branch{opacity:.45}
+ .card{pointer-events:none}
+ .card-bg{stroke-width:1.2;fill:#0b1726;fill-opacity:.93}
+ .card-kind{font-size:8.5px;font-weight:850;letter-spacing:1.8px}
+ .card-title{font-size:12.5px;font-weight:750;fill:#eef7f6}
+ .card-meta{font-size:10px;font-weight:600;fill:#86a0ad}
+ .selring{fill:none;stroke:#f2fff9;stroke-width:1.6;stroke-dasharray:3 3}
+ .sel-mode .nd:not(.on):not(.next):not(.is-center),.sel-mode .ed:not(.on){opacity:.28}
+ .sel-mode .ed.on .ln{stroke-opacity:1;stroke-width:2.6px}
+ .sel-mode .nd.next .ring-next{opacity:1}
+ .ring-next{opacity:0;fill:none;stroke:#f3ffe9;stroke-width:1.1;stroke-dasharray:2 3}
+ .focus-mode .nd:not(.in),.focus-mode .ed:not(.in){opacity:.09!important}
+ .focus-mode .gb:not(.in){opacity:.2}
+ .idea-dash{stroke-dasharray:3 3}
+ .dc{transition:opacity .2s}.dc.dc-hide{opacity:0!important;pointer-events:none}
+ .twinkle{animation:tw 4.5s ease-in-out infinite}
+ @keyframes tw{50%{opacity:.55}}
+ </style>
+ <radialGradient id="gHalo"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".35" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+ <radialGradient id="gCrater" cx=".5" cy=".45"><stop offset="0" stop-color="#05080d"/><stop offset=".55" stop-color="#1a1712"/><stop offset=".8" stop-color="#4a3d2c"/><stop offset=".92" stop-color="#8a7556"/><stop offset="1" stop-color="#8a7556" stop-opacity="0"/></radialGradient>
+ <linearGradient id="gRock" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7b6a55"/><stop offset=".45" stop-color="#4b4036"/><stop offset="1" stop-color="#211c19"/></linearGradient>
+ <linearGradient id="gSand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8c193"/><stop offset="1" stop-color="#a78c63"/></linearGradient>
+ </defs><g id="world"><g id="guides"></g><g id="edgeLayer"></g><g id="nodeLayer"></g></g></svg>
+ <div class="floating-top">
+  <div class="floatbox"><button class="btn active" id="moveMode" title="Выбирать и передвигать узлы">✥ <span class="hide-mobile">Выбор</span></button><button class="btn" id="linkMode" title="Соединить два узла">⌁ <span class="hide-mobile">Связь</span></button><div class="separator"></div><button class="btn" id="fitBtn" title="Показать всё небо">⊡ <span class="hide-mobile">Всё небо</span></button><button class="btn hide-mobile" id="layoutBtn" title="Вернуть все узлы на авто-места">◌ Авто-места</button><button class="btn hide-mobile" id="pngBtn" title="Скачать схему картинкой">⇩ PNG</button><button class="btn hide-mobile" id="skyBtn" title="Экспорт звёздного неба для игры (азимут/высота каждой звезды)">✧ Небо JSON</button></div>
+  <div class="tiers" role="group" aria-label="Уровень приближения"><button data-tier="sky" title="Небо: звёзды и названия школ"><span class="tdot">✧</span><span class="tlabel">Небо</span></button><button data-tier="tal" title="Таланты: имена звёзд и храмы"><span class="tdot">★</span><span class="tlabel">Таланты</span></button><button data-tier="card" title="Карточки всех талантов и подталантов"><span class="tdot">▭</span><span class="tlabel">Карточки</span></button></div>
+  <div class="crumb-row"><nav class="crumbs" id="crumbs" aria-label="Где я на карте" hidden></nav></div>
+ </div>
  <div class="link-tip" id="linkTip">Выбери первый узел для связи · Esc — отмена</div>
- <div class="stage-bottom"><div class="keytip"><span class="kbd">Перетаскивай</span> узлы и фон · <span class="kbd">Двойной клик</span> — новый узел · <span class="kbd">C</span> — связь · <span class="kbd">Del</span> — удалить</div><div class="type-jumps" aria-label="Быстрый переход к школам и храмам"><button id="jumpTemple" type="button" data-kind="temple" title="Показать следующий храм">🏛 Храмы <span id="templeCount" class="type-count">0</span></button><button id="jumpSchool" type="button" data-kind="school" title="Показать следующую школу">✺ Школы <span id="schoolCount" class="type-count">0</span></button></div><div class="zoomtool"><button id="zoomOut" title="Уменьшить">−</button><span class="zoomvalue" id="zoomValue">100%</span><button id="zoomIn" title="Увеличить">+</button><button id="zoomFit" title="Вписать в экран">⤢</button></div></div>
+ <div class="legend" id="legend" hidden></div>
+ <div class="stage-bottom"><button class="legend-btn" id="legendBtn" type="button" title="Что означают символы">✦ Легенда</button><div class="type-jumps" aria-label="Быстрый переход к школам и храмам"><button id="jumpSchool" type="button" data-kind="school" title="Следующая школа">✺ <span class="tj-label">Школы</span> <span id="schoolCount" class="type-count">0</span></button><button id="jumpTemple" type="button" data-kind="temple" title="Следующий храм">🏛 <span class="tj-label">Храмы</span> <span id="templeCount" class="type-count">0</span></button></div><div class="zoomtool"><button id="zoomOut" title="Отдалить">−</button><span class="zoomvalue" id="zoomValue">100%</span><button id="zoomIn" title="Приблизить">+</button><button id="zoomFit" title="Всё небо">⤢</button></div></div>
 </main>
 <aside class="inspector" id="inspector"><div class="side-head"><div style="display:flex;align-items:center"><div><div class="eyebrow">РЕДАКТОР</div><div class="sectiontitle">Свойства</div></div><button class="btn ghost mini mobile-close" id="closeInspector">✕</button></div><div class="sub">Меняй идею — схема обновится сразу.</div></div><div class="right-scroll" id="details"></div><div class="bottom-caption">Автосохранение в этом браузере · Экспорт JSON для резервной копии и продолжения работы.</div></aside>
 </div>
 </div>
-<div class="modalshade" id="branchModal" role="dialog" aria-modal="true" aria-labelledby="branchModalTitle"><div class="modal"><h2 id="branchModalTitle">Новая ветвь</h2><p id="branchModalDesc">Добавь ещё одно направление развития. Оно получит свой цвет и сектор на схеме.</p><div class="field"><label for="branchName">Название ветви</label><input id="branchName" maxlength="60" placeholder="Например: Исследование"/></div><div class="field"><label>Цвет ветви</label><div class="colorgrid" id="colorGrid"></div></div><div class="actions" style="justify-content:space-between;flex-wrap:wrap"><button class="btn danger" id="deleteBranch" hidden>✕ Удалить ветвь</button><div style="display:flex;gap:8px;margin-left:auto"><button class="btn" id="cancelBranch">Отмена</button><button class="btn primary" id="createBranch">Создать ветвь</button></div></div></div></div>
+<div class="modalshade" id="branchModal" role="dialog" aria-modal="true" aria-labelledby="branchModalTitle"><div class="modal"><h2 id="branchModalTitle">Новая ветвь</h2><p id="branchModalDesc">Добавь ещё одно направление развития. Оно получит свой цвет и сектор на схеме.</p><div class="field"><label for="branchName">Название ветви</label><input id="branchName" maxlength="60" placeholder="Например: Исследование"/></div><div class="field"><label for="branchDir">Сторона света (выход из кратера)</label><select id="branchDir"><option value="">Авто — по количеству узлов</option><option value="N">С — север</option><option value="NE">СВ — северо-восток</option><option value="E">В — восток</option><option value="SE">ЮВ — юго-восток</option><option value="S">Ю — юг</option><option value="SW">ЮЗ — юго-запад</option><option value="W">З — запад</option><option value="NW">СЗ — северо-запад</option></select></div><div class="field"><label>Цвет</label><div class="colorgrid" id="colorGrid"></div></div><div class="actions" style="justify-content:space-between;flex-wrap:wrap"><button class="btn danger" id="deleteBranch" hidden>✕ Удалить ветвь</button><div style="display:flex;gap:8px;margin-left:auto"><button class="btn" id="cancelBranch">Отмена</button><button class="btn primary" id="createBranch">Создать ветвь</button></div></div></div></div>
 <div class="modalshade" id="confirmModal" role="dialog" aria-modal="true" aria-label="Подтверждение"><div class="modal"><h2 id="confirmTitle">Подтвердить</h2><p id="confirmText"></p><div class="actions"><button class="btn" id="confirmCancel">Отмена</button><button class="btn danger" id="confirmYes">Удалить</button></div></div></div>
 <div class="mobile-actions-backdrop" id="mobileActionsBackdrop"></div>
 <section class="mobile-actions" id="mobileActions" role="dialog" aria-modal="true" aria-label="Действия с проектом" aria-hidden="true">
@@ -163,7 +244,7 @@ svg .atlas-star-outline{fill:none;stroke-width:1.6}
  <div class="field"><label for="mobileProjectName">Название проекта</label><input id="mobileProjectName" maxlength="100" autocomplete="off" /></div>
  <div class="mobile-actions-grid">
   <button class="btn" id="mobileExport">↓ Скачать JSON</button><button class="btn" id="mobileImport">↑ Открыть JSON</button>
-  <button class="btn" id="mobilePng">⇩ Схема PNG</button><button class="btn" id="mobileCloud">☁ GitHub</button><button class="btn" id="mobileLayout">◌ Расставить узлы</button>
+  <button class="btn" id="mobilePng">⇩ Схема PNG</button><button class="btn" id="mobileCloud">☁ GitHub</button><button class="btn" id="mobileSky">✧ Небо JSON</button><button class="btn" id="mobileLayout">◌ Авто-места</button>
   <button class="btn" id="mobileUndo">↶ Отменить</button><button class="btn" id="mobileRedo">↷ Повторить</button>
  </div>
  <button class="btn danger mobile-new" id="mobileNew">✦ Создать чистое дерево</button>
@@ -183,8 +264,11 @@ svg .atlas-star-outline{fill:none;stroke-width:1.6}
 <script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id), NS='http://www.w3.org/2000/svg', STORE='dry-ocean-talent-atlas-v1';
- const hadLocalOnOpen=!!localStorage.getItem(STORE);
+const hadLocalOnOpen=!!localStorage.getItem(STORE);
 const colors=['#86ded0','#e8bd85','#a5b6fa','#df9bb1','#a7d59b','#8ec6e3','#c4a5e7','#eeaa80','#eedb99','#9bdbc8'];
+const COMPASS=[{id:'N',ru:'С',deg:-90},{id:'NE',ru:'СВ',deg:-45},{id:'E',ru:'В',deg:0},{id:'SE',ru:'ЮВ',deg:45},{id:'S',ru:'Ю',deg:90},{id:'SW',ru:'ЮЗ',deg:135},{id:'W',ru:'З',deg:180},{id:'NW',ru:'СЗ',deg:-135}];
+const KIND={core:{name:'Центр / корень направления',short:'КОРЕНЬ',icon:'✧'},key:{name:'Основной талант',short:'ОСНОВНОЙ ТАЛАНТ',icon:'★'},regular:{name:'Подталант',short:'ПОДТАЛАНТ',icon:'·'},milestone:{name:'Мастерство',short:'МАСТЕРСТВО',icon:'✦'},school:{name:'Школа',short:'ШКОЛА',icon:'✺'},temple:{name:'Храм',short:'ХРАМ',icon:'🏛'}};
+const TIERS=[{id:'sky',z:0},{id:'tal',z:.3},{id:'card',z:.85}];
 const seedBranches=[
 {id:'height',name:'Высота',color:'#86ded0'}, {id:'flight',name:'Дальний полёт',color:'#e8bd85'},
 {id:'maneuver',name:'Манёвры',color:'#a5b6fa'}, {id:'wind',name:'Ветер и бури',color:'#df9bb1'},
@@ -210,210 +294,404 @@ const seedNodes=[
 {id:'c2',title:'Баланс поклажи',branch:'cargo',kind:'regular',status:'idea',trigger:'Долгие путешествия с багажом',effect:'Уверенный полёт с грузом'},
 {id:'c3',title:'Дом на спине',branch:'cargo',kind:'regular',status:'idea',trigger:'Собирать памятные вещи',effect:'Персональный облик упряжки'}];
 const seedEdges=[['core','h1'],['h1','h2'],['h1','h3'],['core','f1'],['f1','f2'],['f1','f3'],['core','m1'],['m1','m2'],['m1','m3'],['core','w1'],['w1','w2'],['w1','w3'],['core','b1'],['b1','b2'],['b1','b3'],['core','c1'],['c1','c2'],['c1','c3'],['h2','w3']];
-const seed=()=>{let obj={version:1,name:'Атлас адаптации кита',dependencyMode:'all',branches:structuredClone(seedBranches),nodes:structuredClone(seedNodes),edges:seedEdges.map(([from,to])=>({id:'e_'+from+'_'+to,from,to}))};distribute(obj);return obj;};
+const seed=()=>({version:2,name:'Атлас адаптации кита',dependencyMode:'all',branches:structuredClone(seedBranches),nodes:structuredClone(seedNodes).map(n=>({desc:'',x:0,y:0,...n})),edges:seedEdges.map(([from,to])=>({id:'e_'+from+'_'+to,from,to,type:'requirement'}))});
 let data;try{let saved=localStorage.getItem(STORE);data=saved?parseProject(JSON.parse(saved)):seed();}catch(e){data=seed();}
 let touches=new Map(), pinch=null, suppressTouchDrag=false;
-let selected={type:'node',id:'core'},filter='all',search='',mode='move',linkStart=null,view={x:0,y:0,zoom:1},stageSize={w:800,h:600},pointer=null,history=[],historyIndex=0,historyTimer=0,toastTimer=0,confirmCallback=null,branchColor=colors[0],editingBranchId=null,requestRefresh=0;
-let atlasFocusId=null,atlasFocusNodes=null,atlasPriorView=null,atlasVisualTier='',atlasPaintedZoom=0;
-let serialize=()=>JSON.stringify(data),nodeById=id=>data.nodes.find(n=>n.id===id),branchById=id=>data.branches.find(b=>b.id===id),colorOf=n=>n.kind==='temple'?'#e7c08a':n.kind==='school'?'#8fe3d9':n.branch==='core'?'#e0e5dc':(branchById(n.branch)?.color||'#86ded0');
+let selected={type:'node',id:'core'},filter='all',search='',mode='move',linkStart=null,view={x:0,y:0,zoom:1},stageSize={w:800,h:600},pointer=null,history=[],historyIndex=0,historyTimer=0,toastTimer=0,confirmCallback=null,branchColor=colors[0],editingBranchId=null;
+let focus=null,focusPriorView=null,animFrame=0,L=null,lastTier='';
+let serialize=()=>JSON.stringify(data),nodeById=id=>data.nodes.find(n=>n.id===id),branchById=id=>data.branches.find(b=>b.id===id);
+const colorOf=n=>n.kind==='temple'?'#e7c08a':n.id==='core'||n.branch==='core'?'#ecdcbc':(branchById(n.branch)?.color||'#86ded0');
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function parseProject(raw){if(!raw||!Array.isArray(raw.nodes)||!Array.isArray(raw.edges)||!Array.isArray(raw.branches))throw Error('Неверный формат дерева');if(raw.nodes.length>1800||raw.edges.length>4500||raw.branches.length>70)throw Error('Слишком большой файл');let ids=new Set();const branches=raw.branches.map(b=>({id:String(b.id||'').slice(0,80),name:String(b.name||'Ветвь').slice(0,60),color:/^#[a-f\d]{6}$/i.test(b.color)?b.color:'#86ded0'})).filter(b=>b.id);const bset=new Set(branches.map(b=>b.id));const nodes=raw.nodes.map(n=>({id:String(n.id||'').slice(0,90),title:String(n.title||'Новый узел').slice(0,100),desc:String(n.desc||'').slice(0,4000),branch:n.branch==='core'?'core':bset.has(n.branch)?n.branch:(branches[0]?.id||'core'),kind:['core','key','regular','milestone','school','temple'].includes(n.kind)?n.kind:'regular',status:['canon','idea','test'].includes(n.status)?n.status:'idea',trigger:String(n.trigger||'').slice(0,2000),effect:String(n.effect||'').slice(0,2000),x:Math.max(-20000,Math.min(20000,Number(n.x)||0)),y:Math.max(-20000,Math.min(20000,Number(n.y)||0))})).filter(n=>n.id&&!ids.has(n.id)&&(ids.add(n.id),true));if(!nodes.length)throw Error('В файле нет узлов');const nset=new Set(nodes.map(n=>n.id)),edges=raw.edges.filter(e=>nset.has(e.from)&&nset.has(e.to)&&e.from!==e.to).map((e,i)=>({id:String(e.id||'edge_'+i).slice(0,100),from:String(e.from),to:String(e.to),type:e.type==='group'?'group':'requirement'}));return{version:2,name:String(raw.name||'Моё дерево').slice(0,100),dependencyMode:'all',branches,nodes,edges};}
+function parseProject(raw){if(!raw||!Array.isArray(raw.nodes)||!Array.isArray(raw.edges)||!Array.isArray(raw.branches))throw Error('Неверный формат дерева');if(raw.nodes.length>1800||raw.edges.length>4500||raw.branches.length>70)throw Error('Слишком большой файл');let ids=new Set();
+ const branches=raw.branches.map(b=>{const o={id:String(b.id||'').slice(0,80),name:String(b.name||'Ветвь').slice(0,60),color:/^#[a-f\d]{6}$/i.test(b.color)?b.color:'#86ded0'};if(COMPASS.some(c=>c.id===b.dir))o.dir=b.dir;return o;}).filter(b=>b.id);const bset=new Set(branches.map(b=>b.id));
+ const num=(v,lim)=>Math.max(-lim,Math.min(lim,Number(v)||0));
+ const nodes=raw.nodes.map(n=>{const o={id:String(n.id||'').slice(0,90),title:String(n.title||'Новый узел').slice(0,100),desc:String(n.desc||'').slice(0,4000),branch:n.branch==='core'?'core':bset.has(n.branch)?n.branch:(branches[0]?.id||'core'),kind:['core','key','regular','milestone','school','temple'].includes(n.kind)?n.kind:'regular',status:['canon','idea','test'].includes(n.status)?n.status:'idea',trigger:String(n.trigger||'').slice(0,2000),effect:String(n.effect||'').slice(0,2000),x:num(n.x,40000),y:num(n.y,40000)};const ox=Math.round(num(n.ox,8000)),oy=Math.round(num(n.oy,8000));if(ox||oy){o.ox=ox;o.oy=oy;}return o;}).filter(n=>n.id&&!ids.has(n.id)&&(ids.add(n.id),true));if(!nodes.length)throw Error('В файле нет узлов');
+ const nset=new Set(nodes.map(n=>n.id)),edges=raw.edges.filter(e=>nset.has(e.from)&&nset.has(e.to)&&e.from!==e.to).map((e,i)=>({id:String(e.id||'edge_'+i).slice(0,100),from:String(e.from),to:String(e.to),type:e.type==='group'?'group':'requirement'}));
+ return{version:2,name:String(raw.name||'Моё дерево').slice(0,100),dependencyMode:'all',branches,nodes,edges};}
 function randId(){return (typeof crypto!=='undefined'&&crypto.randomUUID)?crypto.randomUUID():'id_'+Date.now()+'_'+Math.random().toString(36).slice(2,9);}
-function distribute(doc){const all=doc.nodes.filter(n=>n.id!=='core');const core=doc.nodes.find(n=>n.id==='core');if(core){core.x=0;core.y=0;}let count=doc.branches.length;doc.branches.forEach((br,bi)=>{let rad=-Math.PI/2+bi*2*Math.PI/Math.max(1,count);const subset=all.filter(n=>n.branch===br.id);const levels=new Map();for(let n of subset){let dep=1;let cur=n.id;let seen=new Set();while(dep<8){let e=doc.edges.find(e=>e.to===cur);if(!e||seen.has(cur)||e.from==='core')break;seen.add(cur);cur=e.from;dep++;}if(!levels.has(dep))levels.set(dep,[]);levels.get(dep).push(n);}for(let [lev,nodes] of levels){const span=Math.min(.62,2*Math.PI/Math.max(1,count)*.66);nodes.forEach((n,i)=>{let a=rad+(i-(nodes.length-1)/2)*(span/Math.max(nodes.length-1,1));let radius=130+(lev-1)*133;n.x=Math.cos(a)*radius;n.y=Math.sin(a)*radius;});}});}
+function hash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return (h>>>0)/4294967295;}
+
+/* ---------- STAR-MAP LAYOUT ----------
+ Crater = centre. Each branch owns a wedge of the sky (a compass direction out of the crater).
+ Inside the wedge: branch roots near the crater, then schools packed in rings (farther = found later).
+ Each school is a constellation laid out along its own outward axis; its temple floats at the entrance.
+ Positions are computed, so a branch can never spill into a neighbour. Manual drags are stored as ox/oy offsets. */
+const LAY={rootStart:250,rootStep:175,lat:200,step:180,first:200,ringGap:320,templeBack:165,pad:3,perRing:3,minSep:760};
+const D2R=Math.PI/180;
+function compassOf(deg){let best=COMPASS[0],bd=999;for(const c of COMPASS){const d=Math.abs(((deg-c.deg)%360+540)%360-180);if(d<bd){bd=d;best=c;}}return best;}
+function branchAngles(){
+ const bs=data.branches,n=bs.length,out=new Map();if(!n)return out;
+ const anyFixed=bs.some(b=>b.dir);
+ let list;
+ if(!anyFixed){
+  // No compass directions chosen yet: share the sky by content so a big branch gets room.
+  const w=bs.map(b=>1.6+Math.sqrt(data.nodes.filter(x=>x.branch===b.id).length)*1.1),tot=w.reduce((s,x)=>s+x,0);
+  let cur=-90-w[0]/tot*180;list=bs.map((b,i)=>{const span=w[i]/tot*360;const o={b,a0:cur,a1:cur+span,a:cur+span/2};cur+=span;return o;});
+ }else{
+  list=bs.map((b,i)=>{const c=COMPASS.find(c=>c.id===b.dir);return{b,a:c?c.deg:-90+i*360/n};});
+  list.forEach((o,i)=>{o.a=((o.a+180)%360+360)%360-180;});
+  list.sort((p,q)=>p.a-q.a);
+  for(let i=1;i<list.length;i++)if(list[i].a-list[i-1].a<4)list[i].a=list[i-1].a+4;
+  list.forEach((o,i)=>{if(list.length===1){o.a0=o.a-170;o.a1=o.a+170;return;}const prev=list[(i-1+list.length)%list.length],next=list[(i+1)%list.length];const dp=((o.a-prev.a)%360+360)%360||360,dn=((next.a-o.a)%360+360)%360||360;o.a0=o.a-dp/2;o.a1=o.a+dn/2;});
+ }
+ for(const o of list)out.set(o.b.id,{a:o.a,a0:o.a0,a1:o.a1,compass:o.b.dir?COMPASS.find(c=>c.id===o.b.dir):compassOf(o.a),fixed:!!o.b.dir});
+ return out;
+}
+function computeLayout(){
+ const byId=new Map(data.nodes.map(n=>[n.id,n])),outE=new Map(),inE=new Map();
+ for(const n of data.nodes){outE.set(n.id,[]);inE.set(n.id,[]);}
+ for(const e of data.edges)if(outE.has(e.from)&&inE.has(e.to)){outE.get(e.from).push(e);inE.get(e.to).push(e);}
+ const pos=new Map(),schoolOf=new Map(),schools=new Map(),branches=new Map(),templeSchools=new Map(),rootsOf=new Map();
+ const center=byId.get('core')||data.nodes.find(n=>n.kind==='core'&&n.branch==='core');
+ const off=n=>({x:n?.ox||0,y:n?.oy||0});
+ if(center)pos.set(center.id,{x:0,y:0});
+ const angles=branchAngles();
+ // 1. School membership: school → (group/requirement) → talents → requirement descendants, same branch.
+ for(const s of data.nodes.filter(n=>n.kind==='school')){
+  const members=[],queue=[s.id];
+  while(queue.length){const id=queue.shift();for(const e of outE.get(id)){if(id!==s.id&&e.type==='group')continue;const t=byId.get(e.to);if(!t||t===center||t.kind==='school'||t.kind==='temple'||t.branch!==s.branch||schoolOf.has(t.id))continue;schoolOf.set(t.id,s.id);members.push(t.id);queue.push(t.id);}}
+  schools.set(s.id,{id:s.id,branch:s.branch,members,temples:[],layers:[],local:new Map(),W:130,Len:260});
+ }
+ // 2. Temples: attached to every school they link to (directly or through a school talent).
+ for(const t of data.nodes.filter(n=>n.kind==='temple')){
+  const ss=new Set();for(const e of [...outE.get(t.id),...inE.get(t.id)]){const o=byId.get(e.from===t.id?e.to:e.from);if(!o)continue;if(o.kind==='school')ss.add(o.id);else if(schoolOf.has(o.id))ss.add(schoolOf.get(o.id));}
+  templeSchools.set(t.id,[...ss]);for(const sid of ss)schools.get(sid)?.temples.push(t.id);
+ }
+ // 3. Constellation of each school, in local (u = outward, v = sideways) coordinates.
+ for(const S of schools.values()){
+  const set=new Set(S.members),layer=new Map(S.members.map(id=>[id,0]));
+  for(let it=0;it<=S.members.length;it++){let ch=false;for(const id of S.members)for(const e of inE.get(id)){if(e.type==='group'||!set.has(e.from))continue;const v=layer.get(e.from)+1;if(v>layer.get(id)&&v<300){layer.set(id,v);ch=true;}}if(!ch)break;}
+  const layers=[];for(const id of S.members){const l=layer.get(id);(layers[l]||(layers[l]=[])).push(id);}
+  const vOf=new Map();let W=130;
+  layers.forEach((ids,li)=>{if(!ids)return;
+   const target=id=>{const ps=inE.get(id).filter(e=>vOf.has(e.from)).map(e=>vOf.get(e.from));return ps.length?ps.reduce((s,x)=>s+x,0)/ps.length:0;};
+   const rank=id=>{const k=byId.get(id).kind;return k==='key'||k==='milestone'||k==='core'?0:1;};
+   const order=ids.map(id=>({id,t:target(id),r:rank(id)})).sort((a,b)=>a.t-b.t||a.r-b.r);
+   const m=order.length,mid=order.reduce((s,o)=>s+o.t,0)/m;
+   order.forEach((o,i)=>{const v=mid+(i-(m-1)/2)*LAY.lat;vOf.set(o.id,v);
+    const ju=(hash(o.id)-.5)*34,jv=(hash(o.id+'~')-.5)*30;
+    S.local.set(o.id,{u:LAY.first+li*LAY.step+ju,v:v+jv});W=Math.max(W,Math.abs(v)+115);});
+  });
+  S.layers=layers.filter(Boolean);S.W=W;S.Len=LAY.first+Math.max(0,S.layers.length-1)*LAY.step+140;
+ }
+ // 4. Branch wedges.
+ for(const b of data.branches){
+  const A=angles.get(b.id),a=A.a*D2R,ca=Math.cos(a),sa=Math.sin(a);
+  const own=data.nodes.filter(n=>n.branch===b.id);
+  const roots=own.filter(n=>n!==center&&n.kind!=='school'&&n.kind!=='temple'&&!schoolOf.has(n.id));
+  const rset=new Set(roots.map(n=>n.id)),depth=new Map(roots.map(n=>[n.id,1]));
+  for(let it=0;it<=roots.length;it++){let ch=false;for(const n of roots)for(const e of inE.get(n.id)){if(!rset.has(e.from))continue;const v=depth.get(e.from)+1;if(v>depth.get(n.id)&&v<60){depth.set(n.id,v);ch=true;}}if(!ch)break;}
+  const rl=[];for(const n of roots){const d=depth.get(n.id);(rl[d]||(rl[d]=[])).push(n);}
+  let rootsR=120;
+  rl.forEach((ns,d)=>{if(!ns)return;const r=LAY.rootStart+(d-1)*LAY.rootStep;rootsR=Math.max(rootsR,r);
+   ns.forEach((n,i)=>{const v=(i-(ns.length-1)/2)*LAY.lat,o=off(n);pos.set(n.id,{x:ca*r-sa*v+o.x,y:sa*r+ca*v+o.y});});});
+  rootsOf.set(b.id,roots.map(n=>n.id));
+  const bs=[...schools.values()].filter(S=>S.branch===b.id);
+  const a0=(A.a0+LAY.pad)*D2R,a1=(A.a1-LAY.pad)*D2R,span=Math.max(.08,a1-a0);
+  let R=rootsR+LAY.templeBack+LAY.ringGap*.62;
+  const q=[...bs],per=q.length?Math.ceil(q.length/Math.ceil(q.length/LAY.perRing)):1;
+  while(q.length){const ring=q.splice(0,per);const angW=r=>ring.map(S=>2*Math.atan((S.W+35)/r));
+   let g=0;while((angW(R).reduce((s,x)=>s+x,0)>span||(ring.length>1&&R*span/ring.length<LAY.minSep))&&g++<300)R*=1.05;
+   const ws=angW(R),slack=(span-ws.reduce((s,x)=>s+x,0))/ring.length;let cur=a0;
+   ring.forEach((S,i)=>{S.angle=cur+slack/2+ws[i]/2;cur+=ws[i]+slack;S.R=R;});
+   R+=Math.max(...ring.map(S=>S.Len))+LAY.ringGap;}
+  for(const S of bs){const c=Math.cos(S.angle),s=Math.sin(S.angle),so=off(byId.get(S.id)),px=c*S.R+so.x,py=s*S.R+so.y;
+   pos.set(S.id,{x:px,y:py});
+   for(const [id,l] of S.local){const o=off(byId.get(id));pos.set(id,{x:px+l.u*c-l.v*s+o.x,y:py+l.u*s+l.v*c+o.y});}}
+  branches.set(b.id,{...A,rootsR});
+ }
+ // 5. Temples float at the entrance of their school(s), on the crater side.
+ const loose=new Map();
+ for(const [tid,ss] of templeSchools){const t=byId.get(tid),o=off(t);
+  if(ss.length){let x=0,y=0;for(const sid of ss){const p=pos.get(sid);x+=p.x;y+=p.y;}x/=ss.length;y/=ss.length;
+   // follows its school when the school is dragged (school positions already include offsets)
+   const len=Math.hypot(x,y)||1,back=ss.length===1?LAY.templeBack:LAY.templeBack*1.3;
+   pos.set(tid,{x:x-x/len*back+o.x,y:y-y/len*back+o.y});}
+  else{const arr=loose.get(t.branch)||[];arr.push(t);loose.set(t.branch,arr);}
+ }
+ for(const [bid,ts] of loose){const B=branches.get(bid),a=(B?B.a:-90)*D2R,r=(B?B.rootsR:120)+170;ts.forEach((t,i)=>{const v=(i-(ts.length-1)/2)*LAY.lat,o=off(t);pos.set(t.id,{x:Math.cos(a)*r-Math.sin(a)*v+o.x,y:Math.sin(a)*r+Math.cos(a)*v+o.y});});}
+ // 6. Anything left (extra centre nodes) circles the crater.
+ const rest=data.nodes.filter(n=>!pos.has(n.id));rest.forEach((n,i)=>{const a=(-90+i*360/Math.max(1,rest.length)+20)*D2R,o=off(n);pos.set(n.id,{x:Math.cos(a)*150+o.x,y:Math.sin(a)*150+o.y});});
+ let rMax=600;for(const p of pos.values())rMax=Math.max(rMax,Math.hypot(p.x,p.y));
+ for(const [bid,B] of branches){let r=0;for(const n of data.nodes)if(n.branch===bid&&pos.has(n.id)){const p=pos.get(n.id);r=Math.max(r,Math.hypot(p.x,p.y));}B.rOuter=Math.max(520,r+170);}
+ const horizon=Math.max(620,rMax+180);for(const B of branches.values())B.rLabel=horizon;
+ return{pos,schoolOf,schools,branches,templeSchools,rootsOf,rMax,inE,outE,center};
+}
+function P(id){return L?.pos.get(id)||{x:0,y:0};}
+function relayout(){L=computeLayout();}
+function syncXY(){if(!L)return;for(const n of data.nodes){const p=L.pos.get(n.id);if(p){n.x=Math.round(p.x);n.y=Math.round(p.y);}}}
 
 function directPrereqs(n){return data.edges.filter(e=>e.to===n.id&&e.type!=='group').map(e=>nodeById(e.from)).filter(Boolean);}
+function directUnlocks(n){return data.edges.filter(e=>e.from===n.id&&e.type!=='group').map(e=>nodeById(e.to)).filter(Boolean);}
 function wouldCreateCycle(from,to){const seen=new Set(),queue=[to];while(queue.length){const id=queue.shift();if(id===from)return true;if(seen.has(id))continue;seen.add(id);for(const e of data.edges)if(e.from===id)queue.push(e.to);}return false;}
 function store(){try{localStorage.setItem(STORE,serialize());$('saveIndicator').textContent='Сохранено локально';scheduleCloudSave();}catch(e){$('saveIndicator').textContent='Экспортируй JSON';}}
-function record(){clearTimeout(historyTimer);const s=serialize();if(history[historyIndex]===s){store();return;}history=history.slice(0,historyIndex+1);history.push(s);if(history.length>70)history.shift();historyIndex=history.length-1;store();updateHistoryButtons();}
+function record(){clearTimeout(historyTimer);relayout();syncXY();const s=serialize();if(history[historyIndex]===s){store();return;}history=history.slice(0,historyIndex+1);history.push(s);if(history.length>70)history.shift();historyIndex=history.length-1;store();updateHistoryButtons();}
 function laterRecord(){clearTimeout(historyTimer);historyTimer=setTimeout(record,480);store();}
 function flush(){if(historyTimer){clearTimeout(historyTimer);historyTimer=0;record();}}
 function undo(){flush();if(historyIndex>0){data=JSON.parse(history[--historyIndex]);selected={type:'node',id:data.nodes[0]?.id};syncAll();store();updateHistoryButtons();}}
 function redo(){flush();if(historyIndex<history.length-1){data=JSON.parse(history[++historyIndex]);selected={type:'node',id:data.nodes[0]?.id};syncAll();store();updateHistoryButtons();}}
 function updateHistoryButtons(){$('undoBtn').disabled=$('mobileUndo').disabled=historyIndex===0;$('redoBtn').disabled=$('mobileRedo').disabled=historyIndex>=history.length-1;}
+
+/* ---------- VIEW: pan / zoom / semantic levels ---------- */
 function cssW(){const b=$('stage').getBoundingClientRect();return{w:Math.max(100,b.width),h:Math.max(100,b.height)};}
 function worldAt(clientX,clientY){const r=$('graph').getBoundingClientRect();return{x:(clientX-r.left-stageSize.w/2-view.x)/view.zoom,y:(clientY-r.top-stageSize.h/2-view.y)/view.zoom};}
 function sizeStage(){stageSize=cssW();$('graph').setAttribute('viewBox',`0 0 ${stageSize.w} ${stageSize.h}`);updateTransform();}
-function updateTransform(){$('world').setAttribute('transform',`translate(${stageSize.w/2+view.x} ${stageSize.h/2+view.y}) scale(${view.zoom})`);$('zoomValue').textContent=Math.round(view.zoom*100)+'%';}
-function setZoom(zoom,screenX=stageSize.w/2,screenY=stageSize.h/2){const v=Math.max(.065,Math.min(3.5,zoom));const xx=screenX-stageSize.w/2,yy=screenY-stageSize.h/2;view.x=xx-(xx-view.x)*v/view.zoom;view.y=yy-(yy-view.y)*v/view.zoom;view.zoom=v;updateTransform();atlasRefresh();}
-function fitAll(){const pts=data.nodes;if(!pts.length)return;let labels=branchPositions();let minX=Math.min(...pts.map(n=>n.x-(n.kind==='school'?132:75)),...labels.map(p=>p.x-92)),maxX=Math.max(...pts.map(n=>n.x+(n.kind==='school'?132:75)),...labels.map(p=>p.x+92)),minY=Math.min(...pts.map(n=>n.y-70),...labels.map(p=>p.y-42)),maxY=Math.max(...pts.map(n=>n.y+95),...labels.map(p=>p.y+45));view.zoom=Math.max(.065,Math.min(1.18,Math.min((stageSize.w-(stageSize.w<620?32:85))/(maxX-minX),(stageSize.h-(stageSize.h<520?58:110))/(maxY-minY))));view.x=-(minX+maxX)/2*view.zoom;view.y=-(minY+maxY)/2*view.zoom;updateTransform();atlasRefresh();}
-function branchPositions(){return data.branches.map((b,i)=>{const a=-Math.PI/2+i*2*Math.PI/Math.max(1,data.branches.length);const own=data.nodes.filter(n=>n.branch===b.id);const r=Math.max(355,...own.map(n=>Math.hypot(n.x,n.y)+85));return{branch:b,x:Math.cos(a)*r,y:Math.sin(a)*r};});}
-function textLines(s){let words=String(s).trim().split(/\s+/);if(s.length<17)return [s];let lines=['',''];for(let word of words){if(!lines[0]|| (lines[0]+' '+word).length<=17)lines[0]+=(lines[0]?' ':'')+word;else lines[1]+=(lines[1]?' ':'')+word;}if(!lines[1])return [lines[0]];if(lines[1].length>26)lines[1]=lines[1].slice(0,25)+'…';return lines;}
-function rOf(n){return n.kind==='core'?38:n.kind==='temple'?29:n.kind==='school'?27:n.kind==='key'?23:n.kind==='milestone'?25:19;}
-function linePoints(a,b){const dx=b.x-a.x,dy=b.y-a.y,len=Math.hypot(dx,dy)||1,nx=dx/len,ny=dy/len,ra=a.kind==='school'?Math.min(117/Math.max(Math.abs(nx),.001),37/Math.max(Math.abs(ny),.001)):rOf(a)+3,rb=b.kind==='school'?Math.min(117/Math.max(Math.abs(nx),.001),37/Math.max(Math.abs(ny),.001)):rOf(b)+3;const x1=a.x+nx*ra,y1=a.y+ny*ra,x2=b.x-nx*rb,y2=b.y-ny*rb;const cross=a.branch!==b.branch&&a.branch!=='core'&&b.branch!=='core';const bend=cross?Math.min(65,len*.16):0;let cx=(x1+x2)/2-ny*bend,cy=(y1+y2)/2+nx*bend;return{d:`M ${x1.toFixed(1)} ${y1.toFixed(1)} Q ${cx.toFixed(1)} ${cy.toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`,cross};}
-
-/* ATLAS v1.3 — presentation-only semantic zoom. All authored nodes and links stay in JSON. */
-function atlasTier(){
- if(atlasFocusId&&view.zoom>=.38)return view.zoom<.72?'schools':'detail';
- return view.zoom<.27?'sky':view.zoom<.82?'schools':'detail';
+function tierOf(z){let t='sky';for(const T of TIERS)if(z>=T.z)t=T.id;return t;}
+function scaleVars(z){const m=stageSize.w<620?.78:1,k=lo=>Math.max(z,lo*m)/z;return{'--ks':k(.6),'--ksub':k(.5),'--kc':k(.26),'--kt':k(.36),'--kl':k(.92),'--ksc':k(.95),'--kb':1/z};}
+function updateTransform(){
+ const z=view.zoom,svg=$('graph');
+ $('world').setAttribute('transform',`translate(${stageSize.w/2+view.x} ${stageSize.h/2+view.y}) scale(${z})`);
+ $('zoomValue').textContent=Math.round(z*100)+'%';
+ for(const [k,v] of Object.entries(scaleVars(z)))svg.style.setProperty(k,v.toFixed(4));
+ const t=tierOf(z);
+ svg.classList.toggle('z-mid',z>=.5);
+ if(t!==lastTier){svg.classList.remove('t-sky','t-tal','t-card');svg.classList.add('t-'+t);lastTier=t;for(const b of document.querySelectorAll('.tiers [data-tier]'))b.classList.toggle('on',b.dataset.tier===t);}
+ scheduleDeclutter();
+ const st=$('stage').style;st.backgroundPosition=`${(view.x*.08).toFixed(1)}px ${(view.y*.08).toFixed(1)}px, ${(view.x*.18).toFixed(1)}px ${(view.y*.18).toFixed(1)}px, 0 0`;
 }
-function atlasRelated(id){
- const school=nodeById(id);if(!school||school.kind!=='school')return new Set();
- const scope=new Set([id]);
- // All assigned school talents become the initial constellation.
- for(const e of data.edges)if(e.type==='group'&&e.from===id)scope.add(e.to);
- // Walk required descendants of school talents, not from shared central powers.
- let queue=[...scope],steps=0;
- while(queue.length&&steps++<4500){
-  const from=queue.shift(),source=nodeById(from);
-  if(!source||source.kind==='temple'||(source.kind==='core'&&from!==id))continue;
-  for(const e of data.edges)if(e.from===from&&e.type!=='group'){
-   const target=nodeById(e.to);
-   if(target&&target.kind!=='school'&&target.kind!=='temple'&&!scope.has(target.id)){scope.add(target.id);queue.push(target.id);}
-  }
- }
- // Include access points and prerequisites, but don't descend their unrelated branches.
- for(const e of data.edges){
-  if(scope.has(e.to)&&((e.type==='group'&&e.to===id)||e.type!=='group')){
-   const n=nodeById(e.from);if(n&&(n.kind==='temple'||n.kind==='core'||n.kind==='key'))scope.add(n.id);
-  }
- }
- return scope;
-}
-function atlasFocusSchool(id){
- const n=nodeById(id);if(!n||n.kind!=='school')return;
- if(!atlasFocusId)atlasPriorView={x:view.x,y:view.y,zoom:view.zoom};
- atlasFocusId=id;atlasFocusNodes=atlasRelated(id);
- selected={type:'node',id};filter='all';
- view.zoom=Math.max(.9,Math.min(1.3,view.zoom*1.25));
- view.x=-n.x*view.zoom;view.y=-n.y*view.zoom;
- closePanels();syncAll();
- notify('Созвездие: '+n.title.replace(/^Школа\s+/i,'')+' · щипок двумя пальцами — масштаб');
-}
-function atlasLeaveFocus(){
- if(!atlasFocusId)return;
- atlasFocusId=null;atlasFocusNodes=null;
- if(atlasPriorView){view={...atlasPriorView};atlasPriorView=null;}
- syncAll();notify('Открыта вся звёздная карта');
-}
-function atlasSVG(tag,attrs,parent){
- const e=document.createElementNS(NS,tag);
- for(const [key,value] of Object.entries(attrs||{}))e.setAttribute(key,value);
- if(parent)parent.appendChild(e);return e;
-}
-function atlasPaint(){
- const tier=atlasTier();atlasVisualTier=tier;atlasPaintedZoom=view.zoom;
- const zoom=Math.max(.065,view.zoom),sky=tier==='sky',detail=tier==='detail';
- $('atlasLevel').textContent=atlasFocusId?'СОЗВЕЗДИЕ ШКОЛЫ':sky?'КАРТА СОЗВЕЗДИЙ':tier==='schools'?'ШКОЛЫ И ХРАМЫ':'ТАЛАНТЫ И УСЛОВИЯ';
- $('atlasFocusExit').hidden=!atlasFocusId;
- // At far zoom, the sector names remain readable in SCREEN pixels.
- for(const lbl of $('guides').querySelectorAll('.branch-label')){
-  if(atlasFocusId){lbl.style.display='none';continue;}
-  lbl.style.display='';lbl.style.fontSize=(sky?13:11)/zoom+'px';
-  lbl.style.letterSpacing=(sky?1.6:.8)/zoom+'px';
-  lbl.style.opacity=sky?'.94':tier==='schools'?'.55':'.6';
- }
- for(const g of $('edgeLayer').querySelectorAll('[data-edge]')){
-  const edge=data.edges.find(e=>e.id===g.dataset.edge);
-  const inScope=!atlasFocusNodes||(edge&&atlasFocusNodes.has(edge.from)&&atlasFocusNodes.has(edge.to));
-  g.style.display=inScope?'':'none';g.style.opacity=sky?'.29':tier==='schools'?'.42':'';
- }
- for(const g of $('nodeLayer').querySelectorAll('[data-node]')){
-  const n=nodeById(g.dataset.node);
-  if(!n)continue;
-  g.style.display=!atlasFocusNodes||atlasFocusNodes.has(n.id)?'':'none';
-  if(detail)continue; // full editable content is preserved in the close-up view.
-  // Replace only transient SVG graphics (not the model) with a readable star symbol.
-  g.replaceChildren();
-  const col=colorOf(n),core=n.kind==='core',temple=n.kind==='temple',school=n.kind==='school';
-  const important=core||temple||school||n.kind==='key'||n.kind==='milestone';
-  const r=(sky?(core?7:temple?5:school?4.8:important?3.7:2.1):(core?10:temple?8.2:school?8.5:important?5.5:2.7))/zoom;
-  atlasSVG('circle',{class:'node-hit',r:Math.max(11/zoom,r*1.6),fill:'transparent',stroke:'none'},g);
-  if(important)atlasSVG('circle',{r:r*1.42,stroke:col,'stroke-opacity':sky?.25:.42,fill:'none','stroke-width':1.15/zoom},g);
-  atlasSVG('circle',{class:'atlas-node-star',r,fill:important?'#132d3a':col,stroke:col,'stroke-width':(important?1.9:0)/zoom,'fill-opacity':important?'1':'.74'},g);
-  if(selected.type==='node'&&selected.id===n.id)atlasSVG('circle',{r:r+5/zoom,fill:'none',stroke:'#effff4','stroke-width':1.7/zoom,'stroke-dasharray':(3/zoom)+' '+(3/zoom)},g);
-  if(temple&&!sky){
-   const icon=atlasSVG('g',{transform:'scale('+(1/zoom)+')',stroke:col,fill:'none','stroke-width':'1.5','stroke-linejoin':'round'},g);
-   atlasSVG('path',{d:'M-9 -3 L0 -9 L9 -3 M-9 0 H9 M-7 2 V7 M0 2 V7 M7 2 V7 M-11 9 H11'},icon);
-   atlasSVG('path',{d:'M-13 12 Q0 15 13 12 L7 19 L0 22 L-9 17 Z',fill:'#544b43',stroke:'#b6a48c','stroke-width':'.8'},icon);
-  }else if(core&&!sky){
-   const t=atlasSVG('text',{x:0,y:3/zoom,fill:col,'font-size':10/zoom,'text-anchor':'middle','font-weight':'700','pointer-events':'none'},g);t.textContent='✧';
-  }
-  let showLabel=!sky&&(school||temple||core||n.kind==='key'||n.kind==='milestone');
-  if(showLabel){
-   const title=(school?n.title.replace(/^Школа\s+/i,''):n.title);
-   const max=school?23:temple?19:core?21:18;
-   const label=title.length>max?title.slice(0,max-1)+'…':title;
-   const labelEl=atlasSVG('text',{class:'atlas-caption',x:0,y:r+14/zoom,fill:col,'font-size':(school?11.5:10)/zoom},g);
-   labelEl.textContent=label;
-  }
- }
-}
-function atlasRefresh(){
- const tier=atlasTier();
- if(tier!==atlasVisualTier||Math.abs(view.zoom-atlasPaintedZoom)>Math.max(.022,view.zoom*.11))renderGraph();
+const clampZ=z=>Math.max(.03,Math.min(3.5,z));
+function setZoom(zoom,screenX=stageSize.w/2,screenY=stageSize.h/2){const v=clampZ(zoom);const xx=screenX-stageSize.w/2,yy=screenY-stageSize.h/2;view.x=xx-(xx-view.x)*v/view.zoom;view.y=yy-(yy-view.y)*v/view.zoom;view.zoom=v;updateTransform();}
+function animateTo(target,dur=430){cancelAnimationFrame(animFrame);const from={...view},t0=performance.now();const lz0=Math.log(from.zoom),lz1=Math.log(clampZ(target.zoom));
+ // interpolate the world point at screen centre so the camera glides instead of swinging
+ const cx0=-from.x/from.zoom,cy0=-from.y/from.zoom,cx1=-target.x/clampZ(target.zoom),cy1=-target.y/clampZ(target.zoom);
+ const step=now=>{let t=Math.min(1,(now-t0)/dur);t=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;const z=Math.exp(lz0+(lz1-lz0)*t),cx=cx0+(cx1-cx0)*t,cy=cy0+(cy1-cy0)*t;view.zoom=z;view.x=-cx*z;view.y=-cy*z;updateTransform();if(t<1)animFrame=requestAnimationFrame(step);};
+ animFrame=requestAnimationFrame(step);
+ // hidden tabs may not run rAF: make sure the camera still lands on its target
+ clearTimeout(animateTo.t);animateTo.t=setTimeout(()=>{if(performance.now()-t0>=dur&&Math.abs(view.zoom-clampZ(target.zoom))>1e-4){cancelAnimationFrame(animFrame);view.zoom=clampZ(target.zoom);view.x=-cx1*view.zoom;view.y=-cy1*view.zoom;updateTransform();}},dur+120);}
+function boxOf(ids){let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity;for(const id of ids){const p=L.pos.get(id);if(!p)continue;x0=Math.min(x0,p.x);y0=Math.min(y0,p.y);x1=Math.max(x1,p.x);y1=Math.max(y1,p.y);}return isFinite(x0)?{x0,y0,x1,y1}:{x0:-300,y0:-300,x1:300,y1:300};}
+function safeArea(){const st=$('stage').getBoundingClientRect(),top=$('stage').querySelector('.floating-top').getBoundingClientRect(),bot=$('stage').querySelector('.stage-bottom').getBoundingClientRect();return{top:Math.max(10,top.bottom-st.top+8),bottom:Math.max(10,st.bottom-bot.top+8)};}
+function viewForBox(b,pad=120,maxZ=1.2,pxX=0,pxY=0){const sa=safeArea(),w=b.x1-b.x0+pad*2,h=b.y1-b.y0+pad*2;const z=clampZ(Math.min(maxZ,Math.max(40,stageSize.w-(stageSize.w<620?16:40)-pxX*2)/w,Math.max(80,stageSize.h-sa.top-sa.bottom-pxY*2)/h));return{zoom:z,x:-(b.x0+b.x1)/2*z,y:-((b.y0+b.y1)/2*z)+(sa.top-sa.bottom)/2};}
+function fullBox(){const b=boxOf(data.nodes.map(n=>n.id));for(const B of L.branches.values()){const a=B.a*D2R,r=B.rLabel;b.x0=Math.min(b.x0,Math.cos(a)*r);b.x1=Math.max(b.x1,Math.cos(a)*r);b.y0=Math.min(b.y0,Math.sin(a)*r);b.y1=Math.max(b.y1,Math.sin(a)*r);}return b;}
+function fitAll(animate=false){if(!L)relayout();const v=viewForBox(fullBox(),0,1.1,stageSize.w<620?62:95,22);if(animate)animateTo(v);else{Object.assign(view,v);updateTransform();}}
+function focusNode(id,zoom){const p=P(id);const z=zoom?clampZ(zoom):view.zoom;animateTo({zoom:z,x:-p.x*z,y:-p.y*z});}
+function goTier(t){
+ if(t==='sky'){leaveFocus(false);fitAll(true);return;}
+ const z=t==='tal'?.55:1.05;const id=selected.type==='node'&&selected.id!=='core'?selected.id:null;
+ if(id){focusNode(id,z);return;}
+ const cx=-view.x/view.zoom,cy=-view.y/view.zoom;animateTo({zoom:z,x:-cx*z,y:-cy*z});
 }
 
-function renderGraph(){const g=$('guides'),e=$('edgeLayer'),layer=$('nodeLayer');const maxRadius=Math.max(550,...data.nodes.map(n=>Math.hypot(n.x,n.y)+110));let guide='';for(let r=130;r<maxRadius+75;r+=130)guide+=`<circle class="guide-circle" r="${r}"/>`;for(let a=0;a<360;a+=30){let rad=a*Math.PI/180;guide+=`<line class="guide-ray" x1="0" y1="0" x2="${Math.cos(rad)*maxRadius}" y2="${Math.sin(rad)*maxRadius}"/>`;}if(data.branches.length<19){branchPositions().forEach(({branch:b,x,y})=>{guide+=`<text class="branch-label" x="${x}" y="${y}" fill="${b.color}" opacity=".7">${esc(b.name.toUpperCase())}</text>`;});}g.innerHTML=guide;
-let edgeHTML='';for(const edge of data.edges){const a=nodeById(edge.from),b=nodeById(edge.to);if(!a||!b)continue;const p=linePoints(a,b),c=colorOf(b),sel=selected.type==='edge'&&selected.id===edge.id,group=edge.type==='group';edgeHTML+=`<g data-edge="${esc(edge.id)}"><path class="edge ${group?'group':p.cross?'cross':''} ${sel?'selected':''}" d="${p.d}" stroke="${sel?'#e0faf1':c}" stroke-opacity="${sel?'1':group?'.5':'.7'}"/><path class="edge-hit" d="${p.d}"/></g>`;}e.innerHTML=edgeHTML;
-let html='';for(const n of data.nodes){
- if(n.kind==='school'){
-  const col=colorOf(n),active=selected.type==='node'&&selected.id===n.id,lines=textLines(n.title.replace(/^Школа\s+/i,''));
-  html+=`<g class="noderoot school-heading" data-node="${esc(n.id)}" transform="translate(${n.x} ${n.y})"><rect class="node-hit" x="-130" y="-49" width="260" height="98" fill="transparent"/>`;
-  if(active)html+=`<rect x="-122" y="-42" width="244" height="84" rx="17" fill="none" stroke="#e8fff6" stroke-width="2" stroke-dasharray="4 3"/>`;
-  html+=`<rect class="school-plaque" x="-116" y="-36" width="232" height="72" rx="13" stroke="${col}" fill="${active?'#1b4249':'#112a33'}"/>`;
-  html+=`<text class="school-plaque-label" x="0" y="-14" fill="${col}">✺ ШКОЛА</text>`;
-  lines.forEach((line,i)=>{html+=`<text class="school-plaque-name" x="0" y="${lines.length===1?11:-1+i*18}" fill="#e7f8f6">${esc(line)}</text>`;});
-  html+='</g>';continue;
+/* ---------- FOCUS: one school or one branch, the rest of the sky dims ---------- */
+function scopeOf(f){
+ const s=new Set();if(!f)return s;
+ if(f.type==='school'){const S=L.schools.get(f.id);if(!S)return s;s.add(f.id);S.members.forEach(id=>s.add(id));S.temples.forEach(id=>s.add(id));
+  for(const id of [...s])for(const e of L.inE.get(id)||[]){const o=nodeById(e.from);if(o&&e.type!=='group'&&(o.kind==='core'||o.kind==='temple'))s.add(o.id);}}
+ else if(f.type==='branch'){for(const n of data.nodes)if(n.branch===f.id)s.add(n.id);for(const [tid,ss] of L.templeSchools)if(ss.some(id=>s.has(id)))s.add(tid);}
+ return s;}
+function enterFocus(type,id){if(!focus)focusPriorView={...view};focus={type,id};applyHighlight();renderCrumbs();
+ const ids=[...scopeOf(focus)],target=viewForBox(boxOf(ids),type==='school'?150:110,type==='school'?1.05:.7);
+ // Long constellations must start at readable zoom; pan along the path to see remaining stars.
+ if(type==='school'&&target.zoom<.55){const p=P(id);target.zoom=.55;target.x=-p.x*.55;target.y=-p.y*.55;}
+ animateTo(target);
+ const name=type==='school'?nodeById(id)?.title:branchById(id)?.name;notify((type==='school'?'Созвездие: ':'Направление: ')+(name||''));}
+function leaveFocus(restore=true){if(!focus)return;focus=null;applyHighlight();renderCrumbs();if(restore&&focusPriorView)animateTo(focusPriorView);focusPriorView=null;}
+
+/* ---------- RENDER ---------- */
+function textLines(s,max=18,max2=24){s=String(s).trim();if(s.length<=max)return[s];const words=s.split(/\s+/);let a='',b='';for(const w of words){if(!b&&(!a||(a+' '+w).length<=max))a+=(a?' ':'')+w;else b+=(b?' ':'')+w;}if(!b){return[a.slice(0,max-1)+'…'];}if(b.length>max2)b=b.slice(0,max2-1)+'…';return[a,b];}
+function short(s,max){s=String(s).trim();return s.length>max?s.slice(0,max-1)+'…':s;}
+function starPath(r,inner,points=4){let d='';for(let i=0;i<points*2;i++){const a=-Math.PI/2+i*Math.PI/points,rr=i%2?inner:r;d+=(i?'L':'M')+(Math.cos(a)*rr).toFixed(1)+' '+(Math.sin(a)*rr).toFixed(1);}return d+'Z';}
+const STAR4=starPath(19,3.2,4),STAR8=starPath(20,6,8),STAR4S=starPath(9,1.6,4);
+function templeIsland(col){
+ return `<ellipse cx="0" cy="62" rx="26" ry="4" fill="#000" opacity=".28"/>`+
+ `<path d="M-46 6 Q-30 0 0 1 Q30 0 46 6 L40 13 L28 17 L22 30 L11 26 L3 44 L-6 29 L-17 34 L-23 20 L-36 16 Z" fill="url(#gRock)" stroke="#2a221c" stroke-width="1"/>`+
+ `<path d="M-46 6 Q0 -4 46 6 Q0 13 -46 6 Z" fill="url(#gSand)"/>`+
+ `<path d="M-27 4 H27 V0 H-27 Z M-23 0 V-24 M-11.5 0 V-24 M0 0 V-24 M11.5 0 V-24 M23 0 V-24 M-27 -24 H27 V-28 H-27 Z M-30 -28 L0 -42 L30 -28 Z" fill="#1b2430" stroke="${col}" stroke-width="1.6" stroke-linejoin="round"/>`+
+ `<circle cx="0" cy="-33" r="2.6" fill="${col}"/>`+
+ `<circle cx="-54" cy="22" r="2.2" fill="#6b5a47"/><circle cx="55" cy="27" r="1.7" fill="#6b5a47"/><circle cx="49" cy="40" r="1.2" fill="#6b5a47"/>`;}
+function cardSVG(n,col,y0){
+ const k=KIND[n.kind]||KIND.regular,small=n.kind==='regular',w=small?152:178,lines=textLines(n.title,small?19:22,small?22:25);
+ const pre=directPrereqs(n).length,unl=directUnlocks(n).length;
+ const meta=[pre?`🔒 ${pre} усл.`:'без условий',unl?`→ ${unl}`:'',n.status==='canon'?'канон':n.status==='test'?'проверка':'идея'].filter(Boolean).join(' · ');
+ const h=36+lines.length*15;
+ let s=`<g class="card" transform="translate(0 ${y0})"><rect class="card-bg" x="${-w/2}" y="0" width="${w}" height="${h}" rx="9" stroke="${col}" stroke-opacity="${small?.35:.6}" ${n.status==='idea'?'stroke-dasharray="4 3"':''}/>`;
+ s+=`<text class="card-kind" x="${-w/2+10}" y="14" fill="${col}">${esc(n.kind==='core'&&n.id==='core'?'КРАТЕР':k.short)}</text>`;
+ lines.forEach((l,i)=>{s+=`<text class="card-title" x="${-w/2+10}" y="${30+i*15}">${esc(l)}</text>`;});
+ s+=`<text class="card-meta" x="${-w/2+10}" y="${h-8}">${esc(meta)}</text></g>`;return s;}
+function nodeSVG(n){
+ const p=P(n.id),col=colorOf(n),sel=selected.type==='node'&&selected.id===n.id,isCenter=L.center===n,idea=n.status==='idea';
+ let s=`<g class="nd k-${n.kind}${isCenter?' is-center':''}" data-node="${esc(n.id)}" transform="translate(${p.x.toFixed(1)} ${p.y.toFixed(1)})" opacity="${n.status==='test'?.8:1}">`;
+ if(isCenter){
+  s+=`<g class="sc s-crater"><circle class="hit" r="80"/><circle r="78" fill="url(#gCrater)"/>`;
+  for(const b of data.branches){const B=L.branches.get(b.id);if(!B)continue;const a=B.a*D2R,c=Math.cos(a),si=Math.sin(a);s+=`<path d="M${(c*44).toFixed(1)} ${(si*44).toFixed(1)} L${(c*70).toFixed(1)} ${(si*70).toFixed(1)}" stroke="${b.color}" stroke-width="5" stroke-linecap="round" opacity=".85"/><circle cx="${(c*76).toFixed(1)}" cy="${(si*76).toFixed(1)}" r="3.2" fill="${b.color}"/>`;}
+  s+=`<circle r="40" fill="#0a0e14" stroke="#cdb894" stroke-opacity=".55" stroke-width="1.5"/><path d="${STAR4S}" fill="#f6ead2" transform="scale(1.6)"/>`;
+  if(sel)s+=`<circle class="selring" r="88"/>`;
+  s+=`</g><g class="sc tr-crater dc" data-pri="900"><text class="lbl lbl-kicker" y="12" fill="#d8c39d">КРАТЕР</text><text class="lbl" y="28" fill="#f2e6cf">${esc(short(n.title,24))}</text></g>`;
+ }else if(n.kind==='temple'){
+  s+=`<g class="sc s-star temple-dot"><circle class="hit" r="18"/><path d="M0 -7 L6 0 L0 7 L-6 0 Z" fill="${col}"/><circle r="12" fill="${col}" opacity=".12"/></g>`;
+  s+=`<g class="sc s-temple island"><circle class="hit" r="52"/>${templeIsland(col)}${sel?'<circle class="selring" r="62"/>':''}<circle class="ring-next" r="58"/>`;
+  s+=`<text class="lbl lbl-kicker" y="-52" fill="${col}">ХРАМ</text></g>`;
+  s+=`<g class="sc tr-temple lbl-temple-name dc" data-pri="30"><text class="lbl lbl-temple" y="12">${esc(short(n.title,26))}</text></g>`;
+ }else if(n.kind==='school'){
+  const lines=textLines(n.title.replace(/^Школа\s+/i,'').toUpperCase(),14,20);
+  s+=`<g class="sc s-star"><circle class="hit" r="34"/><circle r="30" fill="${col}" opacity=".07"/><circle r="26" fill="#0b1826" stroke="${col}" stroke-width="1.6" ${idea?'class="idea-dash"':''}/><circle r="20" fill="none" stroke="${col}" stroke-opacity=".4" stroke-dasharray="2 4"/><path d="${STAR8}" fill="${col}" transform="scale(.62)"/><circle r="3.5" fill="#fff"/>${sel?'<circle class="selring" r="36"/>':''}<circle class="ring-next" r="40"/></g>`;
+  s+=`<g class="sc tr-school lbl-school-g dc" data-pri="${200+(L.schools.get(n.id)?.members.length||0)}"><text class="lbl lbl-kicker" y="10" fill="${col}">✺ ШКОЛА</text>`;
+  lines.forEach((l,i)=>{s+=`<text class="lbl lbl-school" y="${27+i*16}" fill="#eef8f6">${esc(l)}</text>`;});s+=`</g>`;
+  s+=`<g class="card" transform="translate(0 40)"><rect class="card-bg" x="-118" y="0" width="236" height="${40+lines.length*18}" rx="12" stroke="${col}" stroke-width="1.6"/><text class="card-kind" x="0" y="17" text-anchor="middle" fill="${col}">✺ ШКОЛА · ${L.schools.get(n.id)?.members.length||0} ТАЛ.</text>`;
+  lines.forEach((l,i)=>{s+=`<text class="card-title" x="0" y="${37+i*18}" text-anchor="middle" font-size="14">${esc(l)}</text>`;});s+=`</g>`;
+ }else{
+  const main=n.kind==='key'||n.kind==='milestone'||n.kind==='core';
+  if(main){
+   const big=n.kind==='core';
+   s+=`<g class="sc s-star"><circle class="hit" r="32"/><circle r="${big?40:30}" fill="url(#gHalo)" opacity=".5"/><circle r="${big?40:30}" fill="${col}" opacity=".10"/>`;
+   if(n.kind==='milestone')s+=`<path d="${STAR8}" fill="${col}"/>`;else s+=`<path d="${STAR4}" fill="${col}" transform="scale(${big?1.35:1})"/>`;
+   s+=`<circle r="${big?14:11}" fill="none" stroke="${col}" stroke-width="1.3" stroke-opacity=".75" ${idea?'class="idea-dash"':''}/><circle r="${big?6.5:5}" fill="#fffaf0"/>${sel?`<circle class="selring" r="${big?24:20}"/>`:''}<circle class="ring-next" r="${big?28:24}"/></g>`;
+   s+=`<g class="sc ${big?'tr-root':'tr-main'} lbl-main dc" data-pri="${big?150:n.kind==='milestone'?90:80}"><text class="lbl" y="12" fill="${col}">${esc(short(n.title,22))}</text></g>`;
+  }else{
+   s+=`<g class="sc tr-sub lbl-subname dc" data-pri="10"><text class="lbl lbl-sub" y="11">${esc(short(n.title,24))}</text></g>`;
+   s+=`<g class="sc s-sub"><circle class="hit" r="24"/><circle r="11" fill="${col}" opacity=".12"/><circle r="4.4" fill="${col}" ${idea?'fill-opacity=".75"':''}/><circle r="1.8" fill="#fff" opacity=".85"/>${sel?'<circle class="selring" r="13"/>':''}<circle class="ring-next" r="15"/></g>`;
+  }
+  s+=cardSVG(n,col,main?26:18);
  }
- const r=rOf(n),col=colorOf(n),active=selected.type==='node'&&selected.id===n.id,opacity=n.status==='test'?.68:1,lines=textLines(n.title),glyph=n.kind==='core'?'✧':n.kind==='milestone'?'✦':n.kind==='key'?'◇':n.kind==='school'?'✺':n.kind==='temple'?'':'·';let labelY=r+19;html+=`<g class="noderoot" data-node="${esc(n.id)}" transform="translate(${n.x} ${n.y})" opacity="${opacity}"><circle class="node-hit" r="${Math.max(32,r+12)}"/>`;if(active)html+=`<circle class="selectedring" r="${r+9}"/>`;if(n.kind==='core')html+=`<circle cx="0" cy="0" r="${r+15}" fill="${col}" opacity=".035"/><circle cx="0" cy="0" r="${r+7}" stroke="${col}" fill="none" stroke-opacity=".23"/>`;if(['key','milestone','school','temple'].includes(n.kind))html+=`<circle class="nodehalo" r="${r+6}" stroke="${col}" ${n.status==='idea'?'stroke-dasharray="3 4"':''}/>`;html+=`<circle class="node-circle" r="${r}" fill="${active?'#24424b':'#102331'}" stroke="${col}"/>`;if(n.kind==='core')html+=`<circle r="${r-8}" fill="#142c35" stroke="#638e91" stroke-width="1" opacity=".8"/>`;if(n.kind==='temple'){html+=`<path class="node-temple-icon" d="M-15 -7 L0 -15 L15 -7 M-14 -3 H14 M-11 -1 V11 M-3 -1 V11 M5 -1 V11 M12 -1 V11 M-16 14 H16" stroke="${col}"/>`;}else{html+=`<text class="node-glyph" y="1" fill="${col}" font-size="${n.kind==='core'?25:20}">${glyph}</text>`;}if(n.kind==='temple'||n.kind==='school'){html+=`<text class="node-type-tag" x="0" y="${-r-16}" fill="${col}">${n.kind==='temple'?'ХРАМ':'ШКОЛА'}</text>`;if(n.kind==='school')html+=`<circle class="node-school-outer" r="${r+10}" stroke="${col}"/>`;}lines.forEach((l,i)=>{html+=`<text class="node-text" x="0" y="${labelY+i*14}" fill="${active?'#ffffff':'#c9dade'}">${esc(l)}</text>`;});if(n.kind==='milestone')html+=`<circle r="3" cy="${-r}" fill="${col}"/>`;html+='</g>';}
-layer.innerHTML=html;updateTransform();atlasPaint();}
+ return s+'</g>';}
+function guidesSVG(){
+ let g='';const rMax=L.rMax+190;
+ for(let r=400;r<rMax;r+=400)g+=`<circle class="guide-ring" r="${r}"/>`;
+ const bs=[...L.branches.entries()];
+ if(bs.length>1)for(const [,B] of bs){const a=B.a0*D2R;g+=`<line class="guide-wedge" x1="${(Math.cos(a)*110).toFixed(0)}" y1="${(Math.sin(a)*110).toFixed(0)}" x2="${(Math.cos(a)*rMax).toFixed(0)}" y2="${(Math.sin(a)*rMax).toFixed(0)}"/>`;}
+ for(const [bid,B] of bs){const b=branchById(bid);if(!b)continue;const a=B.a*D2R,r=B.rLabel;
+  g+=`<line class="guide-axis" x1="0" y1="0" x2="${(Math.cos(a)*(B.rLabel-70)).toFixed(0)}" y2="${(Math.sin(a)*(B.rLabel-70)).toFixed(0)}" stroke="${b.color}"/>`;
+  g+=`<g class="gb dc" data-pri="1000" data-branch="${esc(b.id)}" transform="translate(${(Math.cos(a)*r).toFixed(0)} ${(Math.sin(a)*r).toFixed(0)})"><g class="sc s-fixed"><text class="lbl-branch" y="0" fill="${b.color}">${esc(b.name.toUpperCase())}</text><text class="lbl-compass" y="17">${B.compass.ru}${B.fixed?'':' · авто'}</text></g></g>`;}
+ return g;}
+function edgePath(a,b,pa,pb){const cross=a.branch!==b.branch&&a.branch!=='core'&&b.branch!=='core';if(!cross)return{d:`M${pa.x.toFixed(1)} ${pa.y.toFixed(1)} L${pb.x.toFixed(1)} ${pb.y.toFixed(1)}`,cross};const dx=pb.x-pa.x,dy=pb.y-pa.y,len=Math.hypot(dx,dy)||1,bend=Math.min(120,len*.18);const cx=(pa.x+pb.x)/2-dy/len*bend,cy=(pa.y+pb.y)/2+dx/len*bend;return{d:`M${pa.x.toFixed(1)} ${pa.y.toFixed(1)} Q${cx.toFixed(1)} ${cy.toFixed(1)} ${pb.x.toFixed(1)} ${pb.y.toFixed(1)}`,cross};}
+function edgeClass(e,a,b){if(a.kind==='temple'||b.kind==='temple')return 'e-temple';return e.type==='group'?'e-group':'e-req';}
+function renderGraph(){
+ relayout();
+ $('guides').innerHTML=guidesSVG();
+ let eh='';for(const e of data.edges){const a=nodeById(e.from),b=nodeById(e.to);if(!a||!b)continue;const p=edgePath(a,b,P(a.id),P(b.id)),sel=selected.type==='edge'&&selected.id===e.id;
+  eh+=`<g class="ed ${edgeClass(e,a,b)}${p.cross?' e-cross':''}${sel?' sel':''}" data-edge="${esc(e.id)}"><path class="ln" d="${p.d}" stroke="${colorOf(b.kind==='school'?a:b)}" vector-effect="non-scaling-stroke"/><path class="eh" d="${p.d}" vector-effect="non-scaling-stroke"/></g>`;}
+ $('edgeLayer').innerHTML=eh;
+ // draw order: regular stars under main stars under schools/temples so the important ones stay clickable
+ const order={regular:0,key:1,milestone:1,core:2,temple:3,school:4};
+ $('nodeLayer').innerHTML=[...data.nodes].sort((a,b)=>(order[a.kind]??0)-(order[b.kind]??0)).map(nodeSVG).join('');
+ updateTransform();applyHighlight();renderCrumbs();}
+/* Map-style label declutter: when names collide on screen, the more important one wins. */
+let declutterTimer=0;
+function scheduleDeclutter(){clearTimeout(declutterTimer);declutterTimer=setTimeout(declutter,110);}
+function labelVisibleByTier(g){const c=g.classList,t=lastTier,mid=$('graph').classList.contains('z-mid');
+ if(c.contains('lbl-school-g'))return t!=='card';if(c.contains('lbl-main'))return t==='tal';if(c.contains('lbl-subname'))return t==='tal'&&mid;if(c.contains('lbl-temple-name'))return t!=='sky';return true;}
+function declutter(){const svg=$('graph'),box=svg.getBoundingClientRect(),scope=focus?scopeOf(focus):null,selId=selected.type==='node'?selected.id:null;
+ const items=[];for(const g of svg.querySelectorAll('.dc')){g.classList.remove('dc-hide');if(!labelVisibleByTier(g))continue;const r=g.getBoundingClientRect();if(!r.width||r.right<box.left||r.left>box.right||r.bottom<box.top||r.top>box.bottom)continue;
+  const nid=g.closest('[data-node]')?.dataset.node;let pri=+g.dataset.pri||0;if(nid&&nid===selId)pri+=5000;if(scope&&nid&&!scope.has(nid))pri-=3000;items.push({g,r,pri});}
+ items.sort((a,b)=>b.pri-a.pri);const kept=[];
+ for(const it of items){const r=it.r,hit=kept.some(k=>r.left<k.right+3&&r.right>k.left-3&&r.top<k.bottom+1&&r.bottom>k.top-1);if(hit)it.g.classList.add('dc-hide');else kept.push(r);}}
+function renderPositions(){relayout();for(const g of $('nodeLayer').querySelectorAll('[data-node]')){const p=P(g.dataset.node);g.setAttribute('transform',`translate(${p.x.toFixed(1)} ${p.y.toFixed(1)})`);}
+ for(const g of $('edgeLayer').querySelectorAll('[data-edge]')){const e=data.edges.find(x=>x.id===g.dataset.edge);if(!e)continue;const a=nodeById(e.from),b=nodeById(e.to);if(!a||!b)continue;const d=edgePath(a,b,P(a.id),P(b.id)).d;for(const p of g.querySelectorAll('path'))p.setAttribute('d',d);}scheduleDeclutter();}
+/* Path highlight: the selected talent + everything required to reach it, plus what it opens next. */
+function relatedSets(id){const n=nodeById(id),on=new Set(),next=new Set(),onE=new Set();if(!n||n===L.center)return null;on.add(id);
+ if(n.kind==='school'){const S=L.schools.get(id);S?.members.forEach(m=>on.add(m));S?.temples.forEach(t=>on.add(t));for(const e of data.edges)if(on.has(e.from)&&on.has(e.to))onE.add(e.id);}
+ else if(n.kind==='temple'){for(const sid of L.templeSchools.get(id)||[])on.add(sid);for(const e of data.edges)if(e.from===id||e.to===id){on.add(e.from);on.add(e.to);onE.add(e.id);}}
+ else{const stack=[id];while(stack.length){const cur=stack.pop();for(const e of L.inE.get(cur)||[]){if(e.type==='group')continue;onE.add(e.id);if(!on.has(e.from)){on.add(e.from);stack.push(e.from);}}}
+  for(const e of L.outE.get(id)||[]){if(e.type==='group')continue;next.add(e.to);onE.add(e.id);}
+  const sid=L.schoolOf.get(id);if(sid){on.add(sid);for(const e of L.outE.get(sid)||[])if(on.has(e.to))onE.add(e.id);}}
+ return{on,next,onE};}
+function applyHighlight(){const svg=$('graph');scheduleDeclutter();const rel=selected.type==='node'?relatedSets(selected.id):null;svg.classList.toggle('sel-mode',!!rel&&!focus);
+ const scope=focus?scopeOf(focus):null;svg.classList.toggle('focus-mode',!!scope);
+ for(const g of $('nodeLayer').children){const id=g.dataset.node;g.classList.toggle('on',!!rel?.on.has(id));g.classList.toggle('next',!!rel?.next.has(id));g.classList.toggle('in',!!scope?.has(id));}
+ for(const g of $('edgeLayer').children){const e=data.edges.find(x=>x.id===g.dataset.edge);g.classList.toggle('on',!!rel?.onE.has(g.dataset.edge));g.classList.toggle('in',!!(scope&&e&&scope.has(e.from)&&scope.has(e.to)));}
+ for(const g of $('guides').querySelectorAll('.gb'))g.classList.toggle('in',!!(focus?.type==='branch'&&g.dataset.branch===focus.id)||!!(focus?.type==='school'&&nodeById(focus.id)?.branch===g.dataset.branch));}
+function renderCrumbs(){const el=$('crumbs');const parts=[];
+ const n=selected.type==='node'?nodeById(selected.id):null;
+ let branch=n&&n.branch!=='core'?branchById(n.branch):null,school=null;
+ if(n){if(n.kind==='school')school=n;else if(L.schoolOf.get(n.id))school=nodeById(L.schoolOf.get(n.id));else if(n.kind==='temple'){const ss=L.templeSchools.get(n.id)||[];if(ss.length===1)school=nodeById(ss[0]);}}
+ if(!n&&focus){if(focus.type==='branch')branch=branchById(focus.id);else{school=nodeById(focus.id);branch=branchById(school?.branch);}}
+ parts.push(`<button data-crumb="sky">✧ Небо</button>`);
+ if(branch)parts.push(`<span class="sep">›</span><button data-crumb="branch:${esc(branch.id)}"><span class="cdot" style="background:${branch.color}"></span>${esc(branch.name)}</button>`);
+ if(school)parts.push(`<span class="sep">›</span><button data-crumb="school:${esc(school.id)}">✺ ${esc(school.title)}</button>`);
+ if(n&&n!==school&&n!==L.center)parts.push(`<span class="sep">›</span><button class="last" data-crumb="node:${esc(n.id)}">${KIND[n.kind]?.icon||'·'} ${esc(n.title)}</button>`);
+ if(focus)parts.push(`<button class="exit" data-crumb="exit">✕ Всё небо</button>`);
+ el.innerHTML=parts.join('');el.hidden=parts.length<2;}
+
+/* ---------- SIDEBAR: branches + structure tree ---------- */
 function renderBranches(){
  $('templeCount').textContent=data.nodes.filter(n=>n.kind==='temple').length;
  $('schoolCount').textContent=data.nodes.filter(n=>n.kind==='school').length;
  $('jumpTemple').disabled=!data.nodes.some(n=>n.kind==='temple');
  $('jumpSchool').disabled=!data.nodes.some(n=>n.kind==='school');
- let items=`<button class="branch ${filter==='all'?'active':''}" data-filter="all"><span class="branch-swatch" style="color:#8cabc3;background:#8cabc3"></span><span class="name">Все ветви</span><span class="count">${data.nodes.length}</span></button>`;
- for(const b of data.branches){
-  items+=`<div class="branch-entry"><button class="branch ${filter===b.id?'active':''}" data-filter="${esc(b.id)}" title="Показать узлы: ${esc(b.name)}"><span class="branch-swatch" style="color:${b.color};background:${b.color}"></span><span class="name">${esc(b.name)}</span><span class="count">${data.nodes.filter(n=>n.branch===b.id).length}</span></button><button type="button" class="branch-edit" data-edit-branch="${esc(b.id)}" aria-label="Редактировать ветвь ${esc(b.name)}" title="Переименовать, сменить цвет или удалить ветвь">✎</button></div>`;
+ let items=`<button class="branch ${filter==='all'?'active':''}" data-filter="all"><span class="branch-swatch" style="color:#8cabc3;background:#8cabc3"></span><span class="name">Все направления</span><span class="count">${data.nodes.length}</span></button>`;
+ for(const b of data.branches){const B=L?.branches.get(b.id);
+  items+=`<div class="branch-entry"><button class="branch ${filter===b.id?'active':''}" data-filter="${esc(b.id)}" title="Показать направление на карте: ${esc(b.name)}"><span class="branch-swatch" style="color:${b.color};background:${b.color}"></span><span class="name">${esc(b.name)}</span><span class="count">${B?B.compass.ru+' · ':''}${data.nodes.filter(n=>n.branch===b.id).length}</span></button><button type="button" class="branch-edit" data-edit-branch="${esc(b.id)}" aria-label="Редактировать ветвь ${esc(b.name)}" title="Название, цвет, сторона света">✎</button></div>`;
  }
  $('branchList').innerHTML=items;
- $('nodeCount').textContent=`(${data.nodes.length})`;$('totalLabel').textContent=data.nodes.length;
+ $('nodeCount').textContent=`(${data.nodes.length})`;
  $('filterTitle').textContent=filter==='all'?'ВСЕ':(branchById(filter)?.name||'ВСЕ').toUpperCase();
 }
-function renderNodeList(){let ns=data.nodes.filter(n=>(filter==='all'||n.branch===filter)&&(!search||(n.title+' '+n.trigger+' '+n.effect).toLowerCase().includes(search.toLowerCase())));$('nodeList').innerHTML=ns.length?ns.map(n=>`<button class="node-row ${selected.type==='node'&&selected.id===n.id?'active':''}" data-go="${esc(n.id)}"><span class="tiny-dot" style="color:${colorOf(n)}"></span><span class="text-ellipsis">${esc(n.title)}</span><span class="number">${n.kind==='core'?'◎':n.kind==='temple'?'🏛':n.kind==='school'?'✺':n.kind==='milestone'?'✦':'•'}</span></button>`).join(''):`<div class="emptymini">Ничего не найдено. Добавь узел или сбрось поиск.</div>`;}
+function treeRow(n,depth,extra=''){const k=KIND[n.kind]||KIND.regular,active=selected.type==='node'&&selected.id===n.id;
+ const lv=n.kind==='school'?' lv-school':'';
+ return `<button class="tree-row k-${n.kind}${lv} ${active?'active':''}" data-go="${esc(n.id)}" style="padding-left:${8+depth*13}px"><span class="ic" style="color:${colorOf(n)}">${n===L.center?'◎':k.icon}</span><span class="tt">${esc(n.title)}</span><span class="meta">${extra}</span></button>`;}
+function renderNodeList(){
+ if(!L)relayout();
+ if(search){const q=search.toLowerCase();const ns=data.nodes.filter(n=>(filter==='all'||n.branch===filter)&&(n.title+' '+n.trigger+' '+n.effect+' '+n.desc).toLowerCase().includes(q));
+  $('nodeList').innerHTML=ns.length?ns.map(n=>treeRow(n,0,esc(KIND[n.kind]?.short.toLowerCase()||''))).join(''):`<div class="emptymini">Ничего не найдено.</div>`;return;}
+ let h='';if(filter==='all'&&L.center)h+=treeRow(L.center,0,'центр');
+ for(const b of data.branches){if(filter!=='all'&&filter!==b.id)continue;const B=L.branches.get(b.id);
+  h+=`<button class="tree-row lv-branch" data-branch-go="${esc(b.id)}"><span class="ic" style="color:${b.color}">●</span><span class="tt" style="color:${b.color}">${esc(b.name)}</span><span class="meta">${B?B.compass.ru:''}</span></button>`;
+  for(const id of L.rootsOf.get(b.id)||[])h+=treeRow(nodeById(id),1);
+  const schools=[...L.schools.values()].filter(S=>S.branch===b.id);
+  for(const S of schools){const s=nodeById(S.id);h+=treeRow(s,1,S.members.length+' тал.');
+   for(const t of S.temples)h+=treeRow(nodeById(t),2,'вход');
+   S.layers.forEach((ids,i)=>{if(S.layers.length>1)h+=`<div class="tree-stage" style="padding-left:${8+2*13}px">ЭТАП ${i+1}</div>`;for(const id of ids){const n=nodeById(id);h+=treeRow(n,n.kind==='regular'?3:2);}});}
+  for(const n of data.nodes)if(n.branch===b.id&&n.kind==='temple'&&!(L.templeSchools.get(n.id)||[]).length)h+=treeRow(n,1,'без школы');
+  if(!data.nodes.some(n=>n.branch===b.id))h+=`<div class="emptymini" style="padding:4px 8px 6px 30px">Пусто — двойной клик в этом секторе неба создаст узел.</div>`;}
+ $('nodeList').innerHTML=h;}
 function statusLabel(v){return{canon:'Основа канона',idea:'Идея / черновик',test:'На проверке'}[v]||'Идея';}
+function depLine(p,note=''){return `<div class="progress-dep"><span style="color:${colorOf(p)}">${KIND[p.kind]?.icon||'·'}</span><button type="button" data-go-node="${esc(p.id)}">${esc(p.title)}</button>${note?`<span class="kd">${note}</span>`:''}</div>`;}
 function progressPanel(n){
- const deps=directPrereqs(n);
- const groups=data.edges.filter(e=>e.to===n.id&&e.type==='group').map(e=>nodeById(e.from)).filter(Boolean);
- if(n.kind==='school'){
-  const members=data.edges.filter(e=>e.from===n.id&&e.type==='group').map(e=>nodeById(e.to)).filter(Boolean);
-  return '<div class="progress-rule"><button type="button" id="atlasFocusEnter" class="btn primary" style="width:100%;margin-bottom:12px">✦ Открыть созвездие школы</button><div class="progress-title">✺ Название школы — не талант</div><div class="progress-note">Это заголовок направления в атласе. Пунктирные связи собирают таланты школы; их изучение задаётся отдельными обязательными связями.</div>'+
-   (members.map(p=>'<div class="progress-dep">◇ '+esc(p.title)+'</div>').join('')||'<div class="progress-dep">Способности школы ещё не описаны</div>')+'</div>';
- }
- const title=n.kind==='temple'?'🏛 Храм / место открытия':'Обязательные условия (И)';
- const prereqLines=deps.map(p=>'<div class="progress-dep">↳ '+esc(p.title)+'</div>').join('')||'<div class="progress-dep">Обязательных условий пока нет</div>';
- const groupLines=groups.length?'<div class="progress-note">Группировка: '+groups.map(p=>esc(p.title)).join(', ')+'</div>':'';
- const explanation=n.kind==='temple'?'Цепочка храма будет отдельным условием открытия талантов.':'Только сплошные связи — игровые требования. Все они обязательны одновременно.';
- return '<div class="progress-rule"><div class="progress-title">'+title+'</div><div class="progress-note">'+explanation+'</div>'+prereqLines+groupLines+'</div>';
-}
-function renderInspector(){const area=$('details');if(selected.type==='edge'){const edge=data.edges.find(e=>e.id===selected.id);if(!edge){selected={type:'none'};return renderInspector();}const a=nodeById(edge.from),b=nodeById(edge.to);area.innerHTML=`<div class="eyebrow">СВЯЗЬ СПОСОБНОСТЕЙ</div><h2 style="font-size:17px;line-height:1.5;margin:15px 0">${esc(a?.title)} <span style="color:#7bcbbb">→</span> ${esc(b?.title)}</h2><div class="field"><label for="edgeType">Тип связи</label><select id="edgeType" data-edge-field="type"><option value="requirement" ${edge.type!=='group'?'selected':''}>Обязательное условие →</option><option value="group" ${edge.type==='group'?'selected':''}>Принадлежит школе ···</option></select></div><div class="note">${edge.type==='group'?'Пунктир — только оформление направления. Эта связь НЕ является условием изучения.':'Сплошная связь — обязательное условие. Если входящих требований несколько, нужны ВСЕ (И).'}</div><button class="btn danger" id="deleteSelectedEdge">✕ Удалить связь</button>`;return;}
-const n=nodeById(selected.id);if(!n){area.innerHTML=`<div class="placeholder"><div class="orb">✧</div><h3 style="color:#d6e7e8;font-size:16px">Выбери узел</h3>Нажми на точку на дереве, чтобы изменить название, способ получения и эффект. Или создай новый узел.</div>`;return;}
-const bOpts=[`<option value="core" ${n.branch==='core'?'selected':''}>Центр</option>`,...data.branches.map(b=>`<option value="${esc(b.id)}" ${n.branch===b.id?'selected':''}>${esc(b.name)}</option>`)].join('');const incoming=data.edges.filter(e=>e.to===n.id),outgoing=data.edges.filter(e=>e.from===n.id);const connected=[...incoming.map(e=>({...e,dir:e.type==='group'?'⇠':'←',other:nodeById(e.from)})),...outgoing.map(e=>({...e,dir:e.type==='group'?'⇢':'→',other:nodeById(e.to)}))];area.innerHTML=`<div class="detail-head"><div class="detail-preview" style="color:${colorOf(n)};border-color:${colorOf(n)}">${n.kind==='temple'?'🏛':n.kind==='school'?'✺':n.kind==='core'?'✧':n.kind==='milestone'?'✦':'◇'}</div><div><div class="detail-title" title="${esc(n.title)}">${esc(n.title)}</div><div class="detail-small">${esc(statusLabel(n.status))} · ${n.id==='core'?'Центр дерева':'Способность'}</div></div></div>
+ if(n===L.center){const total=data.nodes.length;return `<div class="progress-rule"><div class="progress-title">◎ Кратер — точка старта</div><div class="progress-note">Из кратера выходы ведут по сторонам света. Каждое направление неба — своя ветвь; летишь стабильно в одну сторону — встречаешь её храмы и школы.</div>${data.branches.map(b=>{const B=L.branches.get(b.id);return `<div class="progress-dep"><span style="color:${b.color}">●</span>${esc(b.name)}<span class="kd">${B?B.compass.ru:''}</span></div>`;}).join('')}<div class="progress-note" style="margin-bottom:0">Всего узлов: ${total}</div></div>`;}
+ if(n.kind==='school'){const S=L.schools.get(n.id);
+  let h=`<div class="progress-rule"><button type="button" id="atlasFocusEnter" class="btn primary" style="width:100%;margin-bottom:12px">✦ Открыть созвездие школы</button><div class="progress-title">✺ Школа = созвездие</div><div class="progress-note">Сама школа не изучается. Её таланты идут этапами от входа наружу. Чтобы открыть талант, нужно изучить ВСЕ его условия.</div>`;
+  h+=S?.temples.length?S.temples.map(t=>depLine(nodeById(t),'храм-вход')).join(''):`<div class="progress-dep" style="color:#d9b27c">🏛 Храм не привязан — соедини храм со школой</div>`;
+  if(S?.layers.length)S.layers.forEach((ids,i)=>{h+=`<div class="stage-block"><div class="st">ЭТАП ${i+1}</div>${ids.map(id=>{const m=nodeById(id);return depLine(m,m.kind==='regular'?'подталант':KIND[m.kind]?.short.toLowerCase());}).join('')}</div>`;});
+  else h+=`<div class="progress-dep">Таланты школы ещё не описаны — «＋ Продолжить» добавит первый.</div>`;
+  return h+'</div>';}
+ if(n.kind==='temple'){const ss=L.templeSchools.get(n.id)||[];
+  return `<div class="progress-rule"><div class="progress-title">🏛 Храм — место в мире</div><div class="progress-note">Парящий храм на пути направления. Найдя его, игрок открывает созвездие школы и может начать обучение. Один храм может вести в несколько школ.</div>${ss.length?ss.map(id=>depLine(nodeById(id),'открывает')).join(''):'<div class="progress-dep" style="color:#d9b27c">Пока не ведёт ни в одну школу — соедини его связью со школой.</div>'}${directUnlocks(n).filter(x=>x.kind!=='school').map(x=>depLine(x,'требует храм')).join('')}</div>`;}
+ const deps=directPrereqs(n),unl=directUnlocks(n);
+ let h=`<div class="progress-rule"><div class="progress-title">🔒 Чтобы открыть — нужно ВСЁ</div>`;
+ h+=deps.length?deps.map(p=>depLine(p,p.kind==='regular'?'подталант':p.kind==='temple'?'найти храм':KIND[p.kind]?.short.toLowerCase())).join(''):'<div class="progress-dep">Без условий — доступен сразу</div>';
+ h+=`<div class="progress-title" style="margin-top:12px">→ Открывает дальше</div>`;
+ h+=unl.length?unl.map(p=>depLine(p,KIND[p.kind]?.short.toLowerCase())).join(''):'<div class="progress-dep">Пока ничего — это вершина цепочки</div>';
+ if(n.kind==='key'||n.kind==='milestone'){const subs=unl.filter(x=>x.kind==='regular');if(subs.length)h+=`<div class="progress-note" style="margin-bottom:0">Подталанты (${subs.length}) готовят следующий основной талант — все обязательны.</div>`;}
+ return h+'</div>';}
+function renderInspector(){const area=$('details');if(selected.type==='edge'){const edge=data.edges.find(e=>e.id===selected.id);if(!edge){selected={type:'none'};return renderInspector();}const a=nodeById(edge.from),b=nodeById(edge.to);area.innerHTML=`<div class="eyebrow">СВЯЗЬ</div><h2 style="font-size:17px;line-height:1.5;margin:15px 0">${esc(a?.title)} <span style="color:#7bcbbb">→</span> ${esc(b?.title)}</h2><div class="field"><label for="edgeType">Тип связи</label><select id="edgeType" data-edge-field="type"><option value="requirement" ${edge.type!=='group'?'selected':''}>Обязательное условие ━</option><option value="group" ${edge.type==='group'?'selected':''}>Принадлежит школе ┄</option></select></div><div class="note">${edge.type==='group'?'Пунктир — только принадлежность к школе/созвездию. НЕ условие изучения.':'Сплошная линия созвездия — обязательное условие. Если входящих условий несколько, нужны ВСЕ.'}</div><button class="btn danger" id="deleteSelectedEdge">✕ Удалить связь</button>`;return;}
+const n=nodeById(selected.id);if(!n){area.innerHTML=`<div class="placeholder"><div class="orb">✧</div><h3 style="color:#d6e7e8;font-size:16px">Выбери звезду</h3>Нажми на звезду, школу или храм на карте. Двойной клик по пустому небу — новый узел в этом секторе.</div>`;return;}
+const isC=n===L.center,kind=KIND[n.kind]||KIND.regular;
+const bOpts=[`<option value="core" ${n.branch==='core'?'selected':''}>Центр</option>`,...data.branches.map(b=>`<option value="${esc(b.id)}" ${n.branch===b.id?'selected':''}>${esc(b.name)}</option>`)].join('');const incoming=data.edges.filter(e=>e.to===n.id),outgoing=data.edges.filter(e=>e.from===n.id);const connected=[...incoming.map(e=>({...e,dir:e.type==='group'?'⇠':'←',other:nodeById(e.from)})),...outgoing.map(e=>({...e,dir:e.type==='group'?'⇢':'→',other:nodeById(e.to)}))];
+const kOpt=(v,t)=>`<option value="${v}" ${n.kind===v?'selected':''}>${t}</option>`;
+area.innerHTML=`<div class="detail-head"><div class="detail-preview" style="color:${colorOf(n)};border-color:${colorOf(n)}">${isC?'◎':kind.icon}</div><div><div class="detail-title" title="${esc(n.title)}">${esc(n.title)}</div><div class="detail-small">${isC?'Кратер · центр':esc(kind.name)} · ${esc(statusLabel(n.status))}</div></div></div>
+${progressPanel(n)}
 <div class="field"><label for="editTitle">Название</label><input id="editTitle" data-field="title" value="${esc(n.title)}" maxlength="100" /></div>
-<div class="field"><label for="editDesc">Описание / заметки</label><textarea id="editDesc" data-field="desc" placeholder="В чём идея этой способности?">${esc(n.desc||'')}</textarea></div>
-<div class="field-grid"><div class="field"><label for="editBranch">Ветвь</label><select id="editBranch" data-field="branch">${bOpts}</select></div><div class="field"><label for="editKind">Тип</label><select id="editKind" data-field="kind"><option value="regular" ${n.kind==='regular'?'selected':''}>Обычный</option><option value="key" ${n.kind==='key'?'selected':''}>Ключевой</option><option value="milestone" ${n.kind==='milestone'?'selected':''}>Веха ✦</option><option value="core" ${n.kind==='core'?'selected':''}>Центральный</option><option value="school" ${n.kind==='school'?'selected':''}>Школа ✺</option><option value="temple" ${n.kind==='temple'?'selected':''}>Храм 🏛</option></select></div></div>
+<div class="field-grid"><div class="field"><label for="editKind">Тип</label><select id="editKind" data-field="kind">${kOpt('key','★ Основной талант')}${kOpt('regular','· Подталант')}${kOpt('milestone','✦ Мастерство')}${kOpt('school','✺ Школа')}${kOpt('temple','🏛 Храм')}${kOpt('core','✧ Корень / центр')}</select></div><div class="field"><label for="editBranch">Направление</label><select id="editBranch" data-field="branch">${bOpts}</select></div></div>
 <div class="field"><label for="editStatus">Статус идеи</label><select id="editStatus" data-field="status"><option value="idea" ${n.status==='idea'?'selected':''}>Идея / черновик</option><option value="test" ${n.status==='test'?'selected':''}>На проверке</option><option value="canon" ${n.status==='canon'?'selected':''}>Основа канона</option></select></div>
-${progressPanel(n)}<div class="rule"></div><div class="field"><label for="editTrigger">Как развивается / условие</label><textarea id="editTrigger" data-field="trigger" placeholder="Например: три безопасных высотных полёта">${esc(n.trigger||'')}</textarea></div>
-<div class="field"><label for="editEffect">Что меняется в игре</label><textarea id="editEffect" data-field="effect" placeholder="Например: кит дольше держит высоту">${esc(n.effect||'')}</textarea></div><div class="hintline">Условие и эффект — дизайнерские заметки, не обязательные числовые бонусы.</div>
+<div class="field"><label for="editDesc">Описание / заметки</label><textarea id="editDesc" data-field="desc" placeholder="В чём идея?">${esc(n.desc||'')}</textarea></div>
+<div class="field"><label for="editTrigger">Как развивается / условие</label><textarea id="editTrigger" data-field="trigger" placeholder="Например: три безопасных высотных полёта">${esc(n.trigger||'')}</textarea></div>
+<div class="field"><label for="editEffect">Что меняется в игре</label><textarea id="editEffect" data-field="effect" placeholder="Например: кит дольше держит высоту">${esc(n.effect||'')}</textarea></div>
 <div class="rule"></div><div class="links-title">Связи · ${connected.length}</div>${connected.length?connected.map(e=>`<div class="linked"><span>${e.dir} ${esc(e.other?.title||'?')}</span><button data-remove-edge="${esc(e.id)}" title="Удалить связь">✕</button></div>`).join(''):`<div class="hintline">Связей пока нет. Нажми «Связь» на схеме и выбери два узла.</div>`}
-<div class="detail-actions"><button class="btn primary" id="addChild">＋ Продолжить ветвь</button><button class="btn" id="centerSelected">⊡ Найти на схеме</button>${n.id!=='core'?`<button class="btn danger" id="deleteSelected">Удалить</button>`:''}</div>`;}
-function syncAll(){if(!branchById(filter)&&filter!=='all')filter='all';$('projectName').value=data.name;$('mobileProjectName').value=data.name;renderBranches();renderNodeList();renderGraph();renderInspector();updateHistoryButtons();}
+<div class="detail-actions"><button class="btn primary" id="addChild">＋ Продолжить</button><button class="btn" id="centerSelected">⊡ На карте</button>${(n.ox||n.oy)?`<button class="btn" id="resetOffset" title="Убрать ручной сдвиг">↺ Авто-место</button>`:''}${!isC?`<button class="btn danger" id="deleteSelected">Удалить</button>`:''}</div>`;}
+function syncAll(){relayout();if(!branchById(filter)&&filter!=='all')filter='all';$('projectName').value=data.name;$('mobileProjectName').value=data.name;renderBranches();renderNodeList();renderGraph();renderInspector();updateHistoryButtons();}
 const jumpCursor={temple:-1,school:-1};
- function jumpKind(kind){const nodes=data.nodes.filter(n=>n.kind===kind);if(!nodes.length){notify('Узлов такого типа пока нет');return;}jumpCursor[kind]=(jumpCursor[kind]+1)%nodes.length;closePanels();chooseNode(nodes[jumpCursor[kind]].id,true,false);notify((kind==='temple'?'🏛 ':'✺ ')+nodes[jumpCursor[kind]].title);}
- function focusNode(id){const n=nodeById(id);if(!n)return;view.x=-n.x*view.zoom;view.y=-n.y*view.zoom;updateTransform();}
+function jumpKind(kind){const nodes=data.nodes.filter(n=>n.kind===kind);if(!nodes.length){notify('Узлов такого типа пока нет');return;}jumpCursor[kind]=(jumpCursor[kind]+1)%nodes.length;closePanels();const n=nodes[jumpCursor[kind]];chooseNode(n.id,false,false);focusNode(n.id,Math.max(view.zoom,.45));notify((kind==='temple'?'🏛 ':'✺ ')+n.title);}
 function closePanels(){ $('sidebar').classList.remove('show'); $('inspector').classList.remove('show'); $('panelScrim').classList.remove('show'); }
 function openPanel(which){closeMobileActions();closePanels();$(which).classList.add('show');if(window.innerWidth<=950)$('panelScrim').classList.add('show');}
 function togglePanel(which){const open=$(which).classList.contains('show');closePanels();closeMobileActions();if(!open)openPanel(which);}
 function openMobileActions(){closePanels();$('mobileProjectName').value=data.name;$('mobileActions').classList.add('show');$('mobileActions').setAttribute('aria-hidden','false');$('mobileActionsBackdrop').classList.add('show');}
 function closeMobileActions(){$('mobileActions').classList.remove('show');$('mobileActions').setAttribute('aria-hidden','true');$('mobileActionsBackdrop').classList.remove('show');}
-function chooseNode(id,center=false,showDetails=true){selected={type:'node',id};renderGraph();renderNodeList();renderInspector();if(center)focusNode(id);if(showDetails&&window.innerWidth<=950)openPanel('inspector');}
+function chooseNode(id,center=false,showDetails=true){const prev=selected;selected={type:'node',id};
+ // re-render only the old and new star (selection ring); highlight is class-based
+ for(const sid of [prev.type==='node'?prev.id:null,id]){if(!sid)continue;const g=$('nodeLayer').querySelector(`[data-node="${CSS.escape(sid)}"]`),n=nodeById(sid);if(g&&n){const t=document.createElementNS(NS,'g');t.innerHTML=nodeSVG(n);g.replaceWith(t.firstChild);}}
+ if(prev.type==='edge')renderGraph();
+ applyHighlight();renderCrumbs();renderNodeList();renderInspector();if(center)focusNode(id,Math.max(view.zoom,.6));if(showDetails&&window.innerWidth<=950)openPanel('inspector');}
 function removeNode(id){const n=nodeById(id);if(!n||n.id==='core')return;flush();data.nodes=data.nodes.filter(n=>n.id!==id);data.edges=data.edges.filter(e=>e.from!==id&&e.to!==id);selected={type:'none'};record();syncAll();notify('Узел удалён');}
 function removeEdge(id){flush();data.edges=data.edges.filter(e=>e.id!==id);if(selected.type==='edge'&&selected.id===id)selected={type:'none'};record();syncAll();}
-function availableNodeSpot(parent,branch){let a=parent?.id==='core'?(-Math.PI/2+Math.max(0,data.branches.findIndex(b=>b.id===branch))*2*Math.PI/Math.max(1,data.branches.length)):parent?Math.atan2(parent.y,parent.x):-Math.PI/2;let radius=Math.max(142,(parent?Math.hypot(parent.x,parent.y):0)+135);for(let extra of [0,55,110,170,240,310,400,520,670])for(let off of [0,.38,-.38,.68,-.68,1.02,-1.02]){let r=radius+extra,x=Math.cos(a+off)*r,y=Math.sin(a+off)*r;if(data.nodes.every(n=>Math.hypot(n.x-x,n.y-y)>102))return{x,y};}return{x:Math.cos(a)*radius,y:Math.sin(a)*radius};}
-function addNode(parentId=null,location=null){flush();const parent=parentId?nodeById(parentId):null;let branch=parent&&parent.branch!=='core'?parent.branch:(filter!=='all'?filter:data.branches[0]?.id||'core');let x=location?.x,y=location?.y;if(!location){const spot=availableNodeSpot(parent||nodeById('core'),branch);x=spot.x;y=spot.y;}
-const id=randId();const n={id,title:'Новая способность',desc:'',branch,kind:'regular',status:'idea',trigger:'',effect:'',x,y};data.nodes.push(n);if(parent)data.edges.push({id:randId(),from:parent.id,to:id,type:parent.kind==='school'?'group':'requirement'});selected={type:'node',id};record();syncAll();focusNode(id);openPanel('inspector');const field=$('editTitle');if(field && window.innerWidth>620){field.focus();field.select();}notify('Узел добавлен');}
-function tryLink(id){if(!linkStart){linkStart=id;updateLinkTip();renderGraph();return;}if(linkStart===id){linkStart=null;updateLinkTip();notify('Выбери другой узел');return;}if(data.edges.some(e=>e.from===linkStart&&e.to===id)){linkStart=null;updateLinkTip();notify('Такая связь уже существует');return;}if(wouldCreateCycle(linkStart,id)){linkStart=null;updateLinkTip();notify('Циклы зависимостей запрещены');return;}flush();data.edges.push({id:randId(),from:linkStart,to:id,type:nodeById(linkStart)?.kind==='school'||nodeById(id)?.kind==='school'?'group':'requirement'});linkStart=null;mode='move';updateMode();record();syncAll();notify('Связь добавлена');}
-function updateLinkTip(){let txt=!linkStart?'Выбери первый узел для связи · Esc — отмена':`От «${nodeById(linkStart)?.title}» → выбери второй узел · Esc — отмена`;$('linkTip').textContent=txt;$('linkTip').classList.toggle('show',mode==='link');}
+function branchAtPoint(pt){if(!L||Math.hypot(pt.x,pt.y)<90)return null;const a=Math.atan2(pt.y,pt.x)/D2R;for(const [bid,B] of L.branches){for(const k of [-360,0,360])if(a+k>=B.a0&&a+k<B.a1)return bid;}return null;}
+function addNode(parentId=null,location=null){flush();const parent=parentId?nodeById(parentId):null;
+ let branch=parent&&parent.branch!=='core'?parent.branch:(location&&branchAtPoint(location))||(filter!=='all'?filter:data.branches[0]?.id||'core');
+ const kind=parent&&parent.kind==='school'?'key':parent&&(parent.kind==='key'||parent.kind==='milestone')?'regular':parent?'regular':'key';
+ const id=randId();const n={id,title:kind==='key'?'Новый основной талант':'Новый подталант',desc:'',branch,kind,status:'idea',trigger:'',effect:'',x:0,y:0};data.nodes.push(n);
+ if(parent)data.edges.push({id:randId(),from:parent.id,to:id,type:parent.kind==='school'?'group':'requirement'});
+ relayout();if(location){const p=P(id);n.ox=Math.round(location.x-p.x);n.oy=Math.round(location.y-p.y);}
+ selected={type:'node',id};record();syncAll();focusNode(id,Math.max(view.zoom,.6));openPanel('inspector');const field=$('editTitle');if(field&&window.innerWidth>620){field.focus();field.select();}notify(kind==='key'?'Основной талант добавлен':'Подталант добавлен');}
+function tryLink(id){if(!linkStart){linkStart=id;updateLinkTip();chooseNode(id,false,false);return;}if(linkStart===id){linkStart=null;updateLinkTip();notify('Выбери другой узел');return;}if(data.edges.some(e=>e.from===linkStart&&e.to===id)){linkStart=null;updateLinkTip();notify('Такая связь уже существует');return;}if(wouldCreateCycle(linkStart,id)){linkStart=null;updateLinkTip();notify('Циклы зависимостей запрещены');return;}flush();const a=nodeById(linkStart),b=nodeById(id);data.edges.push({id:randId(),from:linkStart,to:id,type:a?.kind==='school'||b?.kind==='school'?'group':'requirement'});linkStart=null;mode='move';updateMode();record();syncAll();notify('Связь добавлена');}
+function updateLinkTip(){let txt=!linkStart?'Выбери первый узел (откуда) · Esc — отмена':`От «${nodeById(linkStart)?.title}» → выбери, что он открывает · Esc — отмена`;$('linkTip').textContent=txt;$('linkTip').classList.toggle('show',mode==='link');}
 function updateMode(){$('linkMode').classList.toggle('active',mode==='link');$('moveMode').classList.toggle('active',mode==='move');$('graph').classList.toggle('linkmode',mode==='link');updateLinkTip();}
 function notify(txt){const el=$('toast');el.textContent=txt;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2600);}
 function ask(title,msg,onYes,yesText='Удалить'){$('confirmTitle').textContent=title;$('confirmText').textContent=msg;$('confirmYes').textContent=yesText;confirmCallback=onYes;$('confirmModal').classList.add('show');}
@@ -421,25 +699,26 @@ function openBranchModal(id=null){
  const branch=id?branchById(id):null;
  editingBranchId=branch?.id||null;
  $('branchName').value=branch?.name||'';
+ $('branchDir').value=branch?.dir||'';
  branchColor=branch?.color||colors[data.branches.length%colors.length];
- $('branchModalTitle').textContent=branch?'Настройки ветви':'Новая ветвь';
- $('branchModalDesc').textContent=branch?'Измени название или цвет. Все способности и связи сохранятся.':'Добавь ещё одно направление развития. Оно получит свой цвет и сектор на схеме.';
- $('createBranch').textContent=branch?'Сохранить изменения':'Создать ветвь';
+ $('branchModalTitle').textContent=branch?'Настройки направления':'Новое направление';
+ $('branchModalDesc').textContent=branch?'Название, цвет и сторона света, куда ведёт выход из кратера.':'Новый сектор неба: выход из кратера в свою сторону света.';
+ $('createBranch').textContent=branch?'Сохранить':'Создать';
  $('deleteBranch').hidden=!branch;
  renderPalette();$('branchModal').classList.add('show');$('branchName').focus();$('branchName').select();
 }
 function saveBranch(){
- const name=$('branchName').value.trim().slice(0,60);
- if(!name){$('branchName').focus();notify('Введи название ветви');return;}
- if(data.branches.some(b=>b.id!==editingBranchId&&b.name.toLocaleLowerCase('ru')===name.toLocaleLowerCase('ru'))){notify('Ветвь с таким названием уже есть');$('branchName').focus();return;}
+ const name=$('branchName').value.trim().slice(0,60),dir=$('branchDir').value;
+ if(!name){$('branchName').focus();notify('Введи название');return;}
+ if(data.branches.some(b=>b.id!==editingBranchId&&b.name.toLocaleLowerCase('ru')===name.toLocaleLowerCase('ru'))){notify('Направление с таким названием уже есть');$('branchName').focus();return;}
  flush();
  if(editingBranchId){
   const branch=branchById(editingBranchId);if(!branch)return;
-  branch.name=name;branch.color=branchColor;
-  notify('Ветвь обновлена');
+  branch.name=name;branch.color=branchColor;if(dir)branch.dir=dir;else delete branch.dir;
+  notify('Направление обновлено');
  }else{
-  const id=randId();data.branches.push({id,name,color:branchColor});filter=id;
-  notify('Ветвь добавлена');
+  const id=randId();const b={id,name,color:branchColor};if(dir)b.dir=dir;data.branches.push(b);filter=id;
+  notify('Направление добавлено');
  }
  record();syncAll();$('branchModal').classList.remove('show');editingBranchId=null;
 }
@@ -456,16 +735,27 @@ function removeBranch(id){
  }
  if(filter===id)filter=replacement?.id||'all';
  record();syncAll();
- notify(affected.length?`Ветвь удалена · узлы (${affected.length}) сохранены`:'Ветвь удалена');
+ notify(affected.length?`Направление удалено · узлы (${affected.length}) сохранены`:'Направление удалено');
 }
 function confirmBranchDeletion(){
  const id=editingBranchId,branch=branchById(id);if(!branch)return;
  const count=data.nodes.filter(n=>n.branch===id).length;
  $('branchModal').classList.remove('show');
- ask('Удалить направление?',count?`«${branch.name}» будет удалена. ${count} узл. останутся на схеме и перейдут в направление «Без направления». Все связи сохранятся.`:`Удалить пустую ветвь «${branch.name}»?`,()=>removeBranch(id),'Удалить ветвь');
+ ask('Удалить направление?',count?`«${branch.name}» будет удалено. ${count} узл. останутся и перейдут в «Без направления». Все связи сохранятся.`:`Удалить пустое направление «${branch.name}»?`,()=>removeBranch(id),'Удалить');
 }
 function renderPalette(){$('colorGrid').innerHTML=colors.map(c=>`<button class="colorspot ${c===branchColor?'selected':''}" style="background:${c}" data-color="${c}" aria-label="Цвет ${c}"></button>`).join('');}
-
+function renderLegend(){
+ const sw=(inner,w=34)=>`<svg width="${w}" height="26" viewBox="${-w/2} -13 ${w} 26">${inner}</svg>`;
+ $('legend').innerHTML=`<h4>ЛЕГЕНДА ЗВЁЗДНОЙ КАРТЫ</h4>
+ <div class="row">${sw('<circle r="11" fill="url(#gCrater)"/><circle r="6" fill="#0a0e14" stroke="#cdb894"/>')}<span><b>Кратер</b> — старт; выходы по сторонам света</span></div>
+ <div class="row">${sw('<circle r="10" fill="#0b1826" stroke="#c4a5e7"/><path d="'+STAR8+'" fill="#c4a5e7" transform="scale(.36)"/>')}<span><b>Школа</b> — целое созвездие</span></div>
+ <div class="row">${sw('<path d="M-12 1 Q0 -2 12 1 L8 5 L2 11 L-4 6 L-9 5Z" fill="#6b5a47"/><path d="M-9 0 V-8 M-3 0 V-8 M3 0 V-8 M9 0 V-8 M-11 -8 L0 -13 L11 -8Z" stroke="#e7c08a" fill="none" stroke-width="1.3"/>')}<span><b>Храм</b> — парящий остров, вход в школу</span></div>
+ <div class="row">${sw('<path d="'+STAR4+'" fill="#c4a5e7" transform="scale(.6)"/><circle r="3" fill="#fff"/>')}<span><b>Основной талант</b> — яркая звезда</span></div>
+ <div class="row">${sw('<circle r="3.4" fill="#c4a5e7"/><circle r="1.3" fill="#fff"/>')}<span><b>Подталант</b> — малая звезда, все обязательны</span></div>
+ <div class="row">${sw('<path d="M-15 0 H15" stroke="#c4a5e7" stroke-width="1.8"/>')}<span>Линия созвездия = обязательное условие</span></div>
+ <div class="row">${sw('<path d="M-15 0 H15" stroke="#c4a5e7" stroke-width="1.4" stroke-dasharray="1 5" stroke-linecap="round"/>')}<span>Пунктир = принадлежит школе</span></div>
+ <div class="row">${sw('<path d="M-15 0 H15" stroke="#e7c08a" stroke-width="1.3" stroke-dasharray="5 4"/>')}<span>Золотой штрих = связь с храмом</span></div>
+ <div class="tip">Колесо/щипок — масштаб: <b>Небо</b> → <b>Таланты</b> → <b>Карточки</b>. Тап по звезде подсвечивает весь путь к ней. Двойной клик по звезде — приблизиться (школа/храм — открыть созвездие). Двойной клик по пустому небу — новый узел в этом секторе. <span class="kbd">C</span> связь · <span class="kbd">Del</span> удалить · <span class="kbd">F</span> всё небо</div>`;}
  // GitHub Contents API sync; browser keeps the only copy of the credential.
  const GH_URL='https://api.github.com/repos/johnercross-lgtm/-dry-ocean-talent-atlas/contents/data/atlas.json';
  const GH_TOKEN_KEY='dry-ocean-github-session-token';
@@ -602,59 +892,94 @@ function renderPalette(){$('colorGrid').innerHTML=colors.map(c=>`<button class="
  }
  const initialSeedSnapshot=serialize();
 
- function download(content,name,mime){const blob=new Blob([content],{type:mime}),url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),2000);}
+function download(content,name,mime){const blob=new Blob([content],{type:mime}),url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),2000);}
 function filename(){return(data.name||'talent-tree').replace(/[^\wа-яёА-ЯЁ-]+/g,'_').slice(0,55)||'talent-tree';}
 function exportJSON(){flush();download(JSON.stringify({...data,exportedAt:new Date().toISOString()},null,2),filename()+'.json','application/json');notify('JSON-проект скачан');}
-function freshProject(){flush();data={version:1,name:'Моё дерево кита',branches:structuredClone(seedBranches),nodes:[structuredClone(seedNodes[0])],edges:[]};filter='all';search='';$('nodeSearch').value='';selected={type:'node',id:'core'};record();syncAll();fitAll();notify('Чистый проект готов');}
-function startFresh(){ask('Создать чистое дерево?','Демонстрационные узлы будут убраны. Останутся центр и шесть направлений. Текущий вариант можно предварительно скачать как JSON.',freshProject,'Создать');}
-function exportPNG(){try{const clone=$('graph').cloneNode(true);const bounds=[...data.nodes.map(n=>({x:n.x,y:n.y})),...branchPositions()];const ext={x0:Math.min(...bounds.map(n=>n.x))-145,x1:Math.max(...bounds.map(n=>n.x))+145,y0:Math.min(...bounds.map(n=>n.y))-135,y1:Math.max(...bounds.map(n=>n.y))+165};const width=Math.ceil(ext.x1-ext.x0),height=Math.ceil(ext.y1-ext.y0);clone.setAttribute('width',width);clone.setAttribute('height',height);clone.setAttribute('viewBox',`0 0 ${width} ${height}`);clone.setAttribute('xmlns',NS);const bg=document.createElementNS(NS,'rect');bg.setAttribute('width','100%');bg.setAttribute('height','100%');bg.setAttribute('fill','#0b1624');clone.insertBefore(bg,clone.firstChild);const style=document.createElementNS(NS,'style');style.textContent=`.guide-circle{fill:none;stroke:#6c94a7;stroke-opacity:.13;stroke-width:1;stroke-dasharray:2 8}.guide-ray{stroke:#87aec3;stroke-opacity:.08;stroke-width:1}.branch-label{font-family:Arial,sans-serif;font-size:11px;font-weight:800;letter-spacing:1.3px;text-anchor:middle;paint-order:stroke;stroke:#07121e;stroke-width:4px}.edge{fill:none;stroke-width:2.2;stroke-linecap:round}.edge.cross{stroke-dasharray:5 6}.edge.group{stroke-dasharray:2 7;stroke-width:1.65;opacity:.7}.edge-hit{display:none}.node-circle{stroke-width:2.1}.nodehalo{fill:none;stroke-width:1;stroke-opacity:.52}.node-text{fill:#c9dade;font:650 12px Arial,sans-serif;text-anchor:middle;paint-order:stroke;stroke:#091321;stroke-width:4px;stroke-linejoin:round}.node-glyph{font:bold 14px Arial,sans-serif;text-anchor:middle;dominant-baseline:middle}.node-type-tag{font:bold 10px Arial,sans-serif;letter-spacing:1.7px;text-anchor:middle;paint-order:stroke;stroke:#0b1624;stroke-width:3.5px}.node-school-outer{fill:none;stroke-width:1.8;stroke-opacity:.72}.node-temple-icon{stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}.school-plaque{stroke-width:1.7}.school-plaque-label{font:bold 10px Arial;text-anchor:middle;letter-spacing:2px}.school-plaque-name{font:bold 13px Arial;text-anchor:middle}.selectedring{fill:none;stroke:#e9fffa;stroke-width:1.8;stroke-dasharray:4 3}`;clone.insertBefore(style,clone.firstChild);clone.querySelector('#world').setAttribute('transform',`translate(${-ext.x0} ${-ext.y0})`);const svg=new XMLSerializer().serializeToString(clone);const img=new Image();const blob=new Blob([svg],{type:'image/svg+xml;charset=utf-8'});const url=URL.createObjectURL(blob);img.onload=()=>{const c=document.createElement('canvas'),scale=Math.min(2,3200/Math.max(width,height));c.width=Math.ceil(width*scale);c.height=Math.ceil(height*scale);const ctx=c.getContext('2d');ctx.drawImage(img,0,0,c.width,c.height);c.toBlob(png=>{if(png){const u=URL.createObjectURL(png),a=document.createElement('a');a.href=u;a.download=filename()+'.png';a.click();setTimeout(()=>URL.revokeObjectURL(u),2000);notify('PNG-схема скачана');}else notify('Не удалось создать PNG');},'image/png');URL.revokeObjectURL(url);};img.onerror=()=>{URL.revokeObjectURL(url);notify('Не удалось экспортировать картинку');};img.src=url;}catch(e){notify('Ошибка PNG: '+e.message);}}
-function importJSON(file){const reader=new FileReader();reader.onload=()=>{try{const parsed=parseProject(JSON.parse(reader.result));ask('Открыть проект?','Текущее дерево будет заменено загруженным файлом. Сначала экспортируй JSON, если хочешь сохранить нынешний вариант.',()=>{flush();data=parsed;filter='all';search='';$('nodeSearch').value='';selected={type:'node',id:data.nodes[0]?.id};record();syncAll();fitAll();notify('Проект загружен');},'Заменить');}catch(e){notify('Ошибка файла: '+e.message);}};reader.onerror=()=>notify('Не удалось прочитать файл');reader.readAsText(file);}
-// Multi-pointer navigator: one finger moves the canvas/nodes, two fingers pan + pinch-zoom.
+/* The atlas IS the night sky: crater = zenith, each branch rises over its compass direction.
+   azimuth 0° = north, clockwise; altitude 90° = zenith (crater), lower = farther along the branch. */
+function exportSky(){relayout();const rMax=L.rMax+200,mag={core:.5,school:1.2,key:1.6,milestone:1,temple:2.2,regular:3.4};
+ const stars=data.nodes.map(n=>{const p=P(n.id),r=Math.hypot(p.x,p.y),deg=Math.atan2(p.y,p.x)/D2R;const sid=n.kind==='school'?n.id:L.schoolOf.get(n.id);
+  return{id:n.id,title:n.title,kind:n.kind,branch:branchById(n.branch)?.name||'Центр',school:sid?nodeById(sid)?.title:null,azimuthDeg:+(((deg+90)%360+360)%360).toFixed(2),altitudeDeg:+(90-84*Math.min(1,r/rMax)).toFixed(2),magnitude:mag[n.kind]??3,atlasX:Math.round(p.x),atlasY:Math.round(p.y)};});
+ const lines=data.edges.filter(e=>e.type!=='group').map(e=>[e.from,e.to]);
+ const branches=data.branches.map(b=>{const B=L.branches.get(b.id);return{id:b.id,name:b.name,color:b.color,compass:B?.compass.id,azimuthFromDeg:+(((B.a0+90)%360+360)%360).toFixed(1),azimuthToDeg:+(((B.a1+90)%360+360)%360).toFixed(1)};});
+ download(JSON.stringify({format:'dry-ocean-sky/1',note:'Crater = zenith. azimuth 0=N clockwise. Lines = requirement links (constellation lines).',branches,stars,lines},null,2),filename()+'_sky.json','application/json');notify('Звёздное небо скачано (для Unity)');}
+function newProjectData(){return{version:2,name:'Моё дерево кита',dependencyMode:'all',branches:structuredClone(seedBranches),nodes:[{desc:'',...structuredClone(seedNodes[0])}],edges:[]};}
+function freshProject(){flush();data=newProjectData();filter='all';search='';$('nodeSearch').value='';selected={type:'node',id:'core'};focus=null;record();syncAll();fitAll();notify('Чистый проект готов');}
+function startFresh(){ask('Создать чистое дерево?','Все узлы будут убраны. Останутся кратер и шесть направлений. Текущий вариант можно сначала скачать как JSON.',freshProject,'Создать');}
+function exportPNG(){try{relayout();const b=fullBox(),pad=160;const ext={x0:b.x0-pad,y0:b.y0-pad,x1:b.x1+pad,y1:b.y1+pad};const width=Math.ceil(ext.x1-ext.x0),height=Math.ceil(ext.y1-ext.y0);
+ const clone=$('graph').cloneNode(true);clone.setAttribute('width',width);clone.setAttribute('height',height);clone.setAttribute('viewBox',`0 0 ${width} ${height}`);clone.setAttribute('xmlns',NS);
+ clone.setAttribute('class','t-card');for(const [k] of Object.entries(scaleVars(1)))clone.style.setProperty(k,'1');
+ const bg=document.createElementNS(NS,'rect');bg.setAttribute('width','100%');bg.setAttribute('height','100%');bg.setAttribute('fill','#060c17');clone.insertBefore(bg,clone.firstChild.nextSibling);
+ clone.querySelector('#world').setAttribute('transform',`translate(${-ext.x0} ${-ext.y0})`);
+ const svg=new XMLSerializer().serializeToString(clone);const img=new Image();const url=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml;charset=utf-8'}));
+ img.onload=()=>{const c=document.createElement('canvas'),scale=Math.min(2,4200/Math.max(width,height));c.width=Math.ceil(width*scale);c.height=Math.ceil(height*scale);const ctx=c.getContext('2d');ctx.drawImage(img,0,0,c.width,c.height);c.toBlob(png=>{if(png){const u=URL.createObjectURL(png),a=document.createElement('a');a.href=u;a.download=filename()+'.png';a.click();setTimeout(()=>URL.revokeObjectURL(u),2000);notify('PNG-схема скачана');}else notify('Не удалось создать PNG');},'image/png');URL.revokeObjectURL(url);};
+ img.onerror=()=>{URL.revokeObjectURL(url);notify('Не удалось экспортировать картинку');};img.src=url;}catch(e){notify('Ошибка PNG: '+e.message);}}
+function importJSON(file){const reader=new FileReader();reader.onload=()=>{try{const parsed=parseProject(JSON.parse(reader.result));ask('Открыть проект?','Текущее дерево будет заменено загруженным файлом. Сначала экспортируй JSON, если хочешь сохранить нынешний вариант.',()=>{flush();data=parsed;filter='all';search='';$('nodeSearch').value='';selected={type:'node',id:data.nodes[0]?.id};focus=null;record();syncAll();fitAll();notify('Проект загружен');},'Заменить');}catch(e){notify('Ошибка файла: '+e.message);}};reader.onerror=()=>notify('Не удалось прочитать файл');reader.readAsText(file);}
+function makeStarfield(){try{const mk=(size,count,maxR,alpha)=>{const c=document.createElement('canvas');c.width=c.height=size;const x=c.getContext('2d');let s=size*7+count;const rnd=()=>(s=(s*16807)%2147483647)/2147483647;for(let i=0;i<count;i++){const r=rnd()*maxR+.25,a=alpha*(.35+rnd()*.65);x.fillStyle=`rgba(${200+rnd()*55|0},${210+rnd()*45|0},255,${a.toFixed(2)})`;x.beginPath();x.arc(rnd()*size,rnd()*size,r,0,7);x.fill();}return `url(${c.toDataURL()})`;};
+ const st=$('stage').style;st.setProperty('--stars1',mk(512,170,.7,.55));st.setProperty('--stars2',mk(384,40,1.15,.8));}catch(e){}}
+
+/* ---------- POINTER: one finger pans/drags, two fingers pinch ---------- */
 function gesturePoint(evt){const r=$('graph').getBoundingClientRect();return{x:evt.clientX-r.left,y:evt.clientY-r.top};}
-function beginPinch(){const p=[...touches.values()];if(p.length<2)return;const a=p[0],b=p[1],cx=(a.x+b.x)/2,cy=(a.y+b.y)/2;
+function beginPinch(){const p=[...touches.values()];if(p.length<2)return;cancelAnimationFrame(animFrame);const a=p[0],b=p[1],cx=(a.x+b.x)/2,cy=(a.y+b.y)/2;
  pinch={startDistance:Math.max(1,Math.hypot(a.x-b.x,a.y-b.y)),startZoom:view.zoom,anchorX:(cx-stageSize.w/2-view.x)/view.zoom,anchorY:(cy-stageSize.h/2-view.y)/view.zoom};
  pointer=null;suppressTouchDrag=true;$('graph').classList.remove('grabbing');}
-function handleSvgDown(evt){if(evt.pointerType==='touch'){touches.set(evt.pointerId,gesturePoint(evt));}
+function handleSvgDown(evt){cancelAnimationFrame(animFrame);if(evt.pointerType==='touch'){touches.set(evt.pointerId,gesturePoint(evt));}
  try{evt.currentTarget.setPointerCapture(evt.pointerId);}catch(e){}
  if(touches.size>=2){beginPinch();evt.preventDefault();return;}
  if(evt.pointerType==='touch'&&suppressTouchDrag){evt.preventDefault();return;}
- const nodeEl=evt.target.closest('[data-node]'),edgeEl=evt.target.closest('[data-edge]');
+ const nodeEl=evt.target.closest('[data-node]'),edgeEl=evt.target.closest('[data-edge]'),brEl=evt.target.closest('[data-branch]');
  if(nodeEl){const id=nodeEl.dataset.node;if(mode==='link'){
    if(evt.pointerType==='touch'){pointer={type:'link',id,startX:evt.clientX,startY:evt.clientY,moved:false};}
    else tryLink(id);
-   evt.preventDefault();return;
- }
- chooseNode(id,false,false);const n=nodeById(id);pointer={type:'node',id,startX:evt.clientX,startY:evt.clientY,startPos:{x:n.x,y:n.y},moved:false,touch:evt.pointerType==='touch'};evt.preventDefault();return;}
- if(edgeEl){selected={type:'edge',id:edgeEl.dataset.edge};syncAll();if(evt.pointerType==='touch')openPanel('inspector');evt.preventDefault();return;}
+   evt.preventDefault();return;}
+  if(!(selected.type==='node'&&selected.id===id))chooseNode(id,false,false);const n=nodeById(id);pointer={type:'node',id,startX:evt.clientX,startY:evt.clientY,start:{x:n.ox||0,y:n.oy||0},moved:false,touch:evt.pointerType==='touch'};evt.preventDefault();return;}
+ if(edgeEl){selected={type:'edge',id:edgeEl.dataset.edge};renderGraph();renderNodeList();renderInspector();if(evt.pointerType==='touch')openPanel('inspector');evt.preventDefault();return;}
+ if(brEl&&mode!=='link'){pointer={type:'branch',id:brEl.dataset.branch,startX:evt.clientX,startY:evt.clientY,panX:view.x,panY:view.y,moved:false};evt.preventDefault();return;}
  if(mode==='link')return;
- pointer={type:'pan',startX:evt.clientX,startY:evt.clientY,panX:view.x,panY:view.y,moved:false};evt.currentTarget.classList.add('grabbing');selected={type:'none'};renderNodeList();renderInspector();renderGraph();evt.preventDefault();}
+ pointer={type:'pan',startX:evt.clientX,startY:evt.clientY,panX:view.x,panY:view.y,moved:false};evt.currentTarget.classList.add('grabbing');evt.preventDefault();}
 function handleSvgMove(evt){if(evt.pointerType==='touch'&&touches.has(evt.pointerId))touches.set(evt.pointerId,gesturePoint(evt));
  if(pinch&&touches.size>=2){const p=[...touches.values()],a=p[0],b=p[1],cx=(a.x+b.x)/2,cy=(a.y+b.y)/2,dist=Math.hypot(a.x-b.x,a.y-b.y);
-   const z=Math.max(.065,Math.min(3.5,pinch.startZoom*dist/pinch.startDistance));view.zoom=z;view.x=cx-stageSize.w/2-pinch.anchorX*z;view.y=cy-stageSize.h/2-pinch.anchorY*z;updateTransform();atlasRefresh();evt.preventDefault();return;}
+   const z=clampZ(pinch.startZoom*dist/pinch.startDistance);view.zoom=z;view.x=cx-stageSize.w/2-pinch.anchorX*z;view.y=cy-stageSize.h/2-pinch.anchorY*z;updateTransform();evt.preventDefault();return;}
  if(suppressTouchDrag&&evt.pointerType==='touch')return;
  if(!pointer)return;if(evt.pointerType==='touch'&&!touches.has(evt.pointerId))return;
  const dx=evt.clientX-pointer.startX,dy=evt.clientY-pointer.startY;if(Math.abs(dx)+Math.abs(dy)>5)pointer.moved=true;
- if(pointer.type==='pan'){view.x=pointer.panX+dx;view.y=pointer.panY+dy;updateTransform();}
- else if(pointer.type==='node'){const n=nodeById(pointer.id);if(n){n.x=pointer.startPos.x+dx/view.zoom;n.y=pointer.startPos.y+dy/view.zoom;renderGraph();}}
+ if(pointer.type==='pan'||pointer.type==='branch'){view.x=pointer.panX+dx;view.y=pointer.panY+dy;updateTransform();}
+ else if(pointer.type==='node'&&pointer.moved&&nodeById(pointer.id)!==L.center){const n=nodeById(pointer.id);if(n){n.ox=Math.round(pointer.start.x+dx/view.zoom);n.oy=Math.round(pointer.start.y+dy/view.zoom);renderPositions();}}
  evt.preventDefault();}
 function handleSvgUp(evt){if(evt.pointerType==='touch')touches.delete(evt.pointerId);
  if(pinch){if(touches.size<2)pinch=null;if(touches.size===0)suppressTouchDrag=false;pointer=null;$('graph').classList.remove('grabbing');return;}
  if(suppressTouchDrag){if(touches.size===0)suppressTouchDrag=false;pointer=null;return;}
  if(!pointer)return;const p=pointer;pointer=null;$('graph').classList.remove('grabbing');
- if(p.type==='node'){if(p.moved)record();else if(p.touch)openPanel('inspector');}
+ if(p.type==='node'){if(p.moved){record();renderInspector();}else if(p.touch)openPanel('inspector');}
+ if(p.type==='branch'&&!p.moved)enterFocus('branch',p.id);
+ if(p.type==='pan'&&!p.moved&&selected.type!=='none'){selected={type:'none'};renderGraph();renderNodeList();renderInspector();}
  if(p.type==='link'&&!p.moved)tryLink(p.id);
 }
-function handleZoom(evt){evt.preventDefault();const rect=$('graph').getBoundingClientRect();let factor=Math.exp(-Math.sign(evt.deltaY)*Math.min(Math.abs(evt.deltaY),130)/600);setZoom(view.zoom*factor,evt.clientX-rect.left,evt.clientY-rect.top);}
-function autoLayout(){flush();distribute(data);record();syncAll();fitAll();notify('Радиальная расстановка готова');}
-$('graph').addEventListener('pointerdown',handleSvgDown);$('graph').addEventListener('pointermove',handleSvgMove);$('graph').addEventListener('pointerup',handleSvgUp);$('graph').addEventListener('pointercancel',handleSvgUp);$('graph').addEventListener('wheel',handleZoom,{passive:false});$('graph').addEventListener('dblclick',evt=>{if(mode==='link'||evt.sourceCapabilities?.firesTouchEvents)return;let el=evt.target.closest('[data-node]');if(el){const n=nodeById(el.dataset.node);if(n?.kind==='school'){atlasFocusSchool(n.id);evt.preventDefault();return;}addNode(el.dataset.node);}else addNode(null,worldAt(evt.clientX,evt.clientY));evt.preventDefault();});
-$('branchList').addEventListener('click',evt=>{const edit=evt.target.closest('[data-edit-branch]');if(edit){openBranchModal(edit.dataset.editBranch);return;}const b=evt.target.closest('[data-filter]');if(!b)return;filter=b.dataset.filter;renderBranches();renderNodeList();});
-$('branchList').addEventListener('dblclick',evt=>{const b=evt.target.closest('.branch-entry [data-filter]');if(b)openBranchModal(b.dataset.filter);});$('nodeSearch').addEventListener('input',evt=>{search=evt.target.value;renderNodeList();});$('nodeList').addEventListener('click',evt=>{const row=evt.target.closest('[data-go]');if(row)chooseNode(row.dataset.go,true);});
-$('details').addEventListener('input',evt=>{const field=evt.target.dataset.field;if(!field)return;const n=nodeById(selected.id);if(!n||!['title','desc','trigger','effect'].includes(field))return;n[field]=evt.target.value;laterRecord();renderGraph();if(field==='title'){renderNodeList();const title=$('details').querySelector('.detail-title');if(title){title.textContent=n.title;title.title=n.title;}}});
-$('details').addEventListener('change',evt=>{const field=evt.target.dataset.field;if(evt.target.dataset.edgeField==='type'){const edge=data.edges.find(e=>e.id===selected.id);if(edge){flush();edge.type=evt.target.value==='group'?'group':'requirement';record();syncAll();}return;}if(!field)return;flush();const n=nodeById(selected.id);if(!n)return;n[field]=evt.target.value;laterRecord();renderGraph();renderBranches();renderNodeList();const sub=$('details').querySelector('.detail-small');if(sub)sub.textContent=statusLabel(n.status)+' · '+(n.id==='core'?'Центр дерева':'Способность');renderInspector();});
-$('details').addEventListener('click',evt=>{if(evt.target.closest('#atlasFocusEnter')){atlasFocusSchool(selected.id);return;}if(evt.target.closest('#addChild'))addNode(selected.id);else if(evt.target.closest('#centerSelected'))focusNode(selected.id);else if(evt.target.closest('#deleteSelected'))ask('Удалить способность?','Узел и все его связи будут удалены из дерева.',()=>removeNode(selected.id));else if(evt.target.closest('#deleteSelectedEdge'))removeEdge(selected.id);else{const rm=evt.target.closest('[data-remove-edge]');if(rm)removeEdge(rm.dataset.removeEdge);}});
+function handleZoom(evt){evt.preventDefault();cancelAnimationFrame(animFrame);const rect=$('graph').getBoundingClientRect();const dy=evt.deltaMode===1?evt.deltaY*16:evt.deltaY;let factor=Math.exp(-Math.sign(dy)*Math.min(Math.abs(dy),130)/(evt.ctrlKey?160:520));setZoom(view.zoom*factor,evt.clientX-rect.left,evt.clientY-rect.top);}
+function resetOffsets(){flush();for(const n of data.nodes){delete n.ox;delete n.oy;}record();syncAll();fitAll(true);notify('Все узлы на авто-местах');}
+
+$('graph').addEventListener('pointerdown',handleSvgDown);$('graph').addEventListener('pointermove',handleSvgMove);$('graph').addEventListener('pointerup',handleSvgUp);$('graph').addEventListener('pointercancel',handleSvgUp);$('graph').addEventListener('wheel',handleZoom,{passive:false});
+$('graph').addEventListener('dblclick',evt=>{if(mode==='link'||evt.sourceCapabilities?.firesTouchEvents)return;
+ // pointer capture retargets dblclick to <svg>, so look up what is really under the cursor
+ const hit=document.elementFromPoint(evt.clientX,evt.clientY)||evt.target;if(hit.closest('[data-branch]'))return;let el=hit.closest('[data-node]');if(el){const n=nodeById(el.dataset.node);if(!n)return;
+  // double-click = fly closer: school/temple open their constellation, a talent opens its card
+  const sid=n.kind==='school'?n.id:n.kind==='temple'?(L.templeSchools.get(n.id)||[])[0]:L.schoolOf.get(n.id);
+  if(sid&&(n.kind==='school'||n.kind==='temple'||view.zoom<.3))enterFocus('school',sid);else focusNode(n.id,Math.max(view.zoom*1.6,1.05));}
+ else addNode(null,worldAt(evt.clientX,evt.clientY));evt.preventDefault();});
+$('branchList').addEventListener('click',evt=>{const edit=evt.target.closest('[data-edit-branch]');if(edit){openBranchModal(edit.dataset.editBranch);return;}const b=evt.target.closest('[data-filter]');if(!b)return;filter=b.dataset.filter;renderBranches();renderNodeList();if(filter==='all'){leaveFocus(false);fitAll(true);}else{closePanels();enterFocus('branch',filter);}});
+$('branchList').addEventListener('dblclick',evt=>{const b=evt.target.closest('.branch-entry [data-filter]');if(b)openBranchModal(b.dataset.filter);});$('nodeSearch').addEventListener('input',evt=>{search=evt.target.value;renderNodeList();});
+$('nodeList').addEventListener('click',evt=>{const br=evt.target.closest('[data-branch-go]');if(br){closePanels();enterFocus('branch',br.dataset.branchGo);return;}const row=evt.target.closest('[data-go]');if(row){const n=nodeById(row.dataset.go);chooseNode(row.dataset.go,true);}});
+$('crumbs').addEventListener('click',evt=>{const c=evt.target.closest('[data-crumb]');if(!c)return;const [t,id]=c.dataset.crumb.split(/:(.*)/s);
+ if(t==='sky'||t==='exit'){leaveFocus(false);if(t==='sky'){selected={type:'none'};renderGraph();renderNodeList();renderInspector();}fitAll(true);}
+ else if(t==='branch')enterFocus('branch',id);else if(t==='school')enterFocus('school',id);else if(t==='node')focusNode(id,Math.max(view.zoom,.9));});
+for(const b of document.querySelectorAll('.tiers [data-tier]'))b.addEventListener('click',()=>goTier(b.dataset.tier));
+$('details').addEventListener('input',evt=>{const field=evt.target.dataset.field;if(!field)return;const n=nodeById(selected.id);if(!n||!['title','desc','trigger','effect'].includes(field))return;n[field]=evt.target.value;laterRecord();if(field==='title'){const g=$('nodeLayer').querySelector(`[data-node="${CSS.escape(n.id)}"]`);if(g){const t=document.createElementNS(NS,'g');t.innerHTML=nodeSVG(n);g.replaceWith(t.firstChild);applyHighlight();}renderNodeList();renderCrumbs();const title=$('details').querySelector('.detail-title');if(title){title.textContent=n.title;title.title=n.title;}}});
+$('details').addEventListener('change',evt=>{const field=evt.target.dataset.field;if(evt.target.dataset.edgeField==='type'){const edge=data.edges.find(e=>e.id===selected.id);if(edge){flush();edge.type=evt.target.value==='group'?'group':'requirement';record();syncAll();}return;}if(!field||!['kind','branch','status'].includes(field))return;flush();const n=nodeById(selected.id);if(!n)return;n[field]=evt.target.value;record();syncAll();});
+$('details').addEventListener('click',evt=>{const go=evt.target.closest('[data-go-node]');if(go){chooseNode(go.dataset.goNode,true,false);return;}if(evt.target.closest('#atlasFocusEnter')){closePanels();enterFocus('school',selected.id);return;}if(evt.target.closest('#addChild'))addNode(selected.id);else if(evt.target.closest('#centerSelected')){closePanels();focusNode(selected.id,Math.max(view.zoom,.9));}else if(evt.target.closest('#resetOffset')){const n=nodeById(selected.id);if(n){flush();delete n.ox;delete n.oy;record();syncAll();}}else if(evt.target.closest('#deleteSelected'))ask('Удалить узел?','Узел и все его связи будут удалены из дерева.',()=>removeNode(selected.id));else if(evt.target.closest('#deleteSelectedEdge'))removeEdge(selected.id);else{const rm=evt.target.closest('[data-remove-edge]');if(rm)removeEdge(rm.dataset.removeEdge);}});
 $('projectName').addEventListener('input',evt=>{data.name=evt.target.value.slice(0,100);laterRecord();});
-$('newNodeTop').addEventListener('click',()=>addNode(selected.type==='node'?selected.id:null));$('newProjectBtn').addEventListener('click',startFresh);$('newProjectSide').addEventListener('click',startFresh);$('pngBtn').addEventListener('click',exportPNG);$('moveMode').addEventListener('click',()=>{mode='move';linkStart=null;updateMode();});$('linkMode').addEventListener('click',()=>{mode=mode==='link'?'move':'link';linkStart=null;updateMode();});$('fitBtn').addEventListener('click',fitAll);$('zoomFit').addEventListener('click',fitAll);$('layoutBtn').addEventListener('click',()=>ask('Переставить узлы?','Радиальная расстановка пересчитает позиции узлов. Связи и описания сохранятся; действие можно отменить.',autoLayout,'Расставить'));
-$('zoomIn').addEventListener('click',()=>setZoom(view.zoom*1.2));$('zoomOut').addEventListener('click',()=>setZoom(view.zoom/1.2));$('undoBtn').addEventListener('click',undo);$('redoBtn').addEventListener('click',redo);$('exportBtn').addEventListener('click',exportJSON);$('importBtn').addEventListener('click',()=>$('filePicker').click());$('filePicker').addEventListener('change',e=>{if(e.target.files[0])importJSON(e.target.files[0]);e.target.value='';});
+$('newNodeTop').addEventListener('click',()=>addNode(selected.type==='node'?selected.id:null));$('newProjectBtn').addEventListener('click',startFresh);$('newProjectSide').addEventListener('click',startFresh);$('pngBtn').addEventListener('click',exportPNG);$('skyBtn').addEventListener('click',exportSky);$('moveMode').addEventListener('click',()=>{mode='move';linkStart=null;updateMode();});$('linkMode').addEventListener('click',()=>{mode=mode==='link'?'move':'link';linkStart=null;updateMode();});$('fitBtn').addEventListener('click',()=>{leaveFocus(false);fitAll(true);});$('zoomFit').addEventListener('click',()=>{leaveFocus(false);fitAll(true);});$('layoutBtn').addEventListener('click',()=>ask('Вернуть всё на авто-места?','Все ручные сдвиги звёзд будут сброшены — карта разложится по сторонам света заново. Действие можно отменить.',resetOffsets,'Сбросить'));
+$('legendBtn').addEventListener('click',()=>{const l=$('legend');if(l.hidden)renderLegend();l.hidden=!l.hidden;});
+$('zoomIn').addEventListener('click',()=>animateTo({zoom:view.zoom*1.35,x:view.x*1.35,y:view.y*1.35},220));$('zoomOut').addEventListener('click',()=>animateTo({zoom:view.zoom/1.35,x:view.x/1.35,y:view.y/1.35},220));$('undoBtn').addEventListener('click',undo);$('redoBtn').addEventListener('click',redo);$('exportBtn').addEventListener('click',exportJSON);$('importBtn').addEventListener('click',()=>$('filePicker').click());$('filePicker').addEventListener('change',e=>{if(e.target.files[0])importJSON(e.target.files[0]);e.target.value='';});
 $('newBranch').addEventListener('click',()=>openBranchModal());
 $('cancelBranch').addEventListener('click',()=>$('branchModal').classList.remove('show'));
 $('branchModal').addEventListener('click',e=>{if(e.target===$('branchModal'))$('branchModal').classList.remove('show');const c=e.target.closest('[data-color]');if(c){branchColor=c.dataset.color;renderPalette();}});
@@ -662,7 +987,6 @@ $('createBranch').addEventListener('click',saveBranch);
 $('deleteBranch').addEventListener('click',confirmBranchDeletion);
 $('branchName').addEventListener('keydown',e=>{if(e.key==='Enter')saveBranch();});
 $('confirmCancel').addEventListener('click',()=>$('confirmModal').classList.remove('show'));$('confirmYes').addEventListener('click',()=>{$('confirmModal').classList.remove('show');const cb=confirmCallback;confirmCallback=null;cb?.();});$('confirmModal').addEventListener('click',e=>{if(e.target===$('confirmModal'))$('confirmModal').classList.remove('show');});
-$('atlasFocusExit').addEventListener('click',atlasLeaveFocus);
 $('jumpTemple').addEventListener('click',()=>jumpKind('temple'));$('jumpSchool').addEventListener('click',()=>jumpKind('school'));$('menuBtn').addEventListener('click',()=>togglePanel('sidebar'));$('inspectBtn').addEventListener('click',()=>togglePanel('inspector'));
 $('closeSidebar').addEventListener('click',closePanels);$('closeInspector').addEventListener('click',closePanels);$('panelScrim').addEventListener('click',closePanels);
 $('moreBtn').addEventListener('click',openMobileActions);$('closeMore').addEventListener('click',closeMobileActions);$('mobileActionsBackdrop').addEventListener('click',closeMobileActions);
@@ -670,6 +994,7 @@ $('mobileProjectName').addEventListener('input',e=>{data.name=e.target.value.sli
 $('mobileExport').addEventListener('click',()=>{closeMobileActions();exportJSON();});
 $('mobileImport').addEventListener('click',()=>{closeMobileActions();$('filePicker').click();});
 $('mobilePng').addEventListener('click',()=>{closeMobileActions();exportPNG();});
+$('mobileSky').addEventListener('click',()=>{closeMobileActions();exportSky();});
 $('mobileLayout').addEventListener('click',()=>{closeMobileActions();$('layoutBtn').click();});
 $('mobileNew').addEventListener('click',()=>{closeMobileActions();startFresh();});
 $('mobileUndo').addEventListener('click',()=>{closeMobileActions();undo();});
@@ -682,9 +1007,10 @@ $('mobileRedo').addEventListener('click',()=>{closeMobileActions();redo();});
  $('cloudLoad').addEventListener('click',()=>ghManualLoad(false));
  $('cloudDisconnect').addEventListener('click',ghDisconnect);
  $('cloudModal').addEventListener('click',evt=>{if(evt.target===$('cloudModal'))ghClose();});
-document.addEventListener('keydown',evt=>{if(evt.key==='Escape'){$('branchModal').classList.remove('show');$('confirmModal').classList.remove('show');mode='move';linkStart=null;updateMode();closePanels();closeMobileActions();return;}const editing=evt.target.matches('input,textarea,select')||evt.target.isContentEditable;if((evt.ctrlKey||evt.metaKey)&&evt.key.toLowerCase()==='z'){evt.preventDefault();evt.shiftKey?redo():undo();return;}if(editing)return;if(evt.key.toLowerCase()==='n'){evt.preventDefault();addNode(selected.type==='node'?selected.id:null);}else if(evt.key.toLowerCase()==='c'){evt.preventDefault();mode=mode==='link'?'move':'link';linkStart=null;updateMode();}else if(evt.key==='Delete'||evt.key==='Backspace'){evt.preventDefault();if(selected.type==='node'&&selected.id!=='core')ask('Удалить узел?','Узел и его связи будут удалены.',()=>removeNode(selected.id));else if(selected.type==='edge')removeEdge(selected.id);}else if(evt.key==='+'||evt.key==='=')setZoom(view.zoom*1.2);else if(evt.key==='-')setZoom(view.zoom/1.2);});
+document.addEventListener('keydown',evt=>{if(evt.key==='Escape'){$('branchModal').classList.remove('show');$('confirmModal').classList.remove('show');$('legend').hidden=true;if(mode==='link'){mode='move';linkStart=null;updateMode();}else if(focus)leaveFocus();closePanels();closeMobileActions();return;}const editing=evt.target.matches('input,textarea,select')||evt.target.isContentEditable;if((evt.ctrlKey||evt.metaKey)&&evt.key.toLowerCase()==='z'){evt.preventDefault();evt.shiftKey?redo():undo();return;}if(editing)return;const k=evt.key.toLowerCase();if(k==='n'){evt.preventDefault();addNode(selected.type==='node'?selected.id:null);}else if(k==='c'){evt.preventDefault();mode=mode==='link'?'move':'link';linkStart=null;updateMode();}else if(k==='f'){evt.preventDefault();leaveFocus(false);fitAll(true);}else if(evt.key==='Delete'||evt.key==='Backspace'){evt.preventDefault();if(selected.type==='node'&&selected.id!=='core')ask('Удалить узел?','Узел и его связи будут удалены.',()=>removeNode(selected.id));else if(selected.type==='edge')removeEdge(selected.id);}else if(evt.key==='+'||evt.key==='=')setZoom(view.zoom*1.2);else if(evt.key==='-')setZoom(view.zoom/1.2);});
 window.addEventListener('resize',()=>{sizeStage();if(window.innerWidth>950)closePanels();});if(window.ResizeObserver)new ResizeObserver(()=>sizeStage()).observe($('stage'));window.addEventListener('beforeunload',store);
-history=[serialize()];historyIndex=0;sizeStage();syncAll();fitAll();updateMode();store();ghStatus('GitHub не подключён. Локальная копия сохранена.');if(ghToken){$('cloudToken').value=ghToken;ghConnect();}else if(!hadLocalOnOpen)ghManualLoad(true);
+window.atlasDebug={layout:()=>L,view:()=>view,data:()=>data};
+makeStarfield();relayout();history=[serialize()];historyIndex=0;sizeStage();syncAll();fitAll();updateMode();store();ghStatus('GitHub не подключён. Локальная копия сохранена.');if(ghToken){$('cloudToken').value=ghToken;ghConnect();}else if(!hadLocalOnOpen)ghManualLoad(true);
 })();
 </script>
 </body></html>
